@@ -22,7 +22,7 @@ function getSpellData(number){
         
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
-            message.reply(data);
+            message.channel.send(data);
         });
         
         }).on("error", (err) => {
