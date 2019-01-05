@@ -48,7 +48,7 @@ client.on('message', message => {
             case "print":
                 message.reply(i);
             case "spell"
-                consoll.log(getSpellData(Number(command[1])))
+                console.log(getSpellData(Number(command[1])))
             }
         }
     }
