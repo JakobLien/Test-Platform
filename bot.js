@@ -5,7 +5,7 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const https = require('http');
+const http = require('http');
 
 client.on('ready', () => {
     console.log('I am ready!');
