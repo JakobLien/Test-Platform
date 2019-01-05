@@ -11,6 +11,8 @@ client.on('ready', () => {
     console.log('I am ready!');
 });
 
+var last_message_object;
+
 function getSpellData(number){
     http.get('http://www.dnd5eapi.co/api/spells/'+number, (resp) => {
         let data = '';
@@ -22,7 +24,7 @@ function getSpellData(number){
         
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
-            message.channel.send(data);
+            last_message_object.reply(data);
         });
         
         }).on("error", (err) => {
@@ -52,6 +54,7 @@ client.on('message', message => {
                 message.reply(i);
                 break;
             case "spell":
+                last_message_object = message;
                 getSpellData(Number(command[1]));
                 break;
         }
