@@ -18,7 +18,7 @@ client.on('message', message => {
     }else if(message.content === "!print"){
         message.reply(i);
     }else if(message.content === "!test1"){
-        message.reply(client.status);
+        message.channel.send("test successfull");
     }
 });
 
