@@ -33,19 +33,24 @@ function getSpellData(number){
 
 var i = false;
 client.on('message', message => {
-    if (message.content === '!trist') {
-        message.reply('Jakob er trist!');
-    }else if(message.content === "!turn_on"){
-        message.reply("turned on");
-        i = true;
-    }else if(message.content === "!turn_off"){
-        message.reply("turned off");
-        i = false;
-    }else if(message.content === "!print"){
-        message.reply(i);
-    }else if(message.content === "!spell"){
-        console.log("Im here now")
-        message.channel.send("did this get through?")
+    if(message.content[0] === "!"){
+        command = message.content.slice(1).splice(" ");
+        keyword = command[0]
+        switch(keyword){
+            case 'trist':
+                message.reply('Jakob er trist!');
+            case "turn_on":
+                message.reply("turned on");
+                i = true;
+            case "turn_off":
+                message.reply("turned off");
+                i = false;
+            case "print":
+                message.reply(i);
+            case "spell"
+                consoll.log(getSpellData(Number(command[1])))
+            }
+        }
     }
 });
 
