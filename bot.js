@@ -35,7 +35,7 @@ var i = false;
 client.on('message', message => {
     if(message.content[0] === "!"){
         command = message.content.slice(1).splice(" ");
-        keyword = command[0]
+        keyword = command[0];
         switch(keyword){
             case 'trist':
                 message.reply('Jakob er trist!');
@@ -49,7 +49,6 @@ client.on('message', message => {
                 message.reply(i);
             case "spell":
                 console.log(getSpellData(Number(command[1])));
-            }
         }
     }
 });
