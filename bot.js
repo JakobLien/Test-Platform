@@ -34,7 +34,7 @@ function getSpellData(number){
 var i = false;
 client.on('message', message => {
     if(message.content[0] === "!"){
-        command = message.content.slice(1).splice(" ");
+        command = message.content.slice(1).split(" ");
         keyword = command[0];
         switch(keyword){
             case 'trist':
