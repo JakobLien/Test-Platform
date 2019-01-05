@@ -31,6 +31,8 @@ function getSpellData(number){
     
 }
 
+console.log("checkpoint 2")
+
 var i = false;
 client.on('message', message => {
     if(message.content[0] === "!"){
@@ -52,6 +54,8 @@ client.on('message', message => {
         }
     }
 });
+
+console.log("checkpoint 3")
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
