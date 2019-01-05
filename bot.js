@@ -41,16 +41,21 @@ client.on('message', message => {
         switch(keyword){
             case 'trist':
                 message.reply('Jakob er trist!');
+                break;
             case "turn_on":
                 message.reply("turned on");
                 i = true;
+                break;
             case "turn_off":
                 message.reply("turned off");
                 i = false;
+                break;
             case "print":
                 message.reply(i);
+                break;
             case "spell":
                 console.log(getSpellData(Number(command[1])));
+                break;
         }
     }
 });
