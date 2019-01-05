@@ -23,7 +23,7 @@ function getSpellData(number){
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
             console.log(data);
-            return JSON.parse(data);
+            return data;
         });
         
         }).on("error", (err) => {
@@ -53,7 +53,7 @@ client.on('message', message => {
                 message.reply(i);
                 break;
             case "spell":
-                console.log(getSpellData(Number(command[1])));
+                message.reply(getSpellData(Number(command[1])));
                 break;
         }
     }
