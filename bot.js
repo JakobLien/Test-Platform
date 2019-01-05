@@ -23,7 +23,7 @@ client.on('message', message => {
         message.reply(i);
     }else if(message.content === "!test1"){
         console.log("Im here now")
-        message.send("did this get through?")
+        message.channel.send("did this get through?")
     }
 });
 
