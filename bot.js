@@ -5,14 +5,14 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const https = require('https');
+const https = require('http');
 
 client.on('ready', () => {
     console.log('I am ready!');
 });
 
 function getSpellData(number){
-    http.get('http://dnd5eapi.co/api/spells/'+number, (resp) => {
+    http.get('http://www.dnd5eapi.co/api/spells/'+number, (resp) => {
         let data = '';
         
         // A chunk of data has been recieved.
@@ -30,8 +30,6 @@ function getSpellData(number){
         });
     
 }
-
-console.log("checkpoint 2")
 
 var i = false;
 client.on('message', message => {
@@ -59,8 +57,6 @@ client.on('message', message => {
         }
     }
 });
-
-console.log("checkpoint 3")
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
