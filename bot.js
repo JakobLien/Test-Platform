@@ -13,7 +13,7 @@ client.on('message', message => {
         message.reply("turned on");
         i = true;
     }else if(message.content === "!turn_off"){
-        message.reply("turned on");
+        message.reply("turned off");
         i = false;
     }else if(message.content === "!print"){
         message.reply(i);
