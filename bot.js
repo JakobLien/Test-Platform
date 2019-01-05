@@ -1,3 +1,7 @@
+//The good stuff: 
+//send message: message.channel.send("");
+//reply to command message.reply("");
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -18,7 +22,8 @@ client.on('message', message => {
     }else if(message.content === "!print"){
         message.reply(i);
     }else if(message.content === "!test1"){
-        message.channel.send("test successfull");
+        console.log("Im here now")
+        message.send("did this get through?")
     }
 });
 
