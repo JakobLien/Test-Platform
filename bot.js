@@ -17,6 +17,8 @@ client.on('message', message => {
         i = false;
     }else if(message.content === "!print"){
         message.reply(i);
+    }else if(message.content === "!test1"){
+        message.reply(client.status);
     }
 });
 
