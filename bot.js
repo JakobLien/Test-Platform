@@ -12,7 +12,7 @@ client.on('ready', () => {
 });
 
 function getSpellData(number){
-    https.get('http://dnd5eapi.co/api/spells/'+number, (resp) => {
+    http.get('http://dnd5eapi.co/api/spells/'+number, (resp) => {
         let data = '';
         
         // A chunk of data has been recieved.
