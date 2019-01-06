@@ -13,8 +13,8 @@ client.on('ready', () => {
 
 var last_message_object;
 
-function getSpellData(number){
-    http.get('http://www.dnd5eapi.co/api/spells/'+number, (resp) => {
+function getSpellData(spellName){
+    http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
         let data = '';
         
         // A chunk of data has been recieved.
@@ -61,7 +61,7 @@ client.on('message', message => {
                 break;
             case "spell":
                 last_message_object = message;
-                getSpellData(Number(command[1]));
+                getSpellData(command.slice(1).join("+"));
                 break;
         }
     }
