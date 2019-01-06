@@ -26,8 +26,10 @@ function getSpellData(spellName){
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
             console.log("The datatype is: "+typeof(data));
-            spellLink = JSON.parse(data)[results][0][url];
-            console.log("Now its a link. "+type+": "+spellLink)
+            console.log(data);
+            console.log(JSON.parse(data));
+            //spellLink = JSON.parse(data)[results][0][url];
+            //console.log("Now its a link. "+type+": "+spellLink)
         });
         
         }).on("error", (err) => {
