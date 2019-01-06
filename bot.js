@@ -12,7 +12,7 @@ client.on('ready', () => {
 });
 
 var last_message_object;
-var spellLink;
+var spell;
 
 function getSpellData(spellName){
     http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
@@ -28,15 +28,15 @@ function getSpellData(spellName){
             console.log("The datatype is: "+typeof(data));
             console.log(data);
             console.log(JSON.parse(data));
-            spellLink = (JSON.parse(data))[results][0][url];
-            //console.log("Now its a link. "+type+": "+spellLink)
+            spell = JSON.parse(data);
+            console.log("Now its a link. "+typeof(spell)+": "+spell);
         });
         
         }).on("error", (err) => {
             console.log("Error: " + err.message);
         });
     
-    /*http.get(spellLink, (resp) => {
+    /*http.get(spell[results][0][url], (resp) => {
         let data = '';
         
         // A chunk of data has been recieved.
