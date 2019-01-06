@@ -12,7 +12,6 @@ client.on('ready', () => {
 });
 
 var last_message_object;
-var spellObject;
 var spellLink;
 
 function getSpellData(spellName){
@@ -27,10 +26,6 @@ function getSpellData(spellName){
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
             console.log("The datatype is: "+typeof(data));
-            console.log(data);
-            console.log(JSON.parse(data));
-            //spellObject = JSON.parse(data);
-            //spellLink = spellObject["results"][0]["url"];
             spellLink = (JSON.parse(data))["results"][0]["url"];
             console.log("Now its a link. "+typeof(spellLink)+": "+spellLink);
         });
@@ -38,6 +33,8 @@ function getSpellData(spellName){
         }).on("error", (err) => {
             console.log("Error: " + err.message);
         });
+    
+    console.log("gothere");
     
     http.get(spellLink, (resp) => {
         let data = '';
