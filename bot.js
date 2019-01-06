@@ -33,7 +33,6 @@ function getSpellData(spellName){
                     });
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
-                        console.log(data);
                         printSpellData(JSON.parse(data));
                     });
                 }).on("error", (err) => {
@@ -51,8 +50,6 @@ function getSpellData(spellName){
 var con;
 var ritual;
 function printSpellData(data){
-    console.log(typeof(data));
-    console.log(typeof(data["classes"].length), data["classes"].length, data["classes"]);
     if(data["concentration"] === "no"){con = "not "}else{con = ""}
     if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
     last_message_object.reply(data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
@@ -69,6 +66,7 @@ client.on('message', message => {
     if(message.content[0] === "!"){
         command = message.content.slice(1).split(" ");
         keyword = command[0];
+        console.log(command);
         switch(keyword){
             case 'trist':
                 message.reply('Jakob er trist!');
