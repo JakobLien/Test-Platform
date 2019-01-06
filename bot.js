@@ -63,11 +63,11 @@ function printSpellData(data){
         console.log(i);
         console.log(data["classes"][0]["name"]);
         console.log(i === 0);
-        console.log(data["classes"][0]["name"]);
+        console.log(data["classes"][i]["name"]);
+        classes+=data["classes"][i]["name"]+" ";
         if(i = data["classes"].length && 1 < data["classes"].length){
             classes+= "and ";
         }
-        classes+=data["classes"][i]["name"]+" ";
     }
     last_message_object.reply(data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
 It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
