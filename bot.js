@@ -28,7 +28,7 @@ function getSpellData(spellName){
             console.log("The datatype is: "+typeof(data));
             console.log(data);
             console.log(JSON.parse(data));
-            //spellLink = JSON.parse(data)[results][0][url];
+            spellLink = (JSON.parse(data))[results][0][url];
             //console.log("Now its a link. "+type+": "+spellLink)
         });
         
