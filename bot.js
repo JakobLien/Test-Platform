@@ -30,7 +30,7 @@ function getSpellData(spellName){
             console.log(data);
             console.log(JSON.parse(data));
             spellObject = JSON.parse(data);
-            spellLink = spellObject[results][0][url];
+            spellLink = spellObject["results"][0]["url"];
             console.log("Now its a link. "+typeof(spellLink)+": "+spellLink);
         });
         
