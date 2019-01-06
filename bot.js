@@ -66,7 +66,7 @@ client.on('message', message => {
     if(message.content[0] === "!"){
         command = message.content.slice(1).split(" ");
         keyword = command[0];
-        console.log(command);
+        console.log("Attempting to run command: "+message.content);
         switch(keyword){
             case 'trist':
                 message.reply('Jakob er trist!');
