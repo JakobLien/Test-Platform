@@ -17,36 +17,34 @@ var spellLink;
 function getSpellData(spellName){
     http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
         let data = '';
-        
         // A chunk of data has been recieved.
         resp.on('data', (chunk) => {
             data += chunk;
         });
-        
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
-            spellLink = (JSON.parse(data))["results"][0]["url"];
-            console.log("Now its a link. "+typeof(spellLink)+": "+spellLink);
-            
-            http.get(spellLink, (resp) => {
-                let data = '';
+            try{
+                spellLink = (JSON.parse(data))["results"][0]["url"];
+                console.log("Now its a link. "+typeof(spellLink)+": "+spellLink);
                 
-                // A chunk of data has been recieved.
-                resp.on('data', (chunk) => {
-                    data += chunk;
+                http.get(spellLink, (resp) => {
+                    let data = '';
+                    // A chunk of data has been recieved.
+                    resp.on('data', (chunk) => {
+                        data += chunk;
+                    });
+                    // The whole response has been received. Print out the result.
+                    resp.on('end', () => {
+                        console.log(typeof(data), data);
+                        giveSpellData(JSON.parse(data));
+                    });
+                }).on("error", (err) => {
+                    console.log("Error(2): " + err.message);
                 });
-                
-                // The whole response has been received. Print out the result.
-                resp.on('end', () => {
-                    console.log(typeof(data), data);
-                    giveSpellData(JSON.parse(data));
-                });
-                
-            }).on("error", (err) => {
-                console.log("Error(2): " + err.message);
-            });
+            }catch(err){
+                last_message_object.reply("That spell was not found. The error message goes: "+err);
+            }
         });
-        
         }).on("error", (err) => {
             console.log("Error(1): " + err.message);
         });
