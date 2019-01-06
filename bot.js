@@ -51,7 +51,7 @@ function getSpellData(spellName){
 var con;
 var ritual;
 var classes;
-var count;
+var classCount;
 function printSpellData(data){
     console.log(typeof(data));
     console.log(typeof(data["classes"].length), data["classes"].length, data["classes"]);
@@ -63,12 +63,12 @@ function printSpellData(data){
     count = 0; 
     try{
         while(true){
-            console.log(a);
+            console.log(classCount);
             classes+=data["classes"][a]["name"]+" ";
-            if(a = data["classes"].length-1 && a < data["classes"].length){
+            if(classCount = data["classes"].length-1 && classCount < data["classes"].length){
                 classes+= "and ";
             }
-            a+=1;
+            classCount+=1;
         }
     }catch(err){
         console.log(err)
