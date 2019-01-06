@@ -64,7 +64,7 @@ function printSpellData(data){
     try{
         while(true){
             console.log(classCount);
-            classes+=data["classes"][a]["name"]+" ";
+            classes+=data["classes"][classCount]["name"]+" ";
             if(classCount = data["classes"].length-1 && classCount < data["classes"].length){
                 classes+= "and ";
             }
