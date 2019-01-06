@@ -53,7 +53,7 @@ var ritual;
 var classes;
 function printSpellData(data){
     console.log(typeof(data));
-    console.log(typeof(data["classes"].length));
+    console.log(typeof(data["classes"].length), data["classes"].length, data["classes"]);
     if(data["concentration"] === "no"){con = "not "}else{con = ""}
     if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
     classes = ""
