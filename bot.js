@@ -33,6 +33,7 @@ function getSpellData(spellName){
                     });
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
+                        console.log(data);
                         printSpellData(JSON.parse(data));
                     });
                 }).on("error", (err) => {
@@ -50,7 +51,6 @@ function getSpellData(spellName){
 
 function printSpellData(data){
     for(var i = 0; i<data["desc"].length; i++){
-        console.log(data);
         last_message_object.reply(data["desc"][i]);
     }
 }
