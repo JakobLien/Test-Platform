@@ -47,7 +47,7 @@ function getSpellData(spellName){
             console.log("Error(1): " + err.message);
         });
 }
-/*
+
 var con;
 var ritual;
 var classes;
@@ -62,8 +62,11 @@ function printSpellData(data){
     for(var a = 0; a < data["classes"].length; a++){
         console.log(a);
         classes+=data["classes"][a]["name"]+" ";
-        if(a = data["classes"].length && a < data["classes"].length){
+        if(a = data["classes"].length-1 && a < data["classes"].length){
             classes+= "and ";
+        }
+        if(a = 2){
+            break;
         }
     }
     last_message_object.reply(data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
@@ -74,7 +77,7 @@ Its available to the following class(es): `+classes+" and it can be found here: 
         last_message_object.reply(data["desc"][i]);
     }
 }
-*/
+
 var i = false;
 client.on('message', message => {
     if(message.content[0] === "!"){
