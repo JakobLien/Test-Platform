@@ -54,7 +54,7 @@ client.on('message', message => {
                 message.reply(i);
                 break;
             case "nut":
-                message.reply(":clap:");
+                message.reply(command[1]);
                 break;
             case "spell":
                 last_message_object = message;
