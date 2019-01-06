@@ -56,7 +56,7 @@ client.on('message', message => {
             case "nut":
                 message.channel.send(":weary: :ok_hand: :sweat_drops:");
                 break;
-            case "back me up":
+            case "backmeup":
                 message.reply("@everyone, this person is correct");
                 break;
             case "spell":
