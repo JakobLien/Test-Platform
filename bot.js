@@ -52,10 +52,13 @@ var con;
 var ritual;
 var classes;
 function printSpellData(data){
+    console.log(typeof(data));
+    console.log(typeof(data["classes"].length));
     if(data["concentration"] === "no"){con = "not "}else{con = ""}
     if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
     classes = ""
     for(var i = 0; i < data["classes"].length; i++){
+        console.log(i);
         if(i = data["classes"].length && 1 < data["classes"].length){
             classes+= "and ";
         }
