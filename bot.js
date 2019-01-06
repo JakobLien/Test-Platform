@@ -26,7 +26,7 @@ function getSpellData(spellName){
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
             console.log(data);
-            spellLink = data["results"][0]["url"]
+            spellLink = data.results[0].url;
         });
         
         }).on("error", (err) => {
