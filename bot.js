@@ -50,6 +50,7 @@ function getSpellData(spellName){
 
 function printSpellData(data){
     for(var i = 0; i<data["desc"].length; i++){
+        console.log(data);
         last_message_object.reply(data["desc"][i]);
     }
 }
