@@ -47,7 +47,7 @@ function getSpellData(spellName){
             console.log("Error(1): " + err.message);
         });
 }
-
+/*
 var con;
 var ritual;
 var classes;
@@ -77,7 +77,7 @@ Its available to the following class(es): `+classes+" and it can be found here: 
         last_message_object.reply(data["desc"][i]);
     }
 }
-
+*/
 var i = false;
 client.on('message', message => {
     if(message.content[0] === "!"){
