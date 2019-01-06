@@ -29,8 +29,9 @@ function getSpellData(spellName){
             console.log("The datatype is: "+typeof(data));
             console.log(data);
             console.log(JSON.parse(data));
-            spellObject = JSON.parse(data);
-            spellLink = spellObject["results"][0]["url"];
+            //spellObject = JSON.parse(data);
+            //spellLink = spellObject["results"][0]["url"];
+            spellLink = (JSON.parse(data))["results"][0]["url"];
             console.log("Now its a link. "+typeof(spellLink)+": "+spellLink);
         });
         
@@ -38,7 +39,7 @@ function getSpellData(spellName){
             console.log("Error: " + err.message);
         });
     
-    /*http.get(spellLink, (resp) => {
+    http.get(spellLink, (resp) => {
         let data = '';
         
         // A chunk of data has been recieved.
@@ -54,7 +55,7 @@ function getSpellData(spellName){
         
         }).on("error", (err) => {
             console.log("Error: " + err.message);
-        });*/
+        });
     
 }
 
