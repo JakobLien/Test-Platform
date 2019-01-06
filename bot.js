@@ -12,9 +12,28 @@ client.on('ready', () => {
 });
 
 var last_message_object;
+var spellLink;
 
 function getSpellData(spellName){
     http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
+        let data = '';
+        
+        // A chunk of data has been recieved.
+        resp.on('data', (chunk) => {
+            data += chunk;
+        });
+        
+        // The whole response has been received. Print out the result.
+        resp.on('end', () => {
+            console.log(data);
+            spellLink = data["results"][0]["url"]
+        });
+        
+        }).on("error", (err) => {
+            console.log("Error: " + err.message);
+        });
+    
+    http.get(spellLink, (resp) => {
         let data = '';
         
         // A chunk of data has been recieved.
