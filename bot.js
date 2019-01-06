@@ -25,8 +25,6 @@ function getSpellData(spellName){
         resp.on('end', () => {
             try{
                 spellLink = (JSON.parse(data))["results"][0]["url"];
-                console.log("Now its a link. "+typeof(spellLink)+": "+spellLink);
-                
                 http.get(spellLink, (resp) => {
                     let data = '';
                     // A chunk of data has been recieved.
@@ -35,14 +33,13 @@ function getSpellData(spellName){
                     });
                     // The whole response has been received. Print out the result.
                     resp.on('end', () => {
-                        console.log(typeof(data), data);
                         giveSpellData(JSON.parse(data));
                     });
                 }).on("error", (err) => {
                     console.log("Error(2): " + err.message);
                 });
             }catch(err){
-                last_message_object.reply("That spell was not found. The error message goes: "+err);
+                last_message_object.reply("That spell was not found. (The error message goes: "+err+")");
             }
         });
         }).on("error", (err) => {
@@ -51,7 +48,7 @@ function getSpellData(spellName){
 }
 
 
-function giveSpellData(data){
+function printSpellData(data){
     for(var i = 0; i<data["desc"].length; i++){
         last_message_object.reply(data["desc"][i]);
     }
