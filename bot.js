@@ -54,7 +54,7 @@ client.on('message', message => {
                 message.reply(i);
                 break;
             case "nut":
-                message.reply(command[1]);
+                message.reply(":weary: :ok_hand: :sweat_drops:");
                 break;
             case "spell":
                 last_message_object = message;
