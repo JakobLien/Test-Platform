@@ -53,6 +53,9 @@ client.on('message', message => {
             case "print":
                 message.reply(i);
                 break;
+            case "nut":
+                message.reply("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
+                break;
             case "spell":
                 last_message_object = message;
                 getSpellData(Number(command[1]));
