@@ -50,33 +50,15 @@ function getSpellData(spellName){
 
 var con;
 var ritual;
-var classes;
-var classCount;
 function printSpellData(data){
     console.log(typeof(data));
     console.log(typeof(data["classes"].length), data["classes"].length, data["classes"]);
     if(data["concentration"] === "no"){con = "not "}else{con = ""}
     if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
-    classes = ""
-    console.log(data["classes"][0]);
-    console.log(data["classes"][0]["name"]);
-    count = 0; 
-    try{
-        while(true){
-            console.log(classCount);
-            classes+=data["classes"][classCount]["name"]+" ";
-            if(classCount = data["classes"].length-1 && classCount < data["classes"].length){
-                classes+= "and ";
-            }
-            classCount+=1;
-        }
-    }catch(err){
-        console.log(err)
-    }
     last_message_object.reply(data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
 It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
 Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
-Its available to the following class(es): `+classes+" and it can be found here: "+data["page"]);
+It can be found here: `+data["page"]);
     for(var i = 0; i<data["desc"].length; i++){
         last_message_object.reply(data["desc"][i]);
     }
