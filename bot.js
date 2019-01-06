@@ -25,35 +25,31 @@ function getSpellData(spellName){
         
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
-            console.log("The datatype is: "+typeof(data));
             spellLink = (JSON.parse(data))["results"][0]["url"];
             console.log("Now its a link. "+typeof(spellLink)+": "+spellLink);
+            
+            http.get(spellLink, (resp) => {
+                let data = '';
+                
+                // A chunk of data has been recieved.
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
+                
+                // The whole response has been received. Print out the result.
+                resp.on('end', () => {
+                    console.log(data);
+                    last_message_object.reply(data);
+                });
+                
+            }).on("error", (err) => {
+                console.log("Error(2): " + err.message);
+            });
         });
         
         }).on("error", (err) => {
-            console.log("Error: " + err.message);
+            console.log("Error(1): " + err.message);
         });
-    
-    console.log("gothere");
-    
-    http.get(spellLink, (resp) => {
-        let data = '';
-        
-        // A chunk of data has been recieved.
-        resp.on('data', (chunk) => {
-            data += chunk;
-        });
-        
-        // The whole response has been received. Print out the result.
-        resp.on('end', () => {
-            console.log(data);
-            last_message_object.reply(data);
-        });
-        
-        }).on("error", (err) => {
-            console.log("Error: " + err.message);
-        });
-    
 }
 
 var i = false;
