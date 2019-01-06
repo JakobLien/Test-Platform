@@ -57,6 +57,8 @@ function printSpellData(data){
     if(data["concentration"] === "no"){con = "not "}else{con = ""}
     if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
     classes = ""
+    console.log(data["classes"][0]);
+    console.log(data["classes"][0]["name"]);
     for(var i = 0; i < data["classes"].length; i++){
         console.log(i);
         if(i = data["classes"].length && 1 < data["classes"].length){
