@@ -57,7 +57,7 @@ client.on('message', message => {
                 message.channel.send(":weary: :ok_hand: :sweat_drops:");
                 break;
             case "backmeup":
-                message.reply("@everyone, this person is correct");
+                message.reply("This person is correct!");
                 break;
             case "spell":
                 last_message_object = message;
