@@ -59,7 +59,7 @@ function giveSpellData(data){
     for(var i = 0; i<data["desc"].length; i++){
         completeReply+=data["desc"][i];
     }
-    last_message_object.reply("That spell's description goes as follows:"+=completeReply);
+    last_message_object.reply("That spell's description goes as follows:"+completeReply);
 }
 
 var i = false;
