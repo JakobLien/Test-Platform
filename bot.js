@@ -47,7 +47,7 @@ function getSpellData(spellName){
             console.log("Error(1): " + err.message);
         });
 }
-/*
+
 var con;
 var ritual;
 var classes;
@@ -59,13 +59,10 @@ function printSpellData(data){
     classes = ""
     console.log(data["classes"][0]);
     console.log(data["classes"][0]["name"]);
-    for(var i = 0; i < data["classes"].length; i++){
-        console.log(i);
-        console.log(data["classes"][0]["name"]);
-        console.log(i === 0);
-        console.log(data["classes"][i]["name"]);
-        classes+=data["classes"][i]["name"]+" ";
-        if(i = data["classes"].length && 1 < data["classes"].length){
+    for(var a = 0; a < data["classes"].length; a++){
+        console.log(a);
+        classes+=data["classes"][a]["name"]+" ";
+        if(a = data["classes"].length && a < data["classes"].length){
             classes+= "and ";
         }
     }
@@ -77,7 +74,7 @@ Its available to the following class(es): `+classes+" and it can be found here: 
         last_message_object.reply(data["desc"][i]);
     }
 }
-*/
+
 var i = false;
 client.on('message', message => {
     if(message.content[0] === "!"){
