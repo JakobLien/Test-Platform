@@ -25,15 +25,15 @@ function getSpellData(spellName){
         
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
-            console.log(data);
-            spellLink = data.results[0].url;
+            console.log("The datatype is: "+typeof(data));
+            //spellLink = data.results[0].url;
         });
         
         }).on("error", (err) => {
             console.log("Error: " + err.message);
         });
     
-    http.get(spellLink, (resp) => {
+    /*http.get(spellLink, (resp) => {
         let data = '';
         
         // A chunk of data has been recieved.
@@ -49,7 +49,7 @@ function getSpellData(spellName){
         
         }).on("error", (err) => {
             console.log("Error: " + err.message);
-        });
+        });*/
     
 }
 
