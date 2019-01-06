@@ -13,6 +13,7 @@ client.on('ready', () => {
 
 var last_message_object;
 var spellLink;
+var completeReply;
 
 function getSpellData(spellName){
     http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
@@ -39,7 +40,7 @@ function getSpellData(spellName){
                 // The whole response has been received. Print out the result.
                 resp.on('end', () => {
                     console.log(data);
-                    last_message_object.reply(data);
+                    giveSpellData(data)
                 });
                 
             }).on("error", (err) => {
@@ -50,6 +51,15 @@ function getSpellData(spellName){
         }).on("error", (err) => {
             console.log("Error(1): " + err.message);
         });
+}
+
+
+function giveSpellData(data){
+    completeReply = "";
+    for(var i = 0; i<data["desc"].length; i++){
+        completeReply+=data["desc"][i];
+    }
+    last_message_object.reply("That spell's description goes as follows:"+=completeReply);
 }
 
 var i = false;
