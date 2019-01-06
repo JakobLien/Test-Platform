@@ -61,6 +61,7 @@ function printSpellData(data){
     console.log(data["classes"][0]["name"]);
     for(var i = 0; i < data["classes"].length; i++){
         console.log(i);
+        console.log(data["classes"][0]["name"]);
         if(i = data["classes"].length && 1 < data["classes"].length){
             classes+= "and ";
         }
