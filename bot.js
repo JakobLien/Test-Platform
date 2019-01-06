@@ -65,7 +65,7 @@ function printSpellData(data){
         if(a = data["classes"].length-1 && a < data["classes"].length){
             classes+= "and ";
         }
-        if(a = 2){
+        if(a = data["classes"].length-1){
             break;
         }
     }
