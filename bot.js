@@ -99,6 +99,7 @@ client.on('message', message => {
 					console.log("Bot controll claimed by Jakob!");
 					iDecide = true;
 				}
+				break;
 			case "us":
 				if(message.author.username === myUserName){
 					console.log("Bot retaken by the people!");
