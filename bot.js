@@ -63,8 +63,9 @@ It can be found here: `+data["page"]);
 
 var modding = {};
 var iDecide = false;
+const myUserName = "jlien11";
 client.on('message', message => {
-	if(message.content[0] === "!" && !(iDecide && message.author.username === "jlien11")){
+	if(message.content[0] === "!" && !(iDecide && message.author.username === myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		console.log("Attempting to run command "+message.content+" on the server "+message.channel+" for "+message.author);
@@ -94,12 +95,12 @@ client.on('message', message => {
 				message.author.send("Hello there");
 				break;
 			case "me":
-				if(message.author === "@259666902534717440"){
+				if(message.author.username === myUserName){
 					console.log("Bot controll claimed by Jakob!");
 					iDecide = true;
 				}
 			case "us":
-				if(message.author === "@259666902534717440"){
+				if(message.author.username === myUserName){
 					console.log("Bot retaken by the people!");
 					iDecide = false;
 				}
