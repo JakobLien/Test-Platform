@@ -98,11 +98,13 @@ client.on('message', message => {
 			case "stopMod":
 				modding[message.channel] = "";
 				break;
+			case "stopAllMod":
+				modding = {};
 			case "openPM":
 				message.author.send("Hello there");
 				break;
 		}
-		if(modding){
+		if(modding[message.channel]){
 			console.log("Message: "+message.content+" was changed to "+modding);
 			message.delete();
 		}
