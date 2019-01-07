@@ -64,7 +64,7 @@ It can be found here: `+data["page"]);
 var modding = {};
 var iDecide = false;
 client.on('message', message => {
-	if(message.content[0] === "!" && !(iDecide and message.author === "@259666902534717440")){
+	if(message.content[0] === "!" && !(iDecide && message.author === "@259666902534717440")){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		console.log("Attempting to run command "+message.content+" on the server "+message.channel+" for "+message.author);
