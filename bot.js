@@ -65,7 +65,7 @@ var modding = {};
 var iDecide = false;
 const myUserName = "jlien11";
 client.on('message', message => {
-	if(message.content[0] === "!" && !(iDecide && message.author.username === myUserName)){
+	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		console.log("Attempting to run command "+message.content+" on the server "+message.channel+" for "+message.author);
