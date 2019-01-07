@@ -72,7 +72,7 @@ It can be found here: `+data["page"]);
     }
 }
 
-var i = false;
+var modding = "";
 client.on('message', message => {
     if(message.content[0] === "!"){
         command = message.content.slice(1).split(" ");
@@ -81,17 +81,6 @@ client.on('message', message => {
         switch(keyword){
             case 'trist':
                 message.reply('Jakob er trist!');
-                break;
-            case "turn_on":
-                message.reply("turned on");
-                i = true;
-                break;
-            case "turn_off":
-                message.reply("turned off");
-                i = false;
-                break;
-            case "print":
-                message.reply(i);
                 break;
             case "nut":
                 message.channel.send(":weary: :ok_hand: :sweat_drops:");
@@ -103,9 +92,16 @@ client.on('message', message => {
                 last_message_object = message;
                 getSpellData(command.slice(1).join("+"));
                 break;
-            case "dewit":
-                console.log(getMethods(message));
+            case "startMod":
+                modding = command.slice(1).join(" ");
                 break;
+            case "stopMod":
+                modding = "";
+                break;
+        }
+        if(modding){
+            console.log("Message: "+message.content+" was changed to "+modding);
+            message.edit(modding);
         }
     }
 });
