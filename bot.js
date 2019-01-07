@@ -17,21 +17,17 @@ var spellLink;
 function getSpellData(spellName){
 	http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
 		let data = '';
-		// A chunk of data has been recieved.
 		resp.on('data', (chunk) => {
 			data += chunk;
 		});
-		// The whole response has been received. Print out the result.
 		resp.on('end', () => {
 			try{
 				spellLink = (JSON.parse(data))["results"][0]["url"];
 				http.get(spellLink, (resp) => {
 					let data = '';
-					// A chunk of data has been recieved.
 					resp.on('data', (chunk) => {
 						data += chunk;
 					});
-					// The whole response has been received. Print out the result.
 					resp.on('end', () => {
 						printSpellData(JSON.parse(data));
 					});
@@ -96,18 +92,19 @@ client.on('message', message => {
 				break;
 			case "me":
 				if(message.author.username === myUserName){
-					console.log("Bot controll claimed by Jakob!");
+					message.channel.send("Bot controll claimed by Jakob!");
 					iDecide = true;
 				}
 				break;
 			case "us":
 				if(message.author.username === myUserName){
-					console.log("Bot retaken by the people!");
+					message.channel.send("Bot retaken by the people!");
 					iDecide = false;
 				}
 		}
 		if(modding[message.channel]){
 			console.log("Message: "+message.content+" was changed to "+modding);
+			message.reply("just wrote"+modding[message.channel]);
 			message.delete();
 			
 		}
