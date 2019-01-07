@@ -87,6 +87,7 @@ client.on('message', message => {
 				break;
 			case "stopAllMod":
 				modding = {};
+				break;
 			case "openPM":
 				message.author.send("Hello there");
 				break;
@@ -102,13 +103,11 @@ client.on('message', message => {
 					iDecide = false;
 				}
 		}
-		console.log(modding, modding[message.channel]);
-		if(modding[message.channel]){
-			console.log("Message: "+message.content+" was changed to "+modding);
-			message.delete();
-			message.reply("just wrote "+modding[message.channel]);
-			
-		}
+	}
+	if(modding[message.channel]){
+		console.log("Message: "+message.content+" was changed to "+modding[message.channel]);
+		message.delete();
+		message.reply("just wrote "+modding[message.channel]);
 	}
 });
 
