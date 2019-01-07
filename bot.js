@@ -14,6 +14,7 @@ client.on('ready', () => {
 var last_message_object;
 var spellLink;
 
+//Stuff to deal with d&d spell requests
 function getSpellData(spellName){
 	http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
 		let data = '';
@@ -79,6 +80,10 @@ client.on('message', message => {
 				last_message_object = message;
 				getSpellData(command.slice(1).join("+"));
 				break;
+			case "openPM":
+				message.author.send("Hello there");
+				break;
+		}if(message.author.username === myUserName){switch(keyword){
 			case "startMod":
 				modding[message.channel] = command.slice(1).join(" ");
 				break;
@@ -88,26 +93,19 @@ client.on('message', message => {
 			case "stopAllMod":
 				modding = {};
 				break;
-			case "openPM":
-				message.author.send("Hello there");
-				break;
 			case "me":
-				if(message.author.username === myUserName){
-					message.channel.send("Bot controll claimed by Jakob!");
-					iDecide = true;
-				}
+				message.channel.send("Bot controll claimed by Jakob!");
+				iDecide = true;
 				break;
 			case "us":
-				if(message.author.username === myUserName){
-					message.channel.send("Bot retaken by the people!");
-					iDecide = false;
-				}
-		}
+				message.channel.send("Bot retaken by the people!");
+				iDecide = false;
+		}}
 	}
 	if(modding[message.channel] && !message.author.bot){
 		console.log("Message: "+message.content+" was changed to "+modding[message.channel]);
 		message.delete();
-		message.reply("just wrote "+modding[message.channel]);
+		message.channel.send(message.author.username+"just wrote "+modding[message.channel]);
 	}
 });
 
