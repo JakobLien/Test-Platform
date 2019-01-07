@@ -11,17 +11,6 @@ client.on('ready', () => {
 	console.log('I am ready!');
 });
 
-function getMethods(obj)
-{
-	var res = [];
-	for(var m in obj) {
-		if(typeof obj[m] == "function") {
-			res.push(m)
-		}
-	}
-	return res;
-}
-
 var last_message_object;
 var spellLink;
 
@@ -73,8 +62,9 @@ It can be found here: `+data["page"]);
 }
 
 var modding = {};
+var iDecide = false;
 client.on('message', message => {
-	if(message.content[0] === "!"){
+	if(message.content[0] === "!" && !(iDecide and message.author === "@259666902534717440")){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		console.log("Attempting to run command "+message.content+" on the server "+message.channel+" for "+message.author);
@@ -103,10 +93,21 @@ client.on('message', message => {
 			case "openPM":
 				message.author.send("Hello there");
 				break;
+			case "me":
+				if(message.author === "@259666902534717440"){
+					console.log("Bot controll claimed by Jakob!");
+					iDecide = true;
+				}
+			case "us":
+				if(message.author === "@259666902534717440"){
+					console.log("Bot retaken by the people!");
+					iDecide = false;
+				}
 		}
 		if(modding[message.channel]){
 			console.log("Message: "+message.content+" was changed to "+modding);
 			message.delete();
+			
 		}
 	}
 });
