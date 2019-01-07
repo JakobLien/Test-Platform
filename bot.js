@@ -69,7 +69,7 @@ client.on('message', message => {
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
-		if(publicComands.includes(keyword)){
+		if(publicCommands.includes(keyword)){
 			//public commands
 			console.log("Attempting to run public command "+message.content+" on the server "+
 				    message.guild.name+" for "+message.author.username);
