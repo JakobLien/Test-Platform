@@ -44,6 +44,7 @@ function getSpellData(spellName){
 		});
 }
 
+//stuff to print spell requests
 var con;
 var ritual;
 function printSpellData(data){
@@ -58,6 +59,7 @@ It can be found here: `+data["page"]);
 	}
 }
 
+//The main thing
 var modding = {};
 var iDecide = false;
 const myUserName = "jlien11";
@@ -68,7 +70,8 @@ client.on('message', message => {
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		if(publicComands.includes(keyword)){
-			console.log("Attempting to run command "+message.content+" on the server "+message.guild.name+" for "+message.author.username);
+			//public commands
+			console.log("Attempting to run public command "+message.content+" on the server "+message.guild.name+" for "+message.author.username);
 			switch(keyword){
 				case 'trist':
 					message.reply('Jakob er trist!');
@@ -87,7 +90,9 @@ client.on('message', message => {
 					console.log(message.author.username+" has opened PM");
 					message.author.send("Hello there");
 					break;
+			}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
+			console.log("Attempting to run private command "+message.content+" on the server "+message.guild.name+" for "+message.author.username);
 			switch(keyword){
 				case "startMod":
 					modding[message.channel] = command.slice(1).join(" ");
