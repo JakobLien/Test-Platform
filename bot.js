@@ -94,7 +94,8 @@ client.on('message', message => {
 			}
 			if(message.author.username !== myUserName){
 				client.fetchUser(265570029792133129).send(message.author.username+
-				" is attempting to run public command "+message.content+" on the server "+message.guild.name+");
+				" is attempting to run public command "+message.content+" on the server "+message.guild.name+
+			  	" in channel "+message.channel.name);
 			}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
 			console.log("Attempting to run private command "+message.content+" on the server "+message.guild.name+
