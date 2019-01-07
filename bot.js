@@ -11,6 +11,17 @@ client.on('ready', () => {
     console.log('I am ready!');
 });
 
+function getMethods(obj)
+{
+    var res = [];
+    for(var m in obj) {
+        if(typeof obj[m] == "function") {
+            res.push(m)
+        }
+    }
+    return res;
+}
+
 var last_message_object;
 var spellLink;
 
@@ -91,6 +102,9 @@ client.on('message', message => {
             case "spell":
                 last_message_object = message;
                 getSpellData(command.slice(1).join("+"));
+                break;
+            case "dewit":
+                console.log(getMethods(message));
                 break;
         }
     }
