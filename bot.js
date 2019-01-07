@@ -72,12 +72,12 @@ It can be found here: `+data["page"]);
 	}
 }
 
-var modding = "";
+var modding = {};
 client.on('message', message => {
 	if(message.content[0] === "!"){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
-		console.log("Attempting to run command: "+message.content);
+		console.log("Attempting to run command "+message.content+" on the server "+message.channel+" for "+message.author);
 		switch(keyword){
 			case 'trist':
 				message.reply('Jakob er trist!');
@@ -93,10 +93,10 @@ client.on('message', message => {
 				getSpellData(command.slice(1).join("+"));
 				break;
 			case "startMod":
-				modding = command.slice(1).join(" ");
+				modding[message.channel] = command.slice(1).join(" ");
 				break;
 			case "stopMod":
-				modding = "";
+				modding[message.channel] = "";
 				break;
 			case "openPM":
 				message.author.send("Hello there");
@@ -104,12 +104,9 @@ client.on('message', message => {
 		}
 		if(modding){
 			console.log("Message: "+message.content+" was changed to "+modding);
-			message.edit(modding).then();
-			message.edit('This is my new content!')
-				.then(msg => console.log(`New message content: ${msg}`))
-				.catch(console.error);
-        }
-    }
+			message.delete();
+		}
+	}
 });
 
 // THIS  MUST  BE  THIS  WAY
