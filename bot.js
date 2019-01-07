@@ -61,46 +61,52 @@ It can be found here: `+data["page"]);
 var modding = {};
 var iDecide = false;
 const myUserName = "jlien11";
+var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
+var privateCommands = ["startMod", "stopMod", "stopAllMod", "me", "us"];
 client.on('message', message => {
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
-		console.log("Attempting to run command "+message.content+" on the server "+message.guild.name+" for "+message.author.username);
-		switch(keyword){
-			case 'trist':
-				message.reply('Jakob er trist!');
-				break;
-			case "nut":
-				message.channel.send(":weary: :ok_hand: :sweat_drops:");
-				break;
-			case "backmeup":
-				message.reply("This person is correct!");
-				break;
-			case "spell":
-				last_message_object = message;
-				getSpellData(command.slice(1).join("+"));
-				break;
-			case "openPM":
-				message.author.send("Hello there");
-				break;
-		}if(message.author.username === myUserName){switch(keyword){
-			case "startMod":
-				modding[message.channel] = command.slice(1).join(" ");
-				break;
-			case "stopMod":
-				modding[message.channel] = "";
-				break;
-			case "stopAllMod":
-				modding = {};
-				break;
-			case "me":
-				message.channel.send("Bot controll claimed by Jakob!");
-				iDecide = true;
-				break;
-			case "us":
-				message.channel.send("Bot retaken by the people!");
-				iDecide = false;
-		}}
+		if(publicComands.includes(keyword)){
+			console.log("Attempting to run command "+message.content+" on the server "+message.guild.name+" for "+message.author.username);
+			switch(keyword){
+				case 'trist':
+					message.reply('Jakob er trist!');
+					break;
+				case "nut":
+					message.channel.send(":weary: :ok_hand: :sweat_drops:");
+					break;
+				case "backmeup":
+					message.reply("This person is correct!");
+					break;
+				case "spell":
+					last_message_object = message;
+					getSpellData(command.slice(1).join("+"));
+					break;
+				case "openPM":
+					console.log(message.author.username+" has opened PM");
+					message.author.send("Hello there");
+					break;
+		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
+			switch(keyword){
+				case "startMod":
+					modding[message.channel] = command.slice(1).join(" ");
+					break;
+				case "stopMod":
+					modding[message.channel] = "";
+					break;
+				case "stopAllMod":
+					modding = {};
+					break;
+				case "me":
+					message.channel.send("Bot controll claimed by Jakob!");
+					iDecide = true;
+					break;
+				case "us":
+					message.channel.send("Bot retaken by the people!");
+					iDecide = false;
+			}
+		}
 	}
 	if(modding[message.channel] && !message.author.bot){
 		console.log("Message: "+message.content+" was changed to "+modding[message.channel]);
