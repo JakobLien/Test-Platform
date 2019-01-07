@@ -104,7 +104,7 @@ client.on('message', message => {
 				}
 		}
 	}
-	if(modding[message.channel]){
+	if(modding[message.channel] && !message.author.bot){
 		console.log("Message: "+message.content+" was changed to "+modding[message.channel]);
 		message.delete();
 		message.reply("just wrote "+modding[message.channel]);
