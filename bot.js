@@ -104,7 +104,7 @@ client.on('message', message => {
 		}
 		if(modding[message.channel]){
 			console.log("Message: "+message.content+" was changed to "+modding);
-			message.reply("just wrote"+modding[message.channel]);
+			message.reply("just wrote "+modding[message.channel]);
 			message.delete();
 			
 		}
