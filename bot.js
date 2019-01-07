@@ -64,7 +64,7 @@ client.on('message', message => {
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
-		console.log("Attempting to run command "+message.content+" on the server "+message.guid.name+" for "+message.author.username);
+		console.log("Attempting to run command "+message.content+" on the server "+message.guild.name+" for "+message.author.username);
 		switch(keyword){
 			case 'trist':
 				message.reply('Jakob er trist!');
