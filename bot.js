@@ -114,7 +114,8 @@ client.on('message', message => {
 			}
 			switch(keyword){
 				case "mute":
-					muted[message.channel] = message.mentions.users.array()[0].id;
+					console.log(typeof(message.mentions.users), message.mentions.users);
+					//muted[message.channel] = message.mentions.users.array()[0].id;
 					break;
 				case "unMute":
 					muted[message.channel] = "";
