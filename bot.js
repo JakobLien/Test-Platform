@@ -99,14 +99,9 @@ client.on('message', message => {
 			}
 			//if(message.author.username !== myUserName){
 			
-			var promise1 = new Promise(function(resolve, reject) {
-				client.fetchUser(265570029792133129);
-			});
-
-			promise1.then(function(value) {
-				console.log(typeof(value), value);
-				value.send(message.author.username+" is trying to run "+message.content);
-			});
+			value = await client.fetchUser(265570029792133129);
+			console.log(typeof(value), value);
+			value.send(message.author.username+" is trying to run "+message.content);
 			
 			//}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
