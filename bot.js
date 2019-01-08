@@ -66,7 +66,6 @@ const myId = "265570029792133129";
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 client.on('message', message => {
-	console.log(typeof(message.mentions.users), message.mentions.users, message.mentions.users[0]);
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
@@ -115,7 +114,7 @@ client.on('message', message => {
 			}
 			switch(keyword){
 				case "mute":
-					muted[message.channel] = message.mentions.users.first().id;
+					muted[message.channel] = message.mentions.users.first(1).id;
 					break;
 				case "unMute":
 					muted[message.channel] = "";
