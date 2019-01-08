@@ -66,7 +66,7 @@ const myUserName = "jlien11";
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 client.on('message', message => {
-	console.log(typeof(message.mentions.users), message.mentions.users);
+	console.log(typeof(message.mentions.users), message.mentions.users, message.mentions.users[0]);
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
