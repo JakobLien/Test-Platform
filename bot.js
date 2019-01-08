@@ -104,8 +104,6 @@ client.on('message', message => {
 			}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
 			//private commands
-			console.log("Attempting to run private command "+message.content+" on the server "+message.guild.name+
-				    " for "+);
 			if(message.guild !== null){
 				console.log("Attempting to run private command "+message.content+" on the server "+
 				message.guild.name+" for "+myUserName);
