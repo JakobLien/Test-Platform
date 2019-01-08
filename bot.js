@@ -60,7 +60,7 @@ It can be found here: `+data["page"]);
 }
 
 //The main thing
-var muted = {};
+var muted = {"530443400185643008": [], "530371898945699840": [], "265570029792133129", []};
 var iDecide = false;
 const myId = "265570029792133129";
 const botId = "530439718823788544";
@@ -115,11 +115,7 @@ client.on('message', message => {
 			}
 			switch(keyword){
 				case "mute":
-					if(muted[message.channel]){
-						muted[message.channel].push(message.mentions.users.first().id);
-					}else{
-						muted[message.channel] = [];
-					}
+					muted[message.channel].push(message.mentions.users.first().id);
 					break;
 				case "unMute":
 					muted[message.channel] = "";
@@ -134,6 +130,7 @@ client.on('message', message => {
 				case "us":
 					message.channel.send("Bot retaken by the people!");
 					iDecide = false;
+					break;
 			}
 		}
 	}
