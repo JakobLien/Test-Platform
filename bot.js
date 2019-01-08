@@ -74,7 +74,7 @@ client.on('message', message => {
 			if(message.guild !== null){
 				console.log("Attempting to run public command "+message.content+" on the server "+
 				message.guild.name+" for "+message.author.username);
-				if(message.author.username !== myUserName){
+				if(message.author.id !== myId){
 					client.users.get(myId).send(message.author.username+" is running command "+
 						message.content+" on server "+message.guild.name);
 				}
