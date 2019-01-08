@@ -99,9 +99,9 @@ client.on('message', message => {
 			}
 			//if(message.author.username !== myUserName){
 			
-			value = await client.fetchUser(265570029792133129);
-			console.log(typeof(value), value);
-			value.send(message.author.username+" is trying to run "+message.content);
+			//client.users.get("someID").send("someMessage");
+			
+			client.fetchUser("265570029792133129").send("test1");
 			
 			//}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
