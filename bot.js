@@ -134,7 +134,7 @@ client.on('message', message => {
 		}
 	}
 	if(muted[message.channel] = message.author && !message.author.bot){
-		console.log("Message: "+message.content+" was changed to "+modding[message.channel]);
+		console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
 		message.delete();
 	}
 });
