@@ -60,6 +60,8 @@ It can be found here: `+data["page"]);
 }
 
 //The main thing
+
+530443400185643008
 var muted = {"530443400185643008": [], "530371898945699840": [], "265570029792133129": []};
 var iDecide = false;
 const myId = "265570029792133129";
@@ -68,6 +70,7 @@ var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 client.on('message', message => {
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
+		console.log(typeof(message.guild.id), typeof(message.author.id), typeof(message.channel.id));
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		if(publicCommands.includes(keyword)){
