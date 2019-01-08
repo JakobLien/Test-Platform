@@ -60,19 +60,14 @@ It can be found here: `+data["page"]);
 }
 
 //The main thing
-var muted = {"530443400185643008": [], "530371898945699840": [], "265570029792133129": []};
+var muted = [];
 var iDecide = false;
 const myId = "265570029792133129";
 const botId = "530439718823788544";
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
-
-console.log(muted);
-
 client.on('message', message => {
-	console.log(typeof(muted), iDecide);
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
-		console.log(muted);
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		if(publicCommands.includes(keyword)){
@@ -118,17 +113,15 @@ client.on('message', message => {
 			}else{
 				console.log("Attempting to run private command "+message.content+" in a dm for "+message.author.username);
 			}
-			console.log(muted);
 			switch(keyword){
 				case "mute":
-					console.log(muted);
-					//muted[message.guild.id].push(message.mentions.users.first().id);
+					muted[message.authorpush(message.mentions.users.first().id);
 					break;
 				case "unMute":
-					muted[message.guild.id] = [];
+					muted.push(message.author.id);
 					break;
 				case "unMuteAll":
-					var muted = {"530443400185643008": [], "530371898945699840": [], "265570029792133129": []};
+					var muted = []
 					break;
 				case "me":
 					message.channel.send("Bot controll claimed by Jakob!");
@@ -141,10 +134,10 @@ client.on('message', message => {
 			}
 		}
 	}
-	/*if(muted[message.guild.id].includes(message.author.id)){
+	if(muted[].includes(message.author.id)){
 		console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
 		message.delete();
-	}*/
+	}
 });
 
 // THIS  MUST  BE  THIS  WAY
