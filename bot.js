@@ -70,7 +70,7 @@ var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 console.log(muted);
 
 client.on('message', message => {
-	console.log(muted, iDecide);
+	console.log(typeof(muted["530443400185643008"]), typeof(muted), iDecide);
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		console.log(muted);
 		command = message.content.slice(1).split(" ");
