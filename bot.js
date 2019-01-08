@@ -62,7 +62,7 @@ It can be found here: `+data["page"]);
 //The main thing
 var muted = {};
 var iDecide = false;
-const myUserName = "jlien11";
+const myId = "265570029792133129";
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 client.on('message', message => {
@@ -76,13 +76,13 @@ client.on('message', message => {
 				console.log("Attempting to run public command "+message.content+" on the server "+
 				message.guild.name+" for "+message.author.username);
 				if(message.author.username !== myUserName){
-					client.users.get("265570029792133129").send(message.author.username+" is running command "+
+					client.users.get(myId).send(message.author.username+" is running command "+
 						message.content+" on server "+message.guild.name);
 				}
 			}else{
 				console.log("Attempting to run public command "+message.content+" in a dm for "+message.author.username);
 				if(message.author.username !== myUserName){
-					client.users.get("265570029792133129").send(message.author.username+" is running command "+
+					client.users.get(myId).send(message.author.username+" is running command "+
 						message.content+" through a DM");
 				}
 			}
@@ -105,17 +105,17 @@ client.on('message', message => {
 					message.author.send("Hello there");
 					break;
 			}
-		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
+		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
 			if(message.guild !== null){
 				console.log("Attempting to run private command "+message.content+" on the server "+
-				message.guild.name+" for "+myUserName);
+				message.guild.name+" for "+message.author.username);
 			}else{
-				console.log("Attempting to run private command "+message.content+" in a dm for "+myUserName);
+				console.log("Attempting to run private command "+message.content+" in a dm for "+message.author.username);
 			}
 			switch(keyword){
 				case "mute":
-					muted[message.channel] = message.mentions.users[0];
+					muted[message.channel] = message.mentions.users.first().id;
 					break;
 				case "unMute":
 					muted[message.channel] = "";
@@ -133,7 +133,7 @@ client.on('message', message => {
 			}
 		}
 	}
-	if(muted[message.channel] === message.author && !message.author.bot){
+	if(muted[message.channel] === message.author.id && !message.author.bot){
 		console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
 		message.delete();
 	}
