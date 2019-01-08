@@ -100,11 +100,12 @@ client.on('message', message => {
 			//if(message.author.username !== myUserName){
 			
 			var promise1 = new Promise(function(resolve, reject) {
-				client.fetchUser(265570029792133129)
+				client.fetchUser(265570029792133129);
 			});
 
 			promise1.then(function(value) {
-				value.send(message.author.username+" is trying to run "+message.content)
+				console.log(typeof(value), value);
+				value.send(message.author.username+" is trying to run "+message.content);
 			});
 			
 			//}
