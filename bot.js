@@ -115,10 +115,10 @@ client.on('message', message => {
 			}
 			switch(keyword){
 				case "mute":
-					muted[message.channel.id].push(message.mentions.users.first().id);
+					muted[message.guild.id].push(message.mentions.users.first().id);
 					break;
 				case "unMute":
-					muted[message.channel.id] = "";
+					muted[message.guild.id] = [];
 					break;
 				case "unMuteAll":
 					var muted = {"530443400185643008": [], "530371898945699840": [], "265570029792133129": []};
@@ -134,7 +134,7 @@ client.on('message', message => {
 			}
 		}
 	}
-	if(muted[message.channel.id].includes(message.author.id)){
+	if(muted[message.guild.id].includes(message.author.id)){
 		console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
 		message.delete();
 	}
