@@ -63,6 +63,7 @@ It can be found here: `+data["page"]);
 var muted = {};
 var iDecide = false;
 const myId = "265570029792133129";
+const botId = "530439718823788544";
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 client.on('message', message => {
@@ -114,7 +115,11 @@ client.on('message', message => {
 			}
 			switch(keyword){
 				case "mute":
-					muted[message.channel] = message.mentions.users.first().id;
+					if(muted[message.channel]){
+						muted[message.channel].push(message.mentions.users.first().id);
+					}else{
+						muted[message.channel] = [];
+					}
 					break;
 				case "unMute":
 					muted[message.channel] = "";
@@ -132,7 +137,7 @@ client.on('message', message => {
 			}
 		}
 	}
-	if(muted[message.channel] === message.author.id && !message.author.bot){
+	if(muted[message.channel].contains(message.author.id)){
 		console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
 		message.delete();
 	}
