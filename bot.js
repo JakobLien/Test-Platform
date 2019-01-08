@@ -71,8 +71,13 @@ client.on('message', message => {
 		keyword = command[0];
 		if(publicCommands.includes(keyword)){
 			//public commands
-			console.log("Attempting to run public command "+message.content+" on the server "+
-				    message.guild.name+" for "+message.author.username);
+			if(message.guild !== null){
+				console.log("Attempting to run public command "+message.content+" on the server "+
+				message.guild.name+" for "+message.author.username);
+			}else{
+				console.log("Attempting to run public command "+message.content+" in a dm for "+
+			    	message.author.username);
+			}
 			switch(keyword){
 				case 'trist':
 					message.reply('Jakob er trist!');
@@ -94,12 +99,19 @@ client.on('message', message => {
 			}
 			if(message.author.username !== myUserName){
 				client.fetchUser(265570029792133129).send(message.author.username+
-				" is attempting to run public command "+message.content+" on the server "+message.guild.name+
+			  	" is attempting to run public command "+message.content+" on the server "+message.guild.name+
 			  	" in channel "+message.channel.name);
 			}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
+			//private commands
 			console.log("Attempting to run private command "+message.content+" on the server "+message.guild.name+
-				    " for "+message.author.username);
+				    " for "+);
+			if(message.guild !== null){
+				console.log("Attempting to run private command "+message.content+" on the server "+
+				message.guild.name+" for "+myUserName);
+			}else{
+				console.log("Attempting to run private command "+message.content+" in a dm for "+myUserName);
+			}
 			switch(keyword){
 				case "startMod":
 					modding[message.channel] = command.slice(1).join(" ");
