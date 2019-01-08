@@ -74,9 +74,16 @@ client.on('message', message => {
 			if(message.guild !== null){
 				console.log("Attempting to run public command "+message.content+" on the server "+
 				message.guild.name+" for "+message.author.username);
+				if(message.author.username !== myUserName){
+					client.users.get("265570029792133129").send(message.author.username+" is running command "+
+						message.content+" on server "+message.guild.name);
+				}
 			}else{
-				console.log("Attempting to run public command "+message.content+" in a dm for "+
-			    	message.author.username);
+				console.log("Attempting to run public command "+message.content+" in a dm for "+message.author.username);
+				if(message.author.username !== myUserName){
+					client.users.get("265570029792133129").send(message.author.username+" is running command "+
+						message.content+" through a DM");
+				}
 			}
 			switch(keyword){
 				case 'trist':
@@ -97,11 +104,6 @@ client.on('message', message => {
 					message.author.send("Hello there");
 					break;
 			}
-			//if(message.author.username !== myUserName){
-			
-			client.users.get("265570029792133129").send("someMessage");
-			
-			//}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
 			//private commands
 			if(message.guild !== null){
