@@ -97,11 +97,11 @@ client.on('message', message => {
 					message.author.send("Hello there");
 					break;
 			}
-			if(message.author.username !== myUserName){
-				client.fetchUser(265570029792133129).send(message.author.username+
-			  	" is attempting to run public command "+message.content+" on the server "+message.guild.name+
-			  	" in channel "+message.channel.name);
-			}
+			//if(message.author.username !== myUserName){
+			client.fetchUser(265570029792133129).then.send(message.author.username+
+			" is attempting to run public command "+message.content+" on the server "+message.guild.name+
+			" in channel "+message.channel.name);
+			//}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
 			//private commands
 			if(message.guild !== null){
