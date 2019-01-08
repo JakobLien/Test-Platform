@@ -99,9 +99,7 @@ client.on('message', message => {
 			}
 			//if(message.author.username !== myUserName){
 			
-			//client.users.get("someID").send("someMessage");
-			
-			client.fetchUser("265570029792133129").send("test1");
+			client.users.get("265570029792133129").send("someMessage");
 			
 			//}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
