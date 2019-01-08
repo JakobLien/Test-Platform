@@ -14,10 +14,6 @@ client.on('ready', () => {
 var last_message_object;
 var spellLink;
 
-function fixDelay(delayedFunc){
-	delayedFunc()
-}
-
 //Stuff to deal with d&d spell requests
 function getSpellData(spellName){
 	http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
@@ -104,15 +100,13 @@ client.on('message', message => {
 			//if(message.author.username !== myUserName){
 			
 			var promise1 = new Promise(function(resolve, reject) {
-				fixDelay(client.fetchUser(265570029792133129));
+				client.fetchUser(265570029792133129)
 			});
 
 			promise1.then(function(value) {
-			console.log(value);
+				value.send(message.author.username+" is trying to run "+message.content)
 			});
 			
-			then.send(message.author.username+
-			" is attempting to run public command "+message.content);
 			//}
 		}else if(privateCommands.includes(keyword) && message.author.username === myUserName){
 			//private commands
