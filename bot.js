@@ -137,10 +137,10 @@ client.on('message', message => {
 			}
 		}
 	}
-	if(muted[message.guild.id].includes(message.author.id)){
+	/*if(muted[message.guild.id].includes(message.author.id)){
 		console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
 		message.delete();
-	}
+	}*/
 });
 
 // THIS  MUST  BE  THIS  WAY
