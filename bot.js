@@ -60,17 +60,19 @@ It can be found here: `+data["page"]);
 }
 
 //The main thing
-
-530443400185643008
 var muted = {"530443400185643008": [], "530371898945699840": [], "265570029792133129": []};
 var iDecide = false;
 const myId = "265570029792133129";
 const botId = "530439718823788544";
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
+
+console.log(muted);
+
 client.on('message', message => {
+	console.log(muted);
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
-		console.log(typeof(message.guild.id), typeof(message.author.id), typeof(message.channel.id));
+		console.log(muted);
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		if(publicCommands.includes(keyword)){
@@ -116,9 +118,11 @@ client.on('message', message => {
 			}else{
 				console.log("Attempting to run private command "+message.content+" in a dm for "+message.author.username);
 			}
+			console.log(muted);
 			switch(keyword){
 				case "mute":
-					muted[message.guild.id].push(message.mentions.users.first().id);
+					console.log(muted);
+					//muted[message.guild.id].push(message.mentions.users.first().id);
 					break;
 				case "unMute":
 					muted[message.guild.id] = [];
