@@ -81,7 +81,7 @@ client.on('message', message => {
 				}
 			}else{
 				console.log("Attempting to run public command "+message.content+" in a dm for "+message.author.username);
-				if(message.author.username !== myUserName){
+				if(message.author.id !== myId){
 					client.users.get(myId).send(message.author.username+" is running command "+
 						message.content+" through a DM");
 				}
