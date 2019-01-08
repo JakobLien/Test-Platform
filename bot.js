@@ -60,11 +60,11 @@ It can be found here: `+data["page"]);
 }
 
 //The main thing
-var modding = {};
+var muted = {};
 var iDecide = false;
 const myUserName = "jlien11";
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
-var privateCommands = ["startMod", "stopMod", "stopAllMod", "me", "us"];
+var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 client.on('message', message => {
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
@@ -113,14 +113,14 @@ client.on('message', message => {
 				console.log("Attempting to run private command "+message.content+" in a dm for "+myUserName);
 			}
 			switch(keyword){
-				case "startMod":
-					modding[message.channel] = command.slice(1).join(" ");
+				case "mute":
+					muted[message.channel] = message.author;
 					break;
-				case "stopMod":
-					modding[message.channel] = "";
+				case "unMute":
+					muted[message.channel] = "";
 					break;
-				case "stopAllMod":
-					modding = {};
+				case "unMuteAll":
+					muted = {};
 					break;
 				case "me":
 					message.channel.send("Bot controll claimed by Jakob!");
@@ -132,10 +132,9 @@ client.on('message', message => {
 			}
 		}
 	}
-	if(modding[message.channel] && !message.author.bot){
+	if(muted[message.channel] = message.author && !message.author.bot){
 		console.log("Message: "+message.content+" was changed to "+modding[message.channel]);
 		message.delete();
-		message.channel.send(message.author.username+"just wrote "+modding[message.channel]);
 	}
 });
 
