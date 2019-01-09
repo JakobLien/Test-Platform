@@ -68,6 +68,7 @@ var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 var iDecide = false;
 client.on('message', message => {
+	console.log(mutedIds);
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
