@@ -141,10 +141,10 @@ client.on('message', message => {
 	}
 	if(mutedIds.includes(message.author.id)){
 		try{
-		console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
-		message.delete();
+			message.delete();
+			console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
 		}catch(error){
-			
+			console.log("That message could not be deleted");
 		}
 	}
 });
