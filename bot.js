@@ -60,10 +60,10 @@ It can be found here: `+data["page"]);
 }
 
 //The main thing
-var muted = [];
-var iDecide = false;
 const myId = "265570029792133129";
 const botId = "530439718823788544";
+var muted = [];
+var iDecide = false;
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 client.on('message', message => {
