@@ -122,7 +122,7 @@ client.on('message', message => {
 					break;
 				case "unMute":
 					if(mutedIds.includes(message.author.id)){
-						muted.remove(message.author.id);
+						mutedIds.remove(message.author.id);
 					}
 					break;
 				case "unMuteAll":
