@@ -115,10 +115,11 @@ client.on('message', message => {
 			}
 			switch(keyword){
 				case "mute":
-					muted[message.author].push(message.mentions.users.first().id);
+				      	if(muted.includes(message.author.id)){
+						muted[message.author].push(message.mentions.users.first().id);
+					}
 					break;
 				case "unMute":
-				      	if(muted.includes))
 					muted.remove(message.author.id);
 					break;
 				case "unMuteAll":
