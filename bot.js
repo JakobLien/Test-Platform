@@ -62,13 +62,14 @@ It can be found here: `+data["page"]);
 //The main thing
 const myId = "265570029792133129";
 const botId = "530439718823788544";
+var muted = ["a", "b", "c"];
 var mutedIds = ["1", "2", "3"];
 var publicCommands1 = ["trist1", "nut1", "backmeup1", "spell1", "openPM1"];
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 var iDecide = false;
 client.on('message', message => {
-	console.log(mutedIds, publicCommands1, publicCommands)
+	console.log(muted, mutedIds, publicCommands1, publicCommands)
 	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
