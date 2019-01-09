@@ -126,7 +126,7 @@ client.on('message', message => {
 					}
 					break;
 				case "unMuteAll":
-					var muted = []
+					var mutedIds = []
 					break;
 				case "me":
 					message.channel.send("Bot controll claimed by Jakob!");
@@ -140,8 +140,12 @@ client.on('message', message => {
 		}
 	}
 	if(mutedIds.includes(message.author.id)){
+		try{
 		console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
 		message.delete();
+		}catch(error){
+			
+		}
 	}
 });
 
