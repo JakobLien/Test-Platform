@@ -62,8 +62,7 @@ It can be found here: `+data["page"]);
 //The main thing
 const myId = "265570029792133129";
 const botId = "530439718823788544";
-var mutedIds = ["1", "2", "3"];
-var publicCommands1 = ["trist1", "nut1", "backmeup1", "spell1", "openPM1"];
+var mutedIds = [];
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
 var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
 var iDecide = false;
