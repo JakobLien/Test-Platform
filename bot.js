@@ -45,6 +45,8 @@ function getSpellData(spellName){
 		});
 }
 
+console.log(path);
+
 //stuff to print spell requests
 var con;
 var ritual;
