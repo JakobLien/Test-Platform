@@ -6,6 +6,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const http = require('http');
+const path = requre('path');
 
 client.on('ready', () => {
 	console.log('I am ready!');
