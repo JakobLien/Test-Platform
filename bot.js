@@ -65,13 +65,11 @@ It can be found here: `+data["page"]);
 //The main thing
 const myId = "265570029792133129";
 const botId = "530439718823788544";
-var mutedIds = [];
 var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
-var privateCommands = ["mute", "unMute", "unMuteAll", "me", "us"];
+var privateCommands = ["me", "us"];
 var iDecide = false;
 client.on('message', message => {
-	console.log(mutedIds);
-	if(message.content[0] === "!" && !(iDecide && message.author.username !== myUserName)){
+	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
 		if(publicCommands.includes(keyword)){
@@ -118,19 +116,6 @@ client.on('message', message => {
 				console.log("Attempting to run private command "+message.content+" in a dm for "+message.author.username);
 			}
 			switch(keyword){
-				case "mute":
-				      	if(!mutedIds.includes(message.author.id)){
-						mutedIds.push(message.mentions.users.first().id);
-					}
-					break;
-				case "unMute":
-					if(mutedIds.includes(message.author.id)){
-						mutedIds.remove(message.author.id);
-					}
-					break;
-				case "unMuteAll":
-					var mutedIds = []
-					break;
 				case "me":
 					message.channel.send("Bot controll claimed by Jakob!");
 					iDecide = true;
@@ -140,14 +125,6 @@ client.on('message', message => {
 					iDecide = false;
 					break;
 			}
-		}
-	}
-	if(mutedIds.includes(message.author.id)){
-		try{
-			message.delete();
-			console.log("Message: "+message.content+" written by "+message.author.username+" was deleted");
-		}catch(error){
-			console.log(error);
 		}
 	}
 });
