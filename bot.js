@@ -45,8 +45,6 @@ function getSpellData(spellName){
 		});
 }
 
-console.log(path);
-
 //stuff to print spell requests
 var con;
 var ritual;
@@ -65,8 +63,8 @@ It can be found here: `+data["page"]);
 //The main thing
 const myId = "265570029792133129";
 const botId = "530439718823788544";
-var publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
-var privateCommands = ["me", "us"];
+const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
+const privateCommands = ["me", "us"];
 var iDecide = false;
 client.on('message', message => {
 	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){
