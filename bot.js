@@ -60,6 +60,10 @@ It can be found here: `+data["page"]);
 	}
 }
 
+function tellMe(message){
+	client.users.get(myId).send(message);
+}
+
 //The main thing
 const myId = "265570029792133129";
 const botId = "530439718823788544";
@@ -76,13 +80,13 @@ client.on('message', message => {
 				console.log("Attempting to run public command "+message.content+" on the server "+
 				message.guild.name+" for "+message.author.username);
 				if(message.author.id !== myId){
-					client.users.get(myId).send(message.author.username+" is running command "+
+					tellMe(message.author.username+" is running command "+
 						message.content+" on server "+message.guild.name);
 				}
 			}else{
 				console.log("Attempting to run public command "+message.content+" in a dm for "+message.author.username);
 				if(message.author.id !== myId){
-					client.users.get(myId).send(message.author.username+" is running command "+
+					tellMe(message.author.username+" is running command "+
 						message.content+" through a DM");
 				}
 			}
