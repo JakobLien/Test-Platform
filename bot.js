@@ -14,7 +14,6 @@ client.on('ready', () => {
 
 var last_message_object;
 var spellLink;
-
 //Stuff to deal with d&d spell requests
 function getSpellData(spellName){
 	http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
