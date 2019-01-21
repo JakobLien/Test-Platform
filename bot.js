@@ -136,8 +136,8 @@ responce = ["general kenobi"];
 
 client.on('message', message => {
 	for(var i = 0; i < trigger.length; i++){
-		if(message.toLowerCase().indexOf(trigger[i])){
-			message.reply(responce[i])
+		if(message.content.toLowerCase().indexOf(trigger[i])){
+			message.reply(responce[i]);
 		}
 	}
 });
