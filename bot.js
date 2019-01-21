@@ -136,7 +136,7 @@ responce = ["general kenobi"];
 
 client.on('message', message => {
 	for(var i = 0; i < trigger.length; i++){
-		if(message.content.toLowerCase().indexOf(trigger[i])){
+		if(message.content.toLowerCase().indexOf(trigger[i]) >= 0){
 			message.reply(responce[i]);
 			break;
 		}
