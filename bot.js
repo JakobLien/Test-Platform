@@ -82,7 +82,7 @@ const trigger = ["hello there",
 	 	"sad",
 	 	"wae",
 		"rule 34",
-		"f"
+		"f",
 		"cake",
 		"mom spagetti"];
 const responce = ["General Kenobi!", 
@@ -92,7 +92,7 @@ const responce = ["General Kenobi!",
 		"This is so sad, Alexa play despacito"
 	 	"Do you know da wae?",
 	 	"There is porn of it, no exceptions",
-	 	"Press f to pay respects"
+	 	"Press f to pay respects",
 	 	"The cake is a lie!",
 		`His palms are sweaty, knees weak, arms are heavy
 There's vomit on his sweater already, mom's spaghetti
@@ -101,7 +101,7 @@ To drop bombs, but he keeps on forgettin'
 What he wrote down, the whole crowd goes so loud
 He opens his mouth, but the words won't come out
 He's chokin', how, everybody's jokin' now
-The clocks run out, times up, over, blaow!`,
+The clocks run out, times up, over, blaow!`
 		 ];
 
 //The main thing
