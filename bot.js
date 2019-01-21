@@ -130,10 +130,8 @@ client.on('message', message => {
 	}
 });
 
-trigger = ["hello there"];
-responce = ["general kenobi"];
-
-
+const trigger = ["hello there"];
+const responce = ["general kenobi"];
 client.on('message', message => {
 	for(var i = 0; i < trigger.length; i++){
 		if(message.content.toLowerCase().indexOf(trigger[i]) >= 0){
