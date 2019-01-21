@@ -186,6 +186,7 @@ client.on('message', message => {
 			}
 		}
 	}
+	//Reply to phraces
 	if(message.author.id !== botId){
 		for(var i = 0; i < trigger.length; i++){
 			if(message.content.toLowerCase().indexOf(trigger[i]) >= 0){
@@ -193,6 +194,7 @@ client.on('message', message => {
 			}
 		}
 	}
+	//recording code
 	if(recording && !message.author.bot && message !== undefined){
 		tellMe(message.author.username+": "+message.content);
 	}
