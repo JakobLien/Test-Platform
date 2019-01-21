@@ -134,11 +134,11 @@ client.on('message', message => {
 					message.channel.send("Bot retaken by the people!");
 					iDecide = false;
 					break;
-				case "start"
+				case "start":
 					tellMe("Started recording messages.");
 					recording = true;
 					break;
-				case "stop";
+				case "stop":
 					tellMe("Stopped recording messages.");
 					recording = false
 					break;
