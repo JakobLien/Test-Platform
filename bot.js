@@ -135,9 +135,11 @@ client.on('message', message => {
 					iDecide = false;
 					break;
 				case "start"
+					tellMe("Started recording messages.");
 					recording = true;
 					break;
 				case "stop";
+					tellMe("Stopped recording messages.");
 					recording = false
 					break;
 			}
