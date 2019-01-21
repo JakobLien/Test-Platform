@@ -152,7 +152,9 @@ client.on('message', message => {
 		}
 	}
 	if(recording){
-		tellMe(message.author.username+": "+message.content);
+		if(!message.author.bot){
+			tellMe(message.author.username+": "+message.content);
+		}
 	}
 });
 
