@@ -89,7 +89,7 @@ const responce = ["General Kenobi!",
 	  	"I guess they never miss, HUH", 
   		"lmao", 
 		"BUT CAN YOU DO DIS",
-		"This is so sad, Alexa play despacito"
+		"This is so sad, Alexa play despacito",
 	 	"Do you know da wae?",
 	 	"There is porn of it, no exceptions",
 	 	"Press f to pay respects",
