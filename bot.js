@@ -130,5 +130,17 @@ client.on('message', message => {
 	}
 });
 
+trigger = ["hello there"];
+responce = ["general kenobi"];
+
+
+client.on('message', message => {
+	for(var i = 0; i < trigger.length; i++){
+		if(message.toLowerCase().indexOf(trigger[i])){
+			message.reply(responce[i])
+		}
+	}
+}
+
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
