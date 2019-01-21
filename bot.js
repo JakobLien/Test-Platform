@@ -75,8 +75,16 @@ var recording = false;
 var watching = [];
 
 //Replies to simple phrases(do NOT let a trigger be empty, or let the responce contain the trigger)
-const trigger = ["hello there"];
-const responce = ["General Kenobi!"];
+const trigger = ["hello there", 
+		 "hit or miss", 
+		 "ayy", 
+		 "399", 
+		 "sad"];
+const responce = ["General Kenobi!", 
+		  "I guess they never miss, HUH", 
+		  "lmao", 
+		  "BUT CAN YOU DO DIS",
+		  "This is so sad, Alexa play despacito"];
 
 //The main thing
 client.on('message', message => {
@@ -142,13 +150,6 @@ client.on('message', message => {
 				case "stop":
 					tellMe("Stopped recording messages.");
 					recording = false
-					break;
-				case "watch":
-					if(command.length < 2){
-						watching.push(message.guild.id);
-				   	}else{
-						watching.push(command[1]);
-					}
 					break;
 				case "suicide":
 					client.destroy();
