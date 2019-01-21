@@ -151,10 +151,8 @@ client.on('message', message => {
 			break;
 		}
 	}
-	if(recording){
-		if(!message.author.bot){
-			tellMe(message.author.username+": "+message.content);
-		}
+	if(recording && !message.author.bot && message !== undefined){
+		tellMe(message.author.username+": "+message.content);
 	}
 });
 
