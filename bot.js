@@ -73,9 +73,9 @@ const botId = "530439718823788544";
 var iDecide = false;
 var recording = false;
 
-//Replies to simple phrases
-const trigger = ["hello there", ""];
-const responce = ["General Kenobi!", ""];
+//Replies to simple phrases(do NOT let a trigger be empty, or let the responce contain the trigger)
+const trigger = ["hello there"];
+const responce = ["General Kenobi!"];
 
 //The main thing
 client.on('message', message => {
@@ -148,7 +148,6 @@ client.on('message', message => {
 	for(var i = 0; i < trigger.length; i++){
 		if(message.content.toLowerCase().indexOf(trigger[i]) >= 0){
 			message.reply(responce[i]);
-			break;
 		}
 	}
 	if(recording && !message.author.bot && message !== undefined){
