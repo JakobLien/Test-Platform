@@ -76,15 +76,33 @@ var watching = [];
 
 //Replies to simple phrases(do NOT let a trigger be empty, or let the responce contain the trigger)
 const trigger = ["hello there", 
-		 "hit or miss", 
-		 "ayy", 
-		 "399", 
-		 "sad"];
+	 	"hit or miss", 
+	 	"ayy", 
+	 	"399", 
+	 	"sad",
+	 	"wae",
+		"rule 34",
+		"f"
+		"cake",
+		"mom spagetti"];
 const responce = ["General Kenobi!", 
-		  "I guess they never miss, HUH", 
-		  "lmao", 
-		  "BUT CAN YOU DO DIS",
-		  "This is so sad, Alexa play despacito"];
+	  	"I guess they never miss, HUH", 
+  		"lmao", 
+		"BUT CAN YOU DO DIS",
+		"This is so sad, Alexa play despacito"
+	 	"Do you know da wae?",
+	 	"There is porn of it, no exceptions",
+	 	"Press f to pay respects"
+	 	"The cake is a lie!",
+		`His palms are sweaty, knees weak, arms are heavy
+There's vomit on his sweater already, mom's spaghetti
+He's nervous, but on the surface he looks calm and ready
+To drop bombs, but he keeps on forgettin'
+What he wrote down, the whole crowd goes so loud
+He opens his mouth, but the words won't come out
+He's chokin', how, everybody's jokin' now
+The clocks run out, times up, over, blaow!`,
+		 ];
 
 //The main thing
 client.on('message', message => {
@@ -157,9 +175,11 @@ client.on('message', message => {
 			}
 		}
 	}
-	for(var i = 0; i < trigger.length; i++){
-		if(message.content.toLowerCase().indexOf(trigger[i]) >= 0){
-			message.reply(responce[i]);
+	if(message.author.id !== botId){
+		for(var i = 0; i < trigger.length; i++){
+			if(message.content.toLowerCase().indexOf(trigger[i]) >= 0){
+				message.reply(responce[i]);
+			}
 		}
 	}
 	if(recording && !message.author.bot && message !== undefined){
