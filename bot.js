@@ -74,7 +74,7 @@ var iDecide = false;
 var recording = false;
 var watching = [];
 
-//Replies to simple phrases(do NOT let a trigger be empty, or let the responce contain the trigger)
+//Replies to simple phrases(do NOT ever let a trigger be empty)
 const trigger = ["hello there", 
 	 	"hit or miss", 
 	 	"ayy", 
@@ -82,7 +82,7 @@ const trigger = ["hello there",
 	 	"sad",
 	 	"wae",
 		"rule 34",
-		"f",
+		"respect",
 		"cake",
 		"mom's spagetti",
 		"thelegend27",
@@ -105,12 +105,12 @@ He opens his mouth, but the words won't come out
 He's chokin', how, everybody's jokin' now
 The clocks run out, times up, over, blaow!`,
 	  	"Have you heard of thelegend27?",
-	 	"Ligma ma balls, haha lmao",
-	 	`I'm supposed to be playing Game Of War™ but this one player keeps kicking my ass.
+	 	"Ligma ma balls, haha gottem",
+	 	`I'm supposed to be playing Game Of War but this one player keeps kicking my ass.
 Is it TheLegend27?!
 Yeah, TheLegend27.
 Who is the legend 27?
-Some say TheLegend27 is the first Game Of War™ player ever.
+Some say TheLegend27 is the first Game Of War player ever.
 Born from fire.
 I heard, TheLegend27 can hurl a boulder farther than a catapult.
 I heard TheLegend27 once defeated an entire army with a single blow.`];
