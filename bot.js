@@ -63,12 +63,21 @@ function tellMe(message){
 	client.users.get(myId).send(message);
 }
 
-//The main thing
+//valid commands
+const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
+const privateCommands = ["me", "us", "start", "stop"];
+
+//controll variables
 const myId = "265570029792133129";
 const botId = "530439718823788544";
-const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
-const privateCommands = ["me", "us"];
 var iDecide = false;
+var recording = false;
+
+//Replies to simple phrases
+const trigger = ["hello there", ""];
+const responce = ["General Kenobi!", ""];
+
+//The main thing
 client.on('message', message => {
 	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){
 		command = message.content.slice(1).split(" ");
@@ -125,19 +134,23 @@ client.on('message', message => {
 					message.channel.send("Bot retaken by the people!");
 					iDecide = false;
 					break;
+				case "start"
+					recording = true;
+					break;
+				case "stop";
+					recording = false
+					break;
 			}
 		}
 	}
-});
-
-const trigger = ["hello there"];
-const responce = ["general kenobi"];
-client.on('message', message => {
 	for(var i = 0; i < trigger.length; i++){
 		if(message.content.toLowerCase().indexOf(trigger[i]) >= 0){
 			message.reply(responce[i]);
 			break;
 		}
+	}
+	if(recording){
+		tellMe(message.author.username+": "+message.content);
 	}
 });
 
