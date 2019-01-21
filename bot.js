@@ -65,13 +65,14 @@ function tellMe(message){
 
 //valid commands
 const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
-const privateCommands = ["me", "us", "start", "stop"];
+const privateCommands = ["me", "us", "start", "stop", "watch"];
 
 //controll variables
 const myId = "265570029792133129";
 const botId = "530439718823788544";
 var iDecide = false;
 var recording = false;
+var watching = [];
 
 //Replies to simple phrases(do NOT let a trigger be empty, or let the responce contain the trigger)
 const trigger = ["hello there"];
@@ -141,6 +142,16 @@ client.on('message', message => {
 				case "stop":
 					tellMe("Stopped recording messages.");
 					recording = false
+					break;
+				case "watch":
+					if(command.length < 2){
+						watching.push(message.guild.id);
+				   	}else{
+						watching.push(command[1]);
+					}
+					break;
+				case "suicide":
+					client.destroy();
 					break;
 			}
 		}
