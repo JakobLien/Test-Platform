@@ -1,8 +1,3 @@
-//The good stuff: 
-//send message: message.channel.send("");
-//reply to command message.reply("");
-//access a variable
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
 //api for spells n stuff
