@@ -70,6 +70,7 @@ It can be found here: `+data["page"]);
 	});
 }*/
 
+var buf = new Buffer(1024);
 function openFile(file){
 	console.log("Going to open an existing file");
 	fs.open(file, 'r+', function(err, fd) {
