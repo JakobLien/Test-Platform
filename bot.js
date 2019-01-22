@@ -70,9 +70,9 @@ It can be found here: `+data["page"]);
 	});
 }*/
 
-function readFile(){
+function readFile(file){
 	console.log("Going to open an existing file");
-	fs.open('input.txt', 'r+', function(err, fd) {
+	fs.open(file, 'r+', function(err, fd) {
 		if (err) {
 			return console.error(err);
 		}
@@ -218,7 +218,7 @@ client.on('message', message => {
 					client.destroy();
 					break;
 				case "test":
-					openFile();
+					openFile(data.json);
 					break;
 			}
 		}
