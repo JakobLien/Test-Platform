@@ -88,7 +88,7 @@ function openFile(file){
 
 			// Print only read bytes to avoid junk.
 			if(bytes > 0){
-				return buf.slice(0, bytes).toString();
+				console.log(buf.slice(0, bytes).toString());
 			}
 		});
 	});
@@ -219,7 +219,7 @@ client.on('message', message => {
 					client.destroy();
 					break;
 				case "test":
-					tellMe(openFile("Data.txt"));
+					openFile("Data.txt");
 					break;
 			}
 		}
