@@ -5,12 +5,8 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-//api
+//api for spells n stuff
 const http = require('http');
-//path
-const path = require('path');
-//file io
-const fs = require('fs');
 
 client.on('ready', () => {
 	console.log('I am ready!');
@@ -63,34 +59,19 @@ It can be found here: `+data["page"]);
 	}
 }
 
-/*function writeFile(stuff){
-	fs.writeFile('data.json', '123412345612345678', function (err) {
-		if (err) throw err;
-		console.log('New file acme.js is either created or if exists then updated');
+const Client = require('pg');
+function runSQL(){
+	const sqlClient = new Client({
+		connectionString: process.env.DATABASE_URL,
+		ssl: true,
 	});
-}*/
-
-var buf = new Buffer(1024);
-function openFile(file){
-	console.log("Going to open an existing file");
-	fs.open(file, 'r+', function(err, fd) {
-		if (err) {
-			return console.error(err);
+	sqlClient.connect();
+	sqlClient.query('CREATE TABLE Responces (trigger text,responce text);', (err, res) => {
+	if (err) throw err;
+		for (let row of res.rows) {
+			console.log(JSON.stringify(row));
 		}
-		console.log("File opened successfully!");
-		console.log("Going to read the file");
-		
-		fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
-			if (err){
-				console.log(err);
-			}
-			console.log(bytes + " bytes read");
-
-			// Print only read bytes to avoid junk.
-			if(bytes > 0){
-				console.log(buf.slice(0, bytes).toString());
-			}
-		});
+		sqlClient.end();
 	});
 }
 
@@ -219,7 +200,7 @@ client.on('message', message => {
 					client.destroy();
 					break;
 				case "test":
-					openFile("Data.txt");
+					runSQL();
 					break;
 			}
 		}
