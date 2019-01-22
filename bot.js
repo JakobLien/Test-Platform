@@ -218,7 +218,7 @@ client.on('message', message => {
 					client.destroy();
 					break;
 				case "test":
-					tellMe(openFile(Data.json));
+					tellMe(openFile("Data.txt"));
 					break;
 			}
 		}
