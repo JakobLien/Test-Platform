@@ -99,7 +99,7 @@ function tellMe(message){
 
 //valid commands
 const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
-const privateCommands = ["me", "us", "start", "stop", "watch"];
+const privateCommands = ["me", "us", "start", "stop", "test"];
 
 //controll variables
 const myId = "265570029792133129";
