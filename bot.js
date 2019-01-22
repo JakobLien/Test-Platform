@@ -5,8 +5,12 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
+//api
 const http = require('http');
+//path
 const path = require('path');
+//file io
+const fs = require('fs');
 
 client.on('ready', () => {
 	console.log('I am ready!');
@@ -57,6 +61,36 @@ It can be found here: `+data["page"]);
 	for(var i = 0; i<data["desc"].length; i++){
 		last_message_object.reply(data["desc"][i]);
 	}
+}
+
+/*function writeFile(stuff){
+	fs.writeFile('data.json', '123412345612345678', function (err) {
+		if (err) throw err;
+		console.log('New file acme.js is either created or if exists then updated');
+	});
+}*/
+
+function readFile(){
+	console.log("Going to open an existing file");
+	fs.open('input.txt', 'r+', function(err, fd) {
+		if (err) {
+			return console.error(err);
+		}
+		console.log("File opened successfully!");
+		console.log("Going to read the file");
+		
+		fs.read(fd, buf, 0, buf.length, 0, function(err, bytes){
+			if (err){
+				console.log(err);
+			}
+			console.log(bytes + " bytes read");
+
+			// Print only read bytes to avoid junk.
+			if(bytes > 0){
+				return buf.slice(0, bytes).toString();
+			}
+		});
+	});
 }
 
 function tellMe(message){
@@ -182,6 +216,9 @@ client.on('message', message => {
 					break;
 				case "suicide":
 					client.destroy();
+					break;
+				case "test":
+					openFile();
 					break;
 			}
 		}
