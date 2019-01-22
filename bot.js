@@ -56,9 +56,9 @@ It can be found here: `+data["page"]);
 
 const Client = require('pg');
 const sqlClient = new Client({
-		connectionString: process.env.DATABASE_URL,
-		ssl: true,
-	});
+	connectionString: process.env.DATABASE_URL,
+	ssl: true,
+});
 function runSQL(){
 	sqlClient.connect();
 	sqlClient.query('CREATE TABLE Responces (trigger text,responce text);', (err, res) => {
