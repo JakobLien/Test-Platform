@@ -67,13 +67,12 @@ It can be found here: `+data["page"]);
 	}
 }
 
-function runSQL(command, mode){
+function runSQL(command, callback){
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err);
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		console.log(res.rows[0].response);
 		if(mode === "respond" && res.rows > 0){
 			lastMessageObject.reply(res.rows[0].response);
 		}
