@@ -70,9 +70,10 @@ It can be found here: `+data["page"]);
 function runSQL(command){
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err); 
-		for (let row of res.rows) {
+		/*for (let row of res.rows) {
 			console.log(JSON.stringify(row));
-		}
+		}*/
+		return res.rows;
 	});
 }
 
@@ -89,48 +90,7 @@ const myId = "265570029792133129";
 const botId = "530439718823788544";
 var iDecide = false;
 var recording = false;
-var watching = [];
-
-//Replies to simple phrases(do NOT ever let a trigger be empty)
-const trigger = ["hello there", 
-	 	"hit or miss", 
-	 	"ayy", 
-	 	"399", 
-	 	"sad",
-	 	"wae",
-		"rule 34",
-		"respect",
-		"cake",
-		"mom's spagetti",
-		"thelegend27",
-		"ligma"];
-const responce = ["General Kenobi!", 
-	  	"I guess they never miss, HUH", 
-  		"lmao", 
-		"BUT CAN YOU DO DIS",
-		"This is so sad, Alexa play despacito",
-	 	"Do you know da wae?",
-	 	"There is porn of it, no exceptions",
-	 	"Press f to pay respects",
-	 	"The cake is a lie!",
-		`His palms are sweaty, knees weak, arms are heavy
-There's vomit on his sweater already, mom's spaghetti
-He's nervous, but on the surface he looks calm and ready
-To drop bombs, but he keeps on forgettin'
-What he wrote down, the whole crowd goes so loud
-He opens his mouth, but the words won't come out
-He's chokin', how, everybody's jokin' now
-The clocks run out, times up, over, blaow!`,
-	  	"Have you heard of thelegend27?",
-	 	"Ligma ma balls, haha gottem",
-	 	`I'm supposed to be playing Game Of War but this one player keeps kicking my ass.
-Is it TheLegend27?!
-Yeah, TheLegend27.
-Who is the legend 27?
-Some say TheLegend27 is the first Game Of War player ever.
-Born from fire.
-I heard, TheLegend27 can hurl a boulder farther than a catapult.
-I heard TheLegend27 once defeated an entire army with a single blow.`];
+var firstResponce = "";
 
 //The main thing
 client.on('message', message => {
@@ -214,10 +174,11 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		for(var i = 0; i < trigger.length; i++){
-			if(message.content.toLowerCase().indexOf(trigger[i]) >= 0){
-				message.reply(responce[i]);
-			}
+		let potencialReply = runSQL("SELECT responce FROM Reply WHERE trigger LIKE '%"+message.content+"%';"));
+		if(potencialReply.length > 0){
+			message.channel.send(potencialReply[0].responce);
+		}catch(err){
+			console.log("No reference found");
 		}
 	}
 	//recording code
