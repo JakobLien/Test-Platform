@@ -73,7 +73,7 @@ function runSQL(command, mode){
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		if(mode = "respond" && res.rows > 0){
+		if(mode === "respond" && res.rows > 0){
 			lastMessageObject.channel.send(res.rows[0].response);
 		}
 	});
@@ -177,7 +177,7 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';", "respond")
+		runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';", "respond");
 	}
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
