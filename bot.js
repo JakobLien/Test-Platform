@@ -12,6 +12,7 @@ const sqlClient = new Client({
 });
 sqlClient.connect();
 //The table is called "Reply" with big R
+//It has the collumns trigger and responce
 
 client.on('ready', () => {
 	console.log('I am ready!');
