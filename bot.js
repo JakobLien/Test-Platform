@@ -8,6 +8,7 @@ const sqlClient = new Client({
 	connectionString: process.env.DATABASE_URL,
 	ssl: true,
 });
+sqlClient.connect();
 
 client.on('ready', () => {
 	console.log('I am ready!');
@@ -61,7 +62,6 @@ It can be found here: `+data["page"]);
 }
 
 function runSQL(command){
-	sqlClient.connect();
 	sqlClient.query(command, (err, res) => {
 		if (err) throw err; 
 		for (let row of res.rows) {
