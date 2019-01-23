@@ -11,6 +11,7 @@ const sqlClient = new Client({
 	ssl: true,
 });
 sqlClient.connect();
+//The table is called "Reply" with big R
 
 client.on('ready', () => {
 	console.log('I am ready!');
