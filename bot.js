@@ -74,7 +74,7 @@ function runSQL(command){
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		resolve res.rows;
+		resolve(res.rows);
 	});
 }
 
