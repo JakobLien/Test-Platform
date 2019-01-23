@@ -71,10 +71,7 @@ It can be found here: `+data["page"]);
 function runSQL(command){
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err);
-		for (let row of res.rows) {
-			console.log(JSON.stringify(row));
-		}
-		return res.rows;
+		resolve(res.rows);
 	});
 }
 
@@ -179,9 +176,8 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let promise1 = new Promise(function(resolve, reject){
-			runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
-		});
+		let promise1 = new Promise(runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';", 
+						  resolve, reject));
 		console.log(typeof(promise1));
 		promise1.then(function(returned){
 			console.log(returned, returned.length);
