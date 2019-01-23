@@ -68,14 +68,13 @@ It can be found here: `+data["page"]);
 	}
 }
 
-function runSQL(command, mode){
+function runSQL(command){
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err);
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		console.log(mode, res.rows[0].response);
-		return res.rows;
+		resolve res.rows;
 	});
 }
 
@@ -177,7 +176,7 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let promise = runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
+		let promise = new promise(runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';"));
 		promise.then(function(returned){
 			if(returned.length > 0){
 				message.reply(returned[0].response);
