@@ -203,7 +203,7 @@ client.on('message', message => {
 					break;
 				case "runSQL":
 					runSQL(command.slice(1).join(" "));
-				case "addQuote":
+				case "addReply":
 					console.log("INSERT INTO Reply (trigger, response) VALUES ('"+command[1].replace("-", " ")+
 					       "', '"+command[2].replace("-", " ")+"');");
 				case "test":
