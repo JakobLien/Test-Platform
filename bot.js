@@ -64,7 +64,7 @@ It can be found here: `+data["page"]);
 function runSQL(command){
 	sqlClient.connect();
 	sqlClient.query(command, (err, res) => {
-		//if (err) throw err; 
+		if (err) throw err; 
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
