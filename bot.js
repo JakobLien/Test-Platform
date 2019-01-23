@@ -184,8 +184,9 @@ client.on('message', message => {
 		});
 		console.log(typeof(promise1));
 		promise1.then(function(returned){
+			console.log(returned, returned.length);
 			if(returned.length > 0){
-				console.log(typeof(message));
+				console.log("the type of message is: "+typeof(message));
 				message.reply(returned[0].response);
 			}
 		})
