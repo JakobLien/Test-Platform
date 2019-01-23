@@ -197,7 +197,7 @@ client.on('message', message => {
 					client.destroy();
 					break;
 				case "runSQL":
-					consol.log("running sql command: "+command.slice(1).join(" "))
+					console.log("running sql command: "+command.slice(1).join(" "))
 					runSQL(command.slice(1).join(" "));
 				case "test":
 					break;
