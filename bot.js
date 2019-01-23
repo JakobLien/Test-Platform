@@ -185,6 +185,7 @@ client.on('message', message => {
 		console.log(typeof(promise1));
 		promise1.then(function(returned){
 			if(returned.length > 0){
+				console.log(typeof(message));
 				message.reply(returned[0].response);
 			}
 		})
