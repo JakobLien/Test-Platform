@@ -20,7 +20,7 @@ client.on('ready', () => {
 	console.log('I am ready!');
 });
 
-var last_message_object;
+var lastMessageObject;
 var spellLink;
 //Stuff to deal with d&d spell requests
 function getSpellData(spellName){
@@ -58,23 +58,25 @@ var ritual;
 function printSpellData(data){
 	if(data["concentration"] === "no"){con = "not "}else{con = ""}
 	if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
-	last_message_object.reply(data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
+	lastMessageObject.reply(data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
 It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
 Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
 It can be found here: `+data["page"]);
 	for(var i = 0; i<data["desc"].length; i++){
-		last_message_object.reply(data["desc"][i]);
+		lastMessageObject.reply(data["desc"][i]);
 	}
 }
 
-function runSQL(command){
+function runSQL(command, onCompletion){
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err);
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
 		console.log(res.rows);
-		return res.rows;
+		if(onCompletion){
+			onCompletion();
+		}
 	});
 }
 
@@ -95,6 +97,7 @@ var firstResponce = "";
 
 //The main thing
 client.on('message', message => {
+	lastMessageObject = message;
 	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){
 		command = message.content.slice(1).split(" ");
 		keyword = command[0];
@@ -175,10 +178,9 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let potencialReply = runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';").then(function(){
-			console.log("qwerty");
+		runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';", function(){
+			lastMessageObject.channel.send(res.rows[0].response);
 		});
-		console.log(potencialReply);
 		/*if(potencialReply && potencialReply.length > 0){
 			message.channel.send(potencialReply[0].responce);
 		}*/
