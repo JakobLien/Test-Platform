@@ -11,7 +11,7 @@ const sqlClient = new Client({
 	ssl: true,
 });
 sqlClient.connect();
-//The table is called "Reply" with big R
+//The table is called "Reply" with big R 
 //It has the collumns trigger and responce
 //Create database again with CREATE TABLE Reply (trigger text, response text);
 //Add data with INSERT INTO Reply (trigger, response) VALUES ('value 1', 'value 2');
