@@ -12,7 +12,7 @@ const sqlClient = new Client({
 });
 sqlClient.connect();
 //The table is called "Reply" with big R
-//It has the collumns trigger and responce
+//It has the collumns trigger and response
 //Create database again with CREATE TABLE Reply (trigger text, response text);
 //Add data with INSERT INTO Reply (trigger, response) VALUES ('value 1', 'value 2');
 
@@ -69,11 +69,12 @@ It can be found here: `+data["page"]);
 
 function runSQL(command){
 	sqlClient.query(command, (err, res) => {
-		if (err) console.log(err); 
+		if (err) console.log(err);
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
 		console.log(res.rows);
+		return res.rows;
 	});
 }
 
@@ -174,7 +175,8 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let potencialReply = runSQL("SELECT responce FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
+		let potencialReply = runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
+		console.log(potencialReply);
 		/*if(potencialReply && potencialReply.length > 0){
 			message.channel.send(potencialReply[0].responce);
 		}*/
