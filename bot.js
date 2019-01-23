@@ -67,7 +67,7 @@ It can be found here: `+data["page"]);
 	}
 }
 
-function runSQL(command, callback){
+function runSQL(command, mode){
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err);
 		for (let row of res.rows) {
