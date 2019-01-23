@@ -70,9 +70,9 @@ It can be found here: `+data["page"]);
 function runSQL(command){
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err); 
-		/*for (let row of res.rows) {
+		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
-		}*/
+		}
 		return res.rows;
 	});
 }
@@ -175,7 +175,7 @@ client.on('message', message => {
 	//Reply to phraces
 	if(message.author.id !== botId){
 		let potencialReply = runSQL("SELECT responce FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
-		if(potencialReply.length > 0){
+		if(potencialReply && potencialReply.length > 0){
 			message.channel.send(potencialReply[0].responce);
 		}
 	}
