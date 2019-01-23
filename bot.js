@@ -9,7 +9,6 @@ const sqlClient = new Client({
 	ssl: true,
 });
 
-
 client.on('ready', () => {
 	console.log('I am ready!');
 });
