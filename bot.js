@@ -74,7 +74,7 @@ function runSQL(command, mode){
 			console.log(JSON.stringify(row));
 		}
 		if(mode === "respond" && res.rows > 0){
-			lastMessageObject.channel.send(res.rows[0].response);
+			lastMessageObject.reply(res.rows[0].response);
 		}
 	});
 }
