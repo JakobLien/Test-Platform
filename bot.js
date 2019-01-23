@@ -2,6 +2,13 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 //api for spells n stuff
 const http = require('http');
+//for db stuff
+const Client = require('pg');
+const sqlClient = new Client({
+	connectionString: process.env.DATABASE_URL,
+	ssl: true,
+});
+
 
 client.on('ready', () => {
 	console.log('I am ready!');
@@ -54,11 +61,6 @@ It can be found here: `+data["page"]);
 	}
 }
 
-const Client = require('pg');
-const sqlClient = new Client({
-	connectionString: process.env.DATABASE_URL,
-	ssl: true,
-});
 function runSQL(){
 	sqlClient.connect();
 	sqlClient.query('CREATE TABLE Responces (trigger text,responce text);', (err, res) => {
