@@ -177,8 +177,6 @@ client.on('message', message => {
 		let potencialReply = runSQL("SELECT responce FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
 		if(potencialReply.length > 0){
 			message.channel.send(potencialReply[0].responce);
-		}catch(err){
-			console.log("No reference found");
 		}
 	}
 	//recording code
