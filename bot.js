@@ -68,6 +68,7 @@ It can be found here: `+data["page"]);
 }
 
 function runSQL(command){
+	console.log("Running command: "+);
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err); 
 		for (let row of res.rows) {
@@ -201,8 +202,10 @@ client.on('message', message => {
 					client.destroy();
 					break;
 				case "runSQL":
-					console.log("running sql command: "+command.slice(1).join(" "))
 					runSQL(command.slice(1).join(" "));
+				case "addQuote":
+					console.log("INSERT INTO Reply (trigger, response) VALUES ('"+command[1].replace("-", " ")+
+					       "', '"+command[2].replace("-", " ")+"');");
 				case "test":
 					break;
 			}
