@@ -67,15 +67,14 @@ It can be found here: `+data["page"]);
 	}
 }
 
-function runSQL(command, onCompletion){
+function runSQL(command, mode){
 	sqlClient.query(command, (err, res) => {
 		if (err) console.log(err);
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		console.log(res.rows);
-		if(onCompletion){
-			onCompletion();
+		if(mode = "respond" && res.rows > 0){
+			lastMessageObject.channel.send(res.rows[0].response);
 		}
 	});
 }
@@ -178,12 +177,7 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';", function(){
-			lastMessageObject.channel.send(res.rows[0].response);
-		});
-		/*if(potencialReply && potencialReply.length > 0){
-			message.channel.send(potencialReply[0].responce);
-		}*/
+		runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';", "respond")
 	}
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
