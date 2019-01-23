@@ -73,7 +73,7 @@ function runSQL(command, mode){
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		console.log(mode, res.rows);
+		console.log(mode, res.rows[0].response);
 		if(mode === "respond" && res.rows > 0){
 			lastMessageObject.reply(res.rows[0].response);
 		}
