@@ -67,7 +67,7 @@ function runSQL(command){
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		sqlClient.end();
+		//sqlClient.end();
 	});
 }
 
@@ -77,7 +77,7 @@ function tellMe(message){
 
 //valid commands
 const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
-const privateCommands = ["me", "us", "start", "stop", "runSQL", "test"];
+const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
 //controll variables
 const myId = "265570029792133129";
