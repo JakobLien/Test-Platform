@@ -174,7 +174,7 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let potencialReply = runSQL("SELECT responce FROM Reply WHERE trigger LIKE '%"+message.content+"%';"));
+		let potencialReply = runSQL("SELECT responce FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
 		if(potencialReply.length > 0){
 			message.channel.send(potencialReply[0].responce);
 		}catch(err){
