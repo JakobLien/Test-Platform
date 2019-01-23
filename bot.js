@@ -93,7 +93,6 @@ const botId = "530439718823788544";
 var iDecide = false;
 var recording = false;
 var firstResponce = "";
-var promise;
 
 //The main thing
 client.on('message', message => {
@@ -178,7 +177,7 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		promise = runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
+		let promise = runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
 		promise.then(function(returned){
 			if(returned.length > 0){
 				message.reply(returned[0].response);
