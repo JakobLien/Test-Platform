@@ -202,9 +202,11 @@ client.on('message', message => {
 					break;
 				case "runSQL":
 					runSQL(command.slice(1).join(" "));
+					break;
 				case "addReply":
 					runSQL("INSERT INTO Reply (trigger, response) VALUES ('"+command[1].replace(/-/g, " ")+
 					       "', '"+command[2].replace(/-/g, " ")+"');");
+					break;
 				case "test":
 					break;
 			}
