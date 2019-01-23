@@ -3,7 +3,7 @@ const client = new Discord.Client();
 //api for spells n stuff
 const http = require('http');
 //for db stuff
-const Client = require('pg');
+const { Client } = require('pg');
 const sqlClient = new Client({
 	connectionString: process.env.DATABASE_URL,
 	ssl: true,
