@@ -73,7 +73,7 @@ function runSQL(command){
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		return res.rows;
+		console.log(res.rows);
 	});
 }
 
@@ -175,9 +175,9 @@ client.on('message', message => {
 	//Reply to phraces
 	if(message.author.id !== botId){
 		let potencialReply = runSQL("SELECT responce FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
-		if(potencialReply && potencialReply.length > 0){
+		/*if(potencialReply && potencialReply.length > 0){
 			message.channel.send(potencialReply[0].responce);
-		}
+		}*/
 	}
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
