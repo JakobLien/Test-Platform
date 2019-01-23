@@ -179,9 +179,7 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let promise1 = new promise(function(resolve, reject){
-			runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
-		});
+		let promise1 = runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
 		console.log(typeof(promise1));
 		promise1.then(function(returned){
 			if(returned.length > 0){
