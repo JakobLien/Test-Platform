@@ -14,7 +14,7 @@ sqlClient.connect();
 //The table is called "Reply" with big R
 //It has the collumns trigger and responce
 //Create database again with CREATE TABLE Reply (trigger text, response text);
-//Add data with 
+//Add data with INSERT INTO Reply (trigger, response) VALUES ('value 1', 'value 2');
 
 client.on('ready', () => {
 	console.log('I am ready!');
