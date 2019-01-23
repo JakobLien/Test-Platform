@@ -1,7 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
 //api for spells n stuff
 const http = require('http');
+
 //for db stuff
 const { Client } = require('pg');
 const sqlClient = new Client({
@@ -67,7 +69,6 @@ function runSQL(command){
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
 		}
-		//sqlClient.end();
 	});
 }
 
