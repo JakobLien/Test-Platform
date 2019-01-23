@@ -75,9 +75,7 @@ function runSQL(command, mode){
 			console.log(JSON.stringify(row));
 		}
 		console.log(mode, res.rows[0].response);
-		if(mode === "respond" && res.rows > 0){
-			lastMessageObject.reply(res.rows[0].response);
-		}
+		return res.rows;
 	});
 }
 
@@ -95,6 +93,7 @@ const botId = "530439718823788544";
 var iDecide = false;
 var recording = false;
 var firstResponce = "";
+var promise;
 
 //The main thing
 client.on('message', message => {
@@ -179,7 +178,10 @@ client.on('message', message => {
 	}
 	//Reply to phraces
 	if(message.author.id !== botId){
-		runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';", "respond");
+		promise = runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';");
+		promise.then(function(returned){
+			message.reply(returned[0].response);
+		})
 	}
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
