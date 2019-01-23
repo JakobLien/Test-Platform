@@ -61,9 +61,9 @@ It can be found here: `+data["page"]);
 	}
 }
 
-function runSQL(){
+function runSQL(command){
 	sqlClient.connect();
-	sqlClient.query('CREATE TABLE Responces (trigger text,responce text);', (err, res) => {
+	sqlClient.query('command', (err, res) => {
 	if (err) throw err;
 		for (let row of res.rows) {
 			console.log(JSON.stringify(row));
@@ -78,7 +78,7 @@ function tellMe(message){
 
 //valid commands
 const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
-const privateCommands = ["me", "us", "start", "stop", "test"];
+const privateCommands = ["me", "us", "start", "stop", "runSQL", "test"];
 
 //controll variables
 const myId = "265570029792133129";
@@ -196,8 +196,10 @@ client.on('message', message => {
 				case "suicide":
 					client.destroy();
 					break;
+				case "runSQL":
+					consol.log("running sql command: "+command.slice(1).join(" "))
+					runSQL(command.slice(1).join(" "));
 				case "test":
-					runSQL();
 					break;
 			}
 		}
