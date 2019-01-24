@@ -178,7 +178,7 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let words = command;
+		let words = message.content.slice(1).split(" ");
 		let promise1 = runSQL("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
 		promise1.then(function(returned){
 			console.log(returned, returned.length);
