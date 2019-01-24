@@ -178,7 +178,10 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let words = message.content.slice(1).split(" ");
+		console.log(message.content);
+		let words = message.content.split(" ");
+		console.log(words);
+		console.log(words.join("', '"));
 		let promise1 = runSQL("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
 		console.log("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
 		promise1.then(function(returned){
