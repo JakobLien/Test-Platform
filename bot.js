@@ -178,12 +178,11 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let promise1 = runSQL("SELECT response FROM Reply WHERE '%"+message.content+"%' LIKE trigger;");
-		console.log(typeof(promise1));
+		let words = command;
+		let promise1 = runSQL("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
 		promise1.then(function(returned){
 			console.log(returned, returned.length);
 			if(returned.length > 0){
-				console.log("the type of message is: "+typeof(message));
 				message.reply(returned[0].response);
 			}
 		})
