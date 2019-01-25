@@ -69,12 +69,17 @@ It can be found here: `+data["page"]);
 }
 
 function runSQL(command){
-	return new Promise(function(resolve, reject){
-		sqlClient.query(command, (err, res) => {
-			if (err) console.log(err);
-			resolve(res.rows);
+	try{
+		return new Promise(function(resolve, reject){
+			sqlClient.query(command, (err, res) => {
+				if (err) console.log(err);
+				resolve(res.rows);
+			});
 		});
-	});
+	}catch(e){
+		console.log(e);
+		return null;
+	}
 }
 
 function tellMe(message){
