@@ -169,7 +169,7 @@ client.on('message', message => {
 				case "runSQL":
 					try{
 						runSQL(command.slice(1).join(" ")).then(function(returned){
-							message.reply(returned);
+							console.log(returned);
 						});
 					}catch(e){
 						message.reply("Something went wrong. error message: "+e)
