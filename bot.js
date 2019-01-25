@@ -178,18 +178,19 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
-		console.log(message.content);
 		let words = message.content.split(" ");
-		console.log(words);
-		console.log(words.join("', '"));
-		let promise1 = runSQL("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
-		console.log("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
-		promise1.then(function(returned){
-			console.log(returned, returned.length);
-			if(returned.length > 0){
-				message.reply(returned[0].response);
-			}
-		})
+		try{
+			let promise1 = runSQL("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
+			console.log("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
+			promise1.then(function(returned){
+				console.log(returned, returned.length);
+				if(returned.length > 0){
+					message.reply(returned[0].response);
+				}
+			})
+		}catch(e){
+			console.log(e);
+		}
 	}
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
