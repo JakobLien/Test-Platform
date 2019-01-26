@@ -170,7 +170,10 @@ client.on('message', message => {
 					try{
 						runSQL(command.slice(1).join(" ")).then(function(returned){
 							console.log(returned);
-							message.reply(returned);
+							returned.forEach(function(item, index){
+								console.log(item["trigger"]);
+								console.log(item["response"]);
+							}):
 						});
 					}catch(e){
 						message.reply("Something went wrong. error message: "+e)
