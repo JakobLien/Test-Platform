@@ -171,8 +171,8 @@ client.on('message', message => {
 						runSQL(command.slice(1).join(" ")).then(function(returned){
 							console.log(returned);
 							returned.forEach(function(item, index){
-								console.log(item["trigger"]);
-								console.log(item["response"]);
+								message.reply(item["trigger"]);
+								message.reply(item["response"]);
 							});
 						});
 					}catch(e){
