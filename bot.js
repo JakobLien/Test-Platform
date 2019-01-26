@@ -173,7 +173,7 @@ client.on('message', message => {
 							returned.forEach(function(item, index){
 								console.log(item["trigger"]);
 								console.log(item["response"]);
-							}):
+							});
 						});
 					}catch(e){
 						message.reply("Something went wrong. error message: "+e)
