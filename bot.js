@@ -5,12 +5,10 @@ const client = new Discord.Client();
 const http = require('http');
 
 //for db stuff
-const { Client } = require('pg');
-const sqlClient = new Client({
-	connectionString: process.env.DATABASE_URL,
-	ssl: true,
-});
-sqlClient.connect();
+var mysql = require('mysql');
+var connection = mysql.createConnection(process.env.JAWSDB_URL);
+
+connection.connect();
 //The table is called "Reply" with big R
 //It has the collumns trigger and response
 //Create database again with CREATE TABLE Reply (trigger text, response text);
@@ -69,7 +67,11 @@ It can be found here: `+data["page"]);
 }
 
 function runSQL(command){
-	try{
+	connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+		if (err) throw err;
+		console.log('The solution is: ', rows[0].solution);
+	});
+	/*try{
 		return new Promise(function(resolve, reject){
 			sqlClient.query(command, (err, res) => {
 				if (err) console.log(err);
@@ -79,7 +81,7 @@ function runSQL(command){
 	}catch(e){
 		console.log(e);
 		return null;
-	}
+	}*/
 }
 
 function tellMe(message){
@@ -167,6 +169,7 @@ client.on('message', message => {
 					client.destroy();
 					break;
 				case "runSQL":
+					/*
 					try{
 						runSQL(command.slice(1).join(" ")).then(function(returned){
 							console.log(returned);
@@ -177,7 +180,8 @@ client.on('message', message => {
 						});
 					}catch(e){
 						message.reply("Something went wrong. error message: "+e)
-					}
+					}*/
+					runSQL();
 					break;
 				case "addReply":
 					runSQL("INSERT INTO Reply (trigger, response) VALUES ('"+command[1].replace(/-/g, " ")+
