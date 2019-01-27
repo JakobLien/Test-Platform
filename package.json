@@ -9,6 +9,6 @@
 	"dependencies": {
 		"discord.js": "11.1.0",
 		"request": "2.81.0",
-		"jawsdb": ""
+		"jawsdb": "v18"
 	}
 }
