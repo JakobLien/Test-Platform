@@ -167,7 +167,6 @@ client.on('message', message => {
 					client.destroy();
 					break;
 				case "runSQL":
-					/*
 					try{
 						runSQL(command.slice(1).join(" ")).then(function(returned){
 							console.log(returned);
@@ -178,8 +177,7 @@ client.on('message', message => {
 						});
 					}catch(e){
 						message.reply("Something went wrong. error message: "+e)
-					}*/
-					runSQL();
+					}
 					break;
 				case "addReply":
 					runSQL("INSERT INTO Reply (trigger, response) VALUES ('"+command[1].replace(/-/g, " ")+
