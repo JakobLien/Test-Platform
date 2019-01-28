@@ -67,21 +67,19 @@ It can be found here: `+data["page"]);
 }
 
 function runSQL(command){
-	connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-		if (err) throw err;
-		console.log('The solution is: ', rows[0].solution);
-	});
-	/*try{
+	try{
 		return new Promise(function(resolve, reject){
-			sqlClient.query(command, (err, res) => {
-				if (err) console.log(err);
-				resolve(res.rows);
+			connection.query(command, function(err, rows, fields) {
+				if (err) throw err;
+				console.log(fields);
+				console.log(rows);
+				resolve(rows);
 			});
 		});
 	}catch(e){
 		console.log(e);
 		return null;
-	}*/
+	}
 }
 
 function tellMe(message){
