@@ -13,7 +13,7 @@ connection.connect();
 //It has the collumns trigger and response
 //Create database again with CREATE TABLE Reply (trigger text, response text);
 //Add data with INSERT INTO Reply (trigger, response) VALUES ('value 1', 'value 2');
-//fak
+//fakk
 
 client.on('ready', () => {
 	console.log('I am ready!');
