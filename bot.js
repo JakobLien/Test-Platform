@@ -189,7 +189,7 @@ client.on('message', message => {
 	}
 	
 	//runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';")
-	
+	/*
 	//Reply to phraces
 	if(message.author.id !== botId){
 		let words = message.content.split(" ");
@@ -205,7 +205,7 @@ client.on('message', message => {
 		}catch(e){
 			console.log(e);
 		}
-	}
+	}*/
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
 		tellMe(message.author.username+": "+message.content);
