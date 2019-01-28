@@ -14,6 +14,7 @@ connection.connect();
 //Create database again with CREATE TABLE Reply (trigger text, response text);
 //Add data with INSERT INTO Reply (trigger, response) VALUES ('value 1', 'value 2');
 //fakk
+//Table name: bh0ub23y49lemz7n
 
 client.on('ready', () => {
 	console.log('I am ready!');
