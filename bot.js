@@ -10,10 +10,10 @@ var connection = mysql.createConnection(process.env.JAWSDB_URL);
 
 connection.connect();
 //The table is called "Reply" with big R
-//It has the collumns trigger and response
-//Create database again with CREATE TABLE Reply (trigger text, response text);
-//Add data with INSERT INTO Reply (trigger, response) VALUES ('value 1', 'value 2');
-//Table name: bh0ub23y49lemz7n
+//It has the collumns triggers and responses
+//Create database again with CREATE TABLE Reply (triggers text, responses text);
+//Add data with INSERT INTO Reply (triggers, responses) VALUES ('value 1', 'value 2');
+//DATABASE NAME: nn0cp329p81ljw62
 
 client.on('ready', () => {
 	console.log('I am ready!');
