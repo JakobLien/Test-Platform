@@ -199,7 +199,7 @@ client.on('message', message => {
 			promise1.then(function(returned){
 				console.log(returned, returned.length);
 				if(returned.length > 0){
-					message.reply(returned[0].response);
+					message.reply(returned[0].responses);
 				}
 			})
 		}catch(e){
