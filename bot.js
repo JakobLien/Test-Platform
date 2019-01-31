@@ -190,10 +190,9 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
-		let words = message.content.split(" ");
 		try{
 			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
-			let promise1 = runSQL("SELECT * FROM Reply WHERE 0 < LOCATE(triggers, '"+words.join()+"');");
+			let promise1 = runSQL("SELECT * FROM Reply WHERE 0 < LOCATE(triggers, '"+message.content+"');");
 			console.log(promise1);
 			promise1.then(function(returned){
 				console.log(returned, returned.length);
