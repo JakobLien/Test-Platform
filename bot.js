@@ -61,7 +61,7 @@ function printSpellData(data){
 It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
 Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
 It can be found here: `+data["page"]);
-	for(var i = 0; i<data["desc"].length; i++){
+	for(let i = 0; i<data["desc"].length; i++){
 		lastMessageObject.reply(data["desc"][i]);
 	}
 }
@@ -70,9 +70,7 @@ function runSQL(command){
 	try{
 		return new Promise(function(resolve, reject){
 			connection.query(command, function(err, rows, fields) {
-				if (err) throw err;
-				console.log(fields);
-				console.log(rows);
+				if (err) console.log(err);
 				resolve(rows);
 			});
 		});
@@ -195,9 +193,7 @@ client.on('message', message => {
 			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
 			let promise1 = runSQL("SELECT responses FROM Reply WHERE 0 < LOCATE(triggers, '"+
 					      message.content.toLowerCase()+"');");
-			console.log(promise1);
 			promise1.then(function(returned){
-				console.log(returned, returned.length);
 				if(returned.length > 0){
 					message.reply(returned[0].responses);
 				}
