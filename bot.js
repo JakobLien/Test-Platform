@@ -144,7 +144,8 @@ client.on('message', message => {
 				console.log("Attempting to run private command "+message.content+" on the server "+
 				message.guild.name+" for "+message.author.username);
 			}else{
-				console.log("Attempting to run private command "+message.content+" in a dm for "+message.author.username);
+				console.log("Attempting to run private command "+message.content+" in a dm for "+
+					    message.author.username);
 			}
 			switch(keyword){
 				case "me":
@@ -192,7 +193,8 @@ client.on('message', message => {
 	if(message.author.id !== botId){
 		try{
 			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
-			let promise1 = runSQL("SELECT response FROM Reply WHERE 0 < LOCATE(triggers, '"+message.content+"');");
+			let promise1 = runSQL("SELECT responses FROM Reply WHERE 0 < LOCATE(triggers, '"+
+					      message.content.toLowerCase()+"');");
 			console.log(promise1);
 			promise1.then(function(returned){
 				console.log(returned, returned.length);
