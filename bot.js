@@ -188,14 +188,13 @@ client.on('message', message => {
 		}
 	}
 	
-	//runSQL("SELECT response FROM Reply WHERE trigger LIKE '%"+message.content+"%';")
-	/*
 	//Reply to phraces
 	if(message.author.id !== botId){
 		let words = message.content.split(" ");
 		try{
-			let promise1 = runSQL("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
-			console.log("SELECT response FROM Reply WHERE trigger IN ('"+words.join("', '")+"');");
+			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
+			let promise1 = runSQL("SELECT * FROM Reply WHERE 0 < LOCATE(triggers, '"+words.join()+"');");
+			console.log(promise1);
 			promise1.then(function(returned){
 				console.log(returned, returned.length);
 				if(returned.length > 0){
@@ -205,7 +204,7 @@ client.on('message', message => {
 		}catch(e){
 			console.log(e);
 		}
-	}*/
+	}
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
 		tellMe(message.author.username+": "+message.content);
