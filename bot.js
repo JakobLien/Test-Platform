@@ -192,7 +192,7 @@ client.on('message', message => {
 	if(message.author.id !== botId){
 		try{
 			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
-			let promise1 = runSQL("SELECT * FROM Reply WHERE 0 < LOCATE(triggers, '"+message.content+"');");
+			let promise1 = runSQL("SELECT response FROM Reply WHERE 0 < LOCATE(triggers, '"+message.content+"');");
 			console.log(promise1);
 			promise1.then(function(returned){
 				console.log(returned, returned.length);
