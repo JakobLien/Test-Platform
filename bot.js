@@ -194,12 +194,10 @@ client.on('message', message => {
 			let promise1 = runSQL("SELECT responses FROM Reply WHERE 0 < LOCATE(triggers, '"+
 					      message.content.toLowerCase()+"');");
 			promise1.then(function(returned){
-				if(returned.length > 0){
-					for(let element in returned){
-						message.reply(element.responses);
-					}
+				for(let i = 0; i < returned.length; i++){
+					message.reply(returned[i].responses);
 				}
-			})
+			});
 		}catch(e){
 			console.log(e);
 		}
