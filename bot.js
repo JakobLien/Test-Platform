@@ -195,7 +195,13 @@ client.on('message', message => {
 					      message.content.toLowerCase()+"');");
 			promise1.then(function(returned){
 				for(let i = 0; i < returned.length; i++){
-					message.reply(returned[i].responses);
+					if(returned[i].responses.length > 1900){
+						for(var a = 0; a < returned[i].responses.length/1900; a++){
+							message.reply(returned[i].responses.slice(a*1900, (a+1)*1900));
+						}
+					}else{
+						message.reply(returned[i].responses);
+					}
 				}
 			});
 		}catch(e){
