@@ -195,7 +195,9 @@ client.on('message', message => {
 					      message.content.toLowerCase()+"');");
 			promise1.then(function(returned){
 				if(returned.length > 0){
-					message.reply(returned[0].responses);
+					for(let element in returned){
+						message.reply(element.responses);
+					}
 				}
 			})
 		}catch(e){
