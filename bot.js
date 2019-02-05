@@ -46,9 +46,9 @@ function getSpellData(spellName){
 				last_message_object.reply("That spell was not found. (The error message goes: "+err+")");
 			}
 		});
-		}).on("error", (err) => {
-			console.log("Error(1): " + err.message);
-		});
+	}).on("error", (err) => {
+		console.log("Error(1): " + err.message);
+	});
 }
 
 //stuff to print spell requests
