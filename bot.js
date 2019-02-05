@@ -143,7 +143,7 @@ client.on('message', message => {
 							message.reply("Your keyword is: "+returned[0].triggers);
 						});
 					}else{
-						message.reply("You rolled a nat "+roll+", which sadly is not enough for");
+						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
 					}
 					break;
 			}
