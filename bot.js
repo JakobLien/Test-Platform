@@ -132,8 +132,19 @@ client.on('message', message => {
 					getSpellData(command.slice(1).join("+"));
 					break;
 				case "openPM":
-					console.log(message.author.username+" has opened PM");
+					TellMe(message.author.username+" has opened PM");
 					message.author.send("Hello there");
+					break;
+				case "fish":
+					let roll = Math.floor(Math.random()*20+1);
+					if(roll === 20){
+						message.reply("You rolled a natural twenty. Fetching keyword");
+						runSQL("SELECT triggers FROM reply ORDER BY RAND() LIMIT 1;").(function(returned){
+							message.reply("Your keyword is: "+returned[0].triggers);
+						});
+					}else{
+						message.reply("You rolled a nat "+roll+", which sadly is not enough for");
+					}
 					break;
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
@@ -176,10 +187,6 @@ client.on('message', message => {
 					}catch(e){
 						message.reply("Something went wrong. error message: "+e)
 					}
-					break;
-				case "addReply":
-					runSQL("INSERT INTO Reply (trigger, response) VALUES ('"+command[1].replace(/-/g, " ")+
-					       "', '"+command[2].replace(/-/g, " ")+"');");
 					break;
 				case "test":
 					break;
