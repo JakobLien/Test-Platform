@@ -85,7 +85,7 @@ function tellMe(message){
 }
 
 //valid commands
-const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM"];
+const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM", "fish"];
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "addReply", "test"];
 
 //controll variables
