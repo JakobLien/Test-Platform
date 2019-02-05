@@ -136,11 +136,11 @@ client.on('message', message => {
 					message.author.send("Hello there");
 					break;
 				case "fish":
-					let roll = Math.floor(Math.random()*20+1);
+					let roll = Math.floor(Math.random()*20)+1;
 					if(roll === 20){
 						message.reply("You rolled a natural twenty. Fetching keyword");
 						runSQL("SELECT triggers FROM reply ORDER BY RAND() LIMIT 1;").then(function(returned){
-							message.reply("Your keyword is: "+returned[0].triggers);
+							message.author.send("Your keyword is: "+returned[0].triggers);
 						});
 					}else{
 						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
