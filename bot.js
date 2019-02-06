@@ -193,7 +193,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					message.reply(mysql.escape(message.content));
+					message.reply(message.content.toLowerCase().replace("'", "\\'"));
 					break;
 			}
 		}
@@ -204,7 +204,7 @@ client.on('message', message => {
 		try{
 			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
 			let promise1 = runSQL("SELECT responses FROM Reply WHERE 0 < LOCATE(triggers, '"+
-					      connection.escape(message.content.toLowerCase())+"');");
+					      message.content.toLowerCase().replace("'", "\\'")+"');");
 			promise1.then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					if(returned[i].responses.length > 1900){
