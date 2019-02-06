@@ -204,7 +204,7 @@ client.on('message', message => {
 		try{
 			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
 			let promise1 = runSQL("SELECT responses FROM Reply WHERE 0 < LOCATE(triggers, '"+
-					      mysql.escape(message.content.toLowerCase())+"');");
+					      connection.escape(message.content.toLowerCase())+"');");
 			promise1.then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					if(returned[i].responses.length > 1900){
