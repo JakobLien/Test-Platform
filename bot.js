@@ -207,7 +207,7 @@ client.on('message', message => {
 			promise1.then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					if(returned[i].responses.length > 1900){
-						for(var a = 0; a < returned[i].responses.length/1900; a++){
+						for(let a = 0; a < returned[i].responses.length/1900; a++){
 							message.reply(returned[i].responses.slice(a*1900, (a+1)*1900));
 						}
 					}else{
