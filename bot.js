@@ -140,7 +140,11 @@ client.on('message', message => {
 					if(roll === 20){
 						message.reply("You rolled a natural twenty. Fetching keyword. . .");
 						runSQL("SELECT triggers FROM reply ORDER BY RAND() LIMIT 1;").then(function(returned){
-							message.author.send("Your keyword is: "+returned[0].triggers);
+							if(message.guild !== null){
+								message.author.send("Your keyword is: "+returned[0].triggers);
+							}else{
+								message.reply("Your keyword is: "+returned[0].triggers);
+							}
 						});
 					}else{
 						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
