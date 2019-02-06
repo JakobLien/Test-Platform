@@ -93,7 +93,6 @@ const myId = "265570029792133129";
 const botId = "530439718823788544";
 var iDecide = false;
 var recording = false;
-var firstResponce = "";
 
 //The main thing
 client.on('message', message => {
