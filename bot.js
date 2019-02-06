@@ -193,6 +193,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
+					message.reply(mysql.escape(message.content);
 					break;
 			}
 		}
