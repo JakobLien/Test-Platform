@@ -189,7 +189,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					console.log(typeof(client.emojis), client.emojis);
+					console.log(client.emojis.random());
 					break;
 			}
 		}
