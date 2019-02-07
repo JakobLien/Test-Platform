@@ -123,9 +123,6 @@ client.on('message', message => {
 				case "nut":
 					message.channel.send(":weary: :ok_hand: :sweat_drops:");
 					break;
-				case "backmeup":
-					message.reply("This person is correct!");
-					break;
 				case "spell":
 					last_message_object = message;
 					getSpellData(command.slice(1).join("+"));
@@ -192,7 +189,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					message.reply(message.content.toLowerCase().replace("'", "\\'"));
+					console.log(typeof(client.emojis), client.emojis);
 					break;
 			}
 		}
