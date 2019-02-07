@@ -189,7 +189,8 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					console.log(client.emojis.random());
+					console.log(client.emojis.random().id);
+					message.reply("<name:"+client.emojis.random().id+">");
 					break;
 			}
 		}
