@@ -194,9 +194,9 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					let emoji = client.emojis.random()
-					console.log(emoji.name, emoji.id);
-					message.reply("<"+emoji.name+":"+emoji.id+">");
+					client.setTimeout(function(){
+						message.reply("timeout set");
+					}, command[1]);
 					break;
 			}
 		}
