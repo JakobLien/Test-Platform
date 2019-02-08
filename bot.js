@@ -194,8 +194,9 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					console.log(client.emojis.random().id);
-					message.reply("<name:"+client.emojis.random().id+">");
+					let emoji = client.emojis.random()
+					console.log(emoji.name, emoji.id);
+					message.reply("<"+emoji.name+":"+emoji.id+">");
 					break;
 			}
 		}
