@@ -85,7 +85,7 @@ function tellMe(message){
 }
 
 //valid commands
-const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM", "fish"];
+const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM", "fish", "immy"];
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "addReply", "test"];
 
 //controll variables
@@ -130,6 +130,11 @@ client.on('message', message => {
 				case "openPM":
 					TellMe(message.author.username+" has opened PM");
 					message.author.send("Hello there");
+					break;
+				case "immy":
+					runSQL("SELECT sitat FROM sitat ORDER BY RAND() LIMIT 1;").then(function(returned){
+						message.reply(returned[0].sitat);
+					});
 					break;
 				case "fish":
 					let roll = Math.floor(Math.random()*20)+1;
