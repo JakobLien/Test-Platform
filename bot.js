@@ -66,10 +66,10 @@ It can be found here: `+data["page"]);
 	}
 }
 
-function runSQL(command){
+function runSQL(query){
 	try{
 		return new Promise(function(resolve, reject){
-			connection.query(command, function(err, rows, fields) {
+			connection.query(query, function(err, rows, fields) {
 				if (err) console.log(err);
 				resolve(rows);
 			});
@@ -151,10 +151,24 @@ client.on('message', message => {
 						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
 					}
 					break;
+				case "createAccount":
+					runSQL("SELECT * FROM economy WHERE UserID = '"+message.author.id+"';").then(function(returned){
+						console.log(returned.length, !returned.length);
+						if(!returned.length){
+							runSQL("INSERT INTO economy VALUES ('"+message.author.username+"', '"message.author.id"', DEFAULT);").then(function(returned2){
+								message.reply("You have successfully created an account.");
+							});
+						}else{
+							message.reply("You have already created an account");
+						}
+					})
+					break;
 				case "money":
 					runSQL("SELECT Money FROM economy WHERE UserID = '"+message.author.id+"';").then(function(returned){
 						message.reply("You have "+returned[0].Money+" money");
 					});
+					break;
+				case
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
