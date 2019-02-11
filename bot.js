@@ -168,7 +168,6 @@ client.on('message', message => {
 						message.reply("You have "+returned[0].Money+" money");
 					});
 					break;
-				case
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
