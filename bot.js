@@ -151,6 +151,10 @@ client.on('message', message => {
 						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
 					}
 					break;
+				case "balance":
+					runSQL("SELECT Money FROM economy WHERE UserID = '"+message.author.id+"';").then(function(reutrned){
+						message.reply("You have "+returned[0].Money+" money");
+					});
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
