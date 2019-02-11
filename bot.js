@@ -13,7 +13,7 @@ connection.connect();
 //It has the collumns triggers and responses
 //Create database again with CREATE TABLE Reply (triggers text, responses text);
 //Add data with INSERT INTO Reply (triggers, responses) VALUES ('value 1', 'value 2');
-//DATABASE NAME: nn0cp329p81ljw62 
+//DATABASE NAME: nn0cp329p81ljw62
 
 client.on('ready', () => {
 	console.log('I am ready!');
