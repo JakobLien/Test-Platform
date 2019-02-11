@@ -85,7 +85,7 @@ function tellMe(message){
 }
 
 //valid commands
-const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM", "immy", "fish", "createAccount", "money"];
+const publicCommands = ["help", "trist", "nut", "backmeup", "spell", "openPM", "immy", "fish", "createAccount", "money"];
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
 //controll variables
@@ -117,7 +117,10 @@ client.on('message', message => {
 				}
 			}
 			switch(keyword){
-				case 'trist':
+				case "help":
+					message.reply("All public commands: "publicCommands.join(", "));
+					break;
+				case "trist":
 					message.reply('Jakob er trist!');
 					break;
 				case "nut":
