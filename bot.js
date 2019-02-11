@@ -152,7 +152,7 @@ client.on('message', message => {
 					}
 					break;
 				case "money":
-					runSQL("SELECT Money FROM economy WHERE UserID = '"+message.author.id+"';").then(function(reutrned){
+					runSQL("SELECT Money FROM economy WHERE UserID = '"+message.author.id+"';").then(function(returned){
 						message.reply("You have "+returned[0].Money+" money");
 					});
 			}
