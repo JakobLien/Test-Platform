@@ -118,7 +118,7 @@ client.on('message', message => {
 			}
 			switch(keyword){
 				case "help":
-					message.reply("All public commands: "publicCommands.join(", "));
+					message.reply("All public commands: "+publicCommands.join(", "));
 					break;
 				case "trist":
 					message.reply('Jakob er trist!');
@@ -156,7 +156,6 @@ client.on('message', message => {
 					break;
 				case "createAccount":
 					runSQL("SELECT * FROM economy WHERE UserID = '"+message.author.id+"';").then(function(returned){
-						console.log(returned.length, !returned.length);
 						if(!returned.length){
 							runSQL("INSERT INTO economy VALUES ('"+message.author.username+"', '"+message.author.id+"', DEFAULT);").then(function(returned2){
 								message.reply("You have successfully created an account.");
