@@ -85,7 +85,7 @@ function tellMe(message){
 }
 
 //valid commands
-const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM", "fish", "immy"];
+const publicCommands = ["trist", "nut", "backmeup", "spell", "openPM", "fish", "immy", "money"];
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
 //controll variables
@@ -151,7 +151,7 @@ client.on('message', message => {
 						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
 					}
 					break;
-				case "balance":
+				case "money":
 					runSQL("SELECT Money FROM economy WHERE UserID = '"+message.author.id+"';").then(function(reutrned){
 						message.reply("You have "+returned[0].Money+" money");
 					});
