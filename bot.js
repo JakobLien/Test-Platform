@@ -85,7 +85,9 @@ function tellMe(message){
 }
 
 //valid commands
-const publicCommands = ["help", "trist", "nut", "backmeup", "spell", "openPM", "immy", "fish", "createAccount", "money"];
+const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
+			"spell", "immy", "fish", //specific stuff
+			"createAccount", "money", "donate"]; //capitalist stuff
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
 //controll variables
@@ -117,6 +119,7 @@ client.on('message', message => {
 				}
 			}
 			switch(keyword){
+				//various stuff
 				case "help":
 					message.reply("All public commands: "+publicCommands.join(", "));
 					break;
@@ -126,13 +129,14 @@ client.on('message', message => {
 				case "nut":
 					message.channel.send(":weary: :ok_hand: :sweat_drops:");
 					break;
-				case "spell":
-					last_message_object = message;
-					getSpellData(command.slice(1).join("+"));
-					break;
 				case "openPM":
 					TellMe(message.author.username+" has opened PM");
 					message.author.send("Hello there");
+					break;
+				//specific stuff
+				case "spell":
+					last_message_object = message;
+					getSpellData(command.slice(1).join("+"));
 					break;
 				case "immy":
 					runSQL("SELECT sitat FROM sitat ORDER BY RAND() LIMIT 1;").then(function(returned){
@@ -154,6 +158,7 @@ client.on('message', message => {
 						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
 					}
 					break;
+				//capitalist stuff
 				case "createAccount":
 					runSQL("SELECT * FROM economy WHERE UserID = '"+message.author.id+"';").then(function(returned){
 						if(!returned.length){
@@ -170,6 +175,9 @@ client.on('message', message => {
 						message.reply("You have "+returned[0].Money+" money");
 					});
 					break;
+				case "donate":
+					//parseInt(command[2])
+					break
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
