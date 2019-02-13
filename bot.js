@@ -178,7 +178,7 @@ client.on('message', message => {
 					});
 					break;
 				case "donate":
-					if(0 < command[2]){
+					if(0 < command[2] && message.author.id !== message.mentions.users.first().id){
 						runSQL("UPDATE economy SET Money = Money-"+command[2]+" WHERE UserID = '"+
 						message.author.id+"';").then(function(returned){
 							message.reply("money successfully detracted from your account");
@@ -187,8 +187,10 @@ client.on('message', message => {
 								message.reply("money successfully added to the other account");
 							});
 						});
-					}else{
+					}else if(0 < command[2]){
 						message.reply("You can't donate less than 1 money");
+					}else{
+						message.reply("You can't donate money to yourself");
 					}
 					break;
 			}
