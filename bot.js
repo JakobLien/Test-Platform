@@ -187,7 +187,7 @@ client.on('message', message => {
 								message.reply("money successfully added to the other account");
 							});
 						});
-					}else if(0 < command[2]){
+					}else if(0 >= command[2]){
 						message.reply("You can't donate less than 1 money");
 					}else{
 						message.reply("You can't donate money to yourself");
