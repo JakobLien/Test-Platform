@@ -176,8 +176,13 @@ client.on('message', message => {
 					});
 					break;
 				case "donate":
-					//parseInt(command[2])
-					break
+					runSQL("UPDATE economy SET Money = Money-"+command[2]+" WHERE UserID = '"+message.author.id+"';").then(function(returned){
+						message.reply("money successfully detracted from your account");
+						runSQL("UPDATE economy SET Money = Money+"+command[2]+" WHERE UserID = '"+message.mentions.users.first().id+"';").then(function(returned2){
+							message.reply("money successfully added to the other account");
+						});
+					});
+					break;
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
