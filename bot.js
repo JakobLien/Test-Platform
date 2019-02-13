@@ -162,7 +162,8 @@ client.on('message', message => {
 				case "createAccount":
 					runSQL("SELECT * FROM economy WHERE UserID = '"+message.author.id+"';").then(function(returned){
 						if(!returned.length){
-							runSQL("INSERT INTO economy VALUES ('"+message.author.username+"', '"+message.author.id+"', DEFAULT);").then(function(returned2){
+							runSQL("INSERT INTO economy VALUES ('"+message.author.username+"', '"+
+							message.author.id+"', DEFAULT);").then(function(returned2){
 								message.reply("You have successfully created an account.");
 							});
 						}else{
@@ -171,17 +172,24 @@ client.on('message', message => {
 					})
 					break;
 				case "money":
-					runSQL("SELECT Money FROM economy WHERE UserID = '"+message.author.id+"';").then(function(returned){
+					runSQL("SELECT Money FROM economy WHERE UserID = '"+message.author.id+"';").then(
+					function(returned){
 						message.reply("You have "+returned[0].Money+" money");
 					});
 					break;
 				case "donate":
-					runSQL("UPDATE economy SET Money = Money-"+command[2]+" WHERE UserID = '"+message.author.id+"';").then(function(returned){
-						message.reply("money successfully detracted from your account");
-						runSQL("UPDATE economy SET Money = Money+"+command[2]+" WHERE UserID = '"+message.mentions.users.first().id+"';").then(function(returned2){
-							message.reply("money successfully added to the other account");
+					if(0 < command[2]){
+						runSQL("UPDATE economy SET Money = Money-"+command[2]+" WHERE UserID = '"+
+						message.author.id+"';").then(function(returned){
+							message.reply("money successfully detracted from your account");
+							runSQL("UPDATE economy SET Money = Money+"+command[2]+" WHERE UserID = '"+
+							       message.mentions.users.first().id+"';").then(function(returned2){
+								message.reply("money successfully added to the other account");
+							});
 						});
-					});
+					}else{
+						message.reply("You can't donate less than 1 money");
+					}
 					break;
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
