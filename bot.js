@@ -19,42 +19,42 @@ client.on('ready', () => {
 	console.log('I am ready!');
 });
 
-var lastMessageObject;
-var spellLink;
 //Stuff to deal with d&d spell requests
 function getSpellData(spellName){
-	http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
-		let data = '';
-		resp.on('data', (chunk) => {
-			data += chunk;
-		});
-		resp.on('end', () => {
-			try{
-				spellLink = (JSON.parse(data))["results"][0]["url"];
-				http.get(spellLink, (resp) => {
-					let data = '';
-					resp.on('data', (chunk) => {
-						data += chunk;
+	return new return new Promise(function(resolve, reject){
+		http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
+			let data = '';
+			resp.on('data', (chunk) => {
+				data += chunk;
+			});
+			resp.on('end', () => {
+				try{
+					let spellLink = (JSON.parse(data))["results"][0]["url"];
+					http.get(spellLink, (resp) => {
+						let data = '';
+						resp.on('data', (chunk) => {
+							data += chunk;
+						});
+						resp.on('end', () => {
+							resolve formatSpellData(JSON.parse(data)));
+						});
+					}).on("error", (err) => {
+						console.log("Error(2): " + err.message);
 					});
-					resp.on('end', () => {
-						printSpellData(JSON.parse(data));
-					});
-				}).on("error", (err) => {
-					console.log("Error(2): " + err.message);
-				});
-			}catch(err){
-				last_message_object.reply("That spell was not found. (The error message goes: "+err+")");
-			}
+				}catch(err){
+					console.log("That spell was not found. (The error message goes: "+err+")");
+				}
+			});
+		}).on("error", (err) => {
+			console.log("Error(1): " + err.message);
 		});
-	}).on("error", (err) => {
-		console.log("Error(1): " + err.message);
-	});
+	}
 }
 
 //stuff to print spell requests
 var con;
 var ritual;
-function printSpellData(data){
+function formatSpellData(data){
 	let info = ""
 	if(data["concentration"] === "no"){con = "not "}else{con = ""}
 	if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
@@ -137,8 +137,9 @@ client.on('message', message => {
 					break;
 				//specific stuff
 				case "spell":
-					last_message_object = message;
-					getSpellData(command.slice(1).join("+"));
+					getSpellData(command.slice(1).join("+")).then(function(returned){
+						message.reply(returned);
+					});
 					break;
 				case "immy":
 					runSQL("SELECT sitat FROM sitat ORDER BY RAND() LIMIT 1;").then(function(returned){
