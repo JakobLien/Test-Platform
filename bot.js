@@ -55,15 +55,17 @@ function getSpellData(spellName){
 var con;
 var ritual;
 function printSpellData(data){
+	let info = ""
 	if(data["concentration"] === "no"){con = "not "}else{con = ""}
 	if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
-	lastMessageObject.reply(data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
+	info += (data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
 It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
 Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
 It can be found here: `+data["page"]);
 	for(let i = 0; i<data["desc"].length; i++){
-		lastMessageObject.reply(data["desc"][i]);
+		info += data["desc"][i];
 	}
+	return info;
 }
 
 function runSQL(query){
