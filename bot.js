@@ -63,7 +63,7 @@ It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a 
 Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
 It can be found here: `+data["page"]);
 	for(let i = 0; i<data["desc"].length; i++){
-		info += data["desc"][i];
+		info += data["desc"][i]+"\n";
 	}
 	return info;
 }
