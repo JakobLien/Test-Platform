@@ -36,7 +36,7 @@ function getSpellData(spellName){
 							data += chunk;
 						});
 						resp.on('end', () => {
-							resolve formatSpellData(JSON.parse(data)));
+							resolve(formatSpellData(JSON.parse(data)));
 						});
 					}).on("error", (err) => {
 						console.log("Error(2): " + err.message);
