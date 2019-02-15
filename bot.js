@@ -52,12 +52,10 @@ function getSpellData(spellName){
 }
 
 //stuff to print spell requests
-var con;
-var ritual;
 function formatSpellData(data){
 	let info = ""
-	if(data["concentration"] === "no"){con = "not "}else{con = ""}
-	if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
+	if(data["concentration"] === "no"){con = "not "}else{let con = ""}
+	if(data["ritual"] === "no"){ritual = "not "}else{let ritual = ""}
 	info += (data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
 It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
 Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
