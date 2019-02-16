@@ -172,8 +172,8 @@ client.on('message', message => {
 						}else{
 							message.reply("A "+d20+" misses");
 						}
-						message.reply("Overall you dealt "+sumDmg);
 					}
+					message.reply("Overall you dealt "+sumDmg);
 					break;
 				//capitalist stuff
 				case "createAccount":
