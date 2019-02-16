@@ -160,8 +160,8 @@ client.on('message', message => {
 				case "AO":
 					let sumDmg = 0;
 					for(let i = 0; i < 10; i++){
-						let d20 = rollDice(20);
-						if(roll >= command[1]){
+						let d20 = rollDice(20)+8;
+						if(d20 >= command[1]){
 							if(d20 = 20){
 								let dmg = rollDice(4)+rollDice(4)+4;
 							}else{
