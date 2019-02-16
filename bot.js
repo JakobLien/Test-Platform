@@ -162,13 +162,12 @@ client.on('message', message => {
 					for(let i = 0; i < 10; i++){
 						let d20 = rollDice(20);
 						if(roll >= command[1]){
-							if(roll = 20){
+							if(d20 = 20){
 								let dmg = rollDice(4)+rollDice(4)+4;
 							}else{
 								let dmg = rolldice(4)+4;
 							}
-							sumDmg += dmg
-							sumDmg += d4
+							sumDmg += dmg;
 							message.reply("A "+d20+" hits, dealing "+dmg);
 						}else{
 							message.reply("A "+d20+" misses");
