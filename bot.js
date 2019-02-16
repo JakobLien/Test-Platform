@@ -164,11 +164,13 @@ client.on('message', message => {
 						if(d20 >= command[1]){
 							if(d20 = 20){
 								let dmg = rollDice(4)+rollDice(4)+4;
+								sumDmg += dmg;
+								message.reply("A natural fucking twenty hits, dealing "+dmg+" damage");
 							}else{
 								let dmg = rolldice(4)+4;
+								sumDmg += dmg;
+								message.reply("A "+d20+" hits, dealing "+dmg+" damage");
 							}
-							sumDmg += dmg;
-							message.reply("A "+d20+" hits, dealing "+dmg);
 						}else{
 							message.reply("A "+d20+" misses");
 						}
