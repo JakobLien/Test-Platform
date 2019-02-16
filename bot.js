@@ -74,13 +74,17 @@ function runSQL(query){
 	}
 }
 
+function rollDice(dice){
+	return Math.floor(Math.random()*dice)+1
+}
+
 function tellMe(message){
 	client.users.get(myId).send(message);
 }
 
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
-			"spell", "immy", "fish", //specific stuff
+			"spell", "immy", "fish", "AO", //specific stuff
 			"createAccount", "money", "donate"]; //capitalist stuff
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
@@ -151,6 +155,25 @@ client.on('message', message => {
 						});
 					}else{
 						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
+					}
+					break;
+				case "AO":
+					let sumDmg = 0;
+					for(let i = 0; i < 10; i++){
+						let d20 = rollDice(20);
+						if(roll >= command[1]){
+							if(roll = 20){
+								let dmg = rollDice(4)+rollDice(4)+4;
+							}else{
+								let dmg = rolldice(4)+4;
+							}
+							sumDmg += dmg
+							sumDmg += d4
+							message.reply("A "+d20+" hits, dealing "+dmg);
+						}else{
+							message.reply("A "+d20+" misses");
+						}
+						message.reply("Overall you dealt "+sumDmg);
 					}
 					break;
 				//capitalist stuff
