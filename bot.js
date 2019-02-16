@@ -158,6 +158,7 @@ client.on('message', message => {
 					}
 					break;
 				case "AO":
+					let responce = "";
 					let sumDmg = 0;
 					for(let i = 0; i < 10; i++){
 						let d20 = rollDice(20)+8;
@@ -165,16 +166,19 @@ client.on('message', message => {
 						if(d20 === 28){
 							let dmg = rollDice(4)+rollDice(4)+4;
 							sumDmg += dmg;
-							message.reply("A natural fucking twenty hits, dealing "+dmg+" damage");
+							response += "A natural fucking twenty hits, dealing "+dmg+" damage \n";
+						}else if(d20 === 9){
+							response += "A natural fucking one misses \n";
 						}else if(d20 >= command[1]){
 							let dmg = rollDice(4)+rollDice(4)+4;
 							sumDmg += dmg;
-							message.reply("A natural fucking twenty hits, dealing "+dmg+" damage");
+							response += "A "+d20+" hits, dealing "+dmg+" damage \n";
 						}else{
 							message.reply("A "+d20+" misses");
 						}
 					}
-					message.reply("Overall you dealt "+sumDmg);
+					responce += "Overall you dealt "+sumDmg;
+					message.reply(responce);
 					break;
 				//capitalist stuff
 				case "createAccount":
