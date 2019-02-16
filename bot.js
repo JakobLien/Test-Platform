@@ -161,7 +161,7 @@ client.on('message', message => {
 					let sumDmg = 0;
 					for(let i = 0; i < 10; i++){
 						let d20 = rollDice(20)+8;
-						if(d20 = 28){
+						if(d20 === 28){
 							let dmg = rollDice(4)+rollDice(4)+4;
 							sumDmg += dmg;
 							message.reply("A natural fucking twenty hits, dealing "+dmg+" damage");
