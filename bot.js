@@ -174,7 +174,7 @@ client.on('message', message => {
 							sumDmg += dmg;
 							responce += "A "+d20+" hits, dealing "+dmg+" damage \n";
 						}else{
-							responce += "A "+d20+" misses";
+							responce += "A "+d20+" misses \n";
 						}
 					}
 					responce += "Overall you dealt "+sumDmg;
