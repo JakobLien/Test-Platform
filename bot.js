@@ -268,6 +268,7 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
+		//Phraces from database
 		try{
 			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
 			let promise1 = runSQL("SELECT responses FROM Reply WHERE 0 < LOCATE(triggers, '"+
@@ -286,7 +287,17 @@ client.on('message', message => {
 		}catch(e){
 			console.log(e);
 		}
+		
+		//Phrases from communism:
+		if(message.content.includes("e")){
+			message.reply("Meine du ikke vi?");
+		}else if(message.content.includes("me")){
+			message.reply("Meine du ikke oss?");
+		}else if(message.content.includes("mitt")){
+			message.reply("Meine du ikke vårt?");
+		}
 	}
+	
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
 		tellMe(message.author.username+": "+message.content);
