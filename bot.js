@@ -289,12 +289,12 @@ client.on('message', message => {
 		}
 		
 		//Phrases from communism:
-		if(message.content.includes("e")){
-			message.reply("Meine du ikke vi?");
-		}else if(message.content.includes("me")){
-			message.reply("Meine du ikke oss?");
-		}else if(message.content.includes("mitt")){
-			message.reply("Meine du ikke vårt?");
+		if(message.content.toLowerCase().includes("e ")){
+			message.reply("Meine du ikke: "+"\n"+message.content.replace("e ", "vi "));
+		}else if(message.content.toLowerCase().includes("me ")){
+			message.reply("Meine du ikke: "+"\n"+message.content.replace("me ", "oss "));
+		}else if(message.content.toLowerCase().includes("mitt ")){
+			message.reply("Meine du ikke: "+"\n"+message.content.replace("mitt ", "vårt "));
 		}
 	}
 	
