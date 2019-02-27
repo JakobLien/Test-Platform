@@ -288,7 +288,7 @@ client.on('message', message => {
 			console.log(e);
 		}
 		
-		//Phrases from communism:
+		//Phrases from communism
 		if(message.content.toLowerCase().includes("e ")){
 			message.reply("Meine du ikke: "+"\n"+message.content.replace("e ", "vi "));
 		}else if(message.content.toLowerCase().includes("me ")){
