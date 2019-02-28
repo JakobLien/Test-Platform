@@ -112,7 +112,7 @@ client.on('message', message => {
 			}else{
 				console.log("Attempting to run public command "+message.content+" in a dm for "+message.author.username);
 				if(message.author.id !== myId){
-					if(message.author.id !== "387019040939573248" && keyword !== "AO"){
+					if(!(message.author.id === "387019040939573248" && keyword === "AO")){
 						tellMe(message.author.username+" is running command "+
 							message.content+" through a DM");
 					}
