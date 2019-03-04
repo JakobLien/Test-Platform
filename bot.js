@@ -290,13 +290,8 @@ client.on('message', message => {
 		}
 		
 		//Phrases from communism
-		if(message.content.toLowerCase().includes(" e ")){
-			message.reply("Meine du ikke: "+"\n"+message.content.toLowerCase().replace(" e ", " vi "));
-		}else if(message.content.toLowerCase().includes(" me ")){
-			message.reply("Meine du ikke: "+"\n"+message.content.toLowerCase().replace(" me ", " oss "));
-		}else if(message.content.toLowerCase().includes(" mitt ")){
-			message.reply("Meine du ikke: "+"\n"+message.content.toLowerCase().replace(" mitt ", " vårt "));
-		}
+		message.reply("Meint du ikke:\n"+message.content.replace(/ min | din | hans | hennes | dets /gi, " vår ")
+			      .replace(/ mine | dine | demmers | dokkers /gi, " våres ").replace(/ han | ho /gi, " oss ");
 	}
 	
 	//recording code
