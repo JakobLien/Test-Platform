@@ -291,7 +291,7 @@ client.on('message', message => {
 		
 		//Phrases from communism
 		message.reply("Meint du ikke:\n"+message.content.replace(/ min | din | hans | hennes | dets /gi, " vår ")
-			      .replace(/ mine | dine | demmers | dokkers /gi, " våres ").replace(/ han | ho /gi, " oss ");
+			      .replace(/ mine | dine | demmers | dokkers /gi, " våres ").replace(/ han | ho /gi, " oss "));
 	}
 	
 	//recording code
