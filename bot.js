@@ -290,7 +290,7 @@ client.on('message', message => {
 		}
 		
 		//Phrases from communism
-		let response = message.content.replace(/ e | eg | jeg | du /gi, "vi")
+		let response = message.content.replace(/ eg | jeg | du /gi, " vi ")
 			.replace(/ me | han | ho /gi, " oss ")
 			.replace(/ min | din | hans | hennes /gi, " vår ")
 			.replace(/ mine | dine | demmers | dokkers /gi, " våres ");
