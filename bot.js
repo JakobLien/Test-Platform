@@ -290,8 +290,13 @@ client.on('message', message => {
 		}
 		
 		//Phrases from communism
-		message.reply("Meint du ikke:\n"+message.content.replace(/ min | din | hans | hennes | dets /gi, " vår ")
-			      .replace(/ mine | dine | demmers | dokkers /gi, " våres ").replace(/ han | ho /gi, " oss "));
+		let response = message.content.replace(/ e | eg | jeg | du /gi, "vi")
+			.replace(/ me | han | ho /gi, " oss ")
+			.replace(/ min | din | hans | hennes /gi, " vår ")
+			.replace(/ mine | dine | demmers | dokkers /gi, " våres ");
+		if(response !== message.content){
+			message.reply("Meint du ikke:\n"+response);
+		}
 	}
 	
 	//recording code
