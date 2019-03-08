@@ -304,8 +304,7 @@ client.on('message', message => {
 			}
 		}
 		words = words.join(" ");
-		console.log(message.content.toLowerCase().replace(/\,|\./gi, ""), words);
-		if(message.content.toLowerCase().replace(/\,|\./gi, "") === words){
+		if(message.content.toLowerCase().replace(/\,|\./gi, "") !== words){
 			message.reply("Did you mean:\n"+words);
 		}
 	}
