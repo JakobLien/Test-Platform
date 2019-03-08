@@ -304,7 +304,7 @@ client.on('message', message => {
 			}
 		}
 		words = words.join(" ");
-		if(message.content.toLowerCase().replace(/,|./gi, "") === words.join(" ")){
+		if(message.content.toLowerCase().replace(/,|./gi, "") === words){
 			message.reply("Did you mean:\n"+words);
 		}
 	}
