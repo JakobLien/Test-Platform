@@ -295,7 +295,7 @@ client.on('message', message => {
 		}
 		
 		//phrases from communism. constants: comList comValues
-		let words = message.content.toLowerCase().replace(/,|./gi, "").split(" ");
+		let words = message.content.toLowerCase().replace(/\,|\./gi, "").split(" ");
 		console.log(words);
 		for(let i = 0; i < words.length; i++){
 			for(let a = 0; a < comValues.length ; a++){
@@ -305,7 +305,7 @@ client.on('message', message => {
 			}
 		}
 		words = words.join(" ");
-		if(message.content.toLowerCase().replace(/,|./gi, "") === words){
+		if(message.content.toLowerCase().replace(//,|./gi, "") === words){
 			message.reply("Did you mean:\n"+words);
 		}
 	}
