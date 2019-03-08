@@ -296,6 +296,7 @@ client.on('message', message => {
 		
 		//phrases from communism. constants: comList comValues
 		let words = message.content.toLowerCase().replace(/,|./gi, "").split(" ");
+		console.log(words);
 		for(let i = 0; i < words.length; i++){
 			for(let a = 0; a < comValues.length ; a++){
 				if(comValues[a].includes(words[i])){
