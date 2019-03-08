@@ -94,12 +94,22 @@ const botId = "530439718823788544";
 var iDecide = false;
 var recording = false;
 
+//communist constants
+const comList = ["vi", "oss", "vår", "våre"];
+const comValues = [["eg", "jeg", "du", "han", "ho", "det"], ["me", "meg", "deg", "seg"], 
+		   ["min", "din", "hans", "hennes"], ["mine", "dine"]];
+
+message.content.replace(/ eg | jeg | du /gi, " vi ")
+.replace(/ me | han | ho /gi, " oss ")
+.replace(/ min | din | hans | hennes /gi, " vår ")
+.replace(/ mine | dine | demmers | dokkers /gi, " våres ");
+
 //The main thing
 client.on('message', message => {
 	lastMessageObject = message;
 	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){
-		command = message.content.slice(1).split(" ");
-		keyword = command[0];
+		let command = message.content.slice(1).split(" ");
+		let keyword = command[0];
 		if(publicCommands.includes(keyword)){
 			//public commands
 			if(message.guild !== null){
@@ -288,14 +298,19 @@ client.on('message', message => {
 		}catch(e){
 			console.log(e);
 		}
-		
+		/*
 		//Phrases from communism
-		let response = message.content.replace(/ eg | jeg | du /gi, " vi ")
-			.replace(/ me | han | ho /gi, " oss ")
-			.replace(/ min | din | hans | hennes /gi, " vår ")
-			.replace(/ mine | dine | demmers | dokkers /gi, " våres ");
+		
 		if(response !== message.content){
 			message.reply("Meint du ikke:\n"+response);
+		}*/
+		
+		//phrases from communism
+		let words = message.content.toLowerCase().split();
+		for(let i = 0; i < words.length; i++){
+			if(false){
+				
+			}
 		}
 	}
 	
