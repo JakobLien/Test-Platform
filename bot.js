@@ -99,11 +99,6 @@ const comList = ["vi", "oss", "vår", "våre"];
 const comValues = [["eg", "jeg", "du", "han", "ho", "det"], ["me", "meg", "deg", "seg"], 
 		   ["min", "din", "hans", "hennes"], ["mine", "dine"]];
 
-message.content.replace(/ eg | jeg | du /gi, " vi ")
-.replace(/ me | han | ho /gi, " oss ")
-.replace(/ min | din | hans | hennes /gi, " vår ")
-.replace(/ mine | dine | demmers | dokkers /gi, " våres ");
-
 //The main thing
 client.on('message', message => {
 	lastMessageObject = message;
@@ -298,19 +293,19 @@ client.on('message', message => {
 		}catch(e){
 			console.log(e);
 		}
-		/*
-		//Phrases from communism
 		
-		if(response !== message.content){
-			message.reply("Meint du ikke:\n"+response);
-		}*/
-		
-		//phrases from communism
-		let words = message.content.toLowerCase().split();
+		//phrases from communism. constants: comList comValues
+		let words = message.content.toLowerCase().replace(/,|./gi, "").split(" ");
 		for(let i = 0; i < words.length; i++){
-			if(false){
-				
+			for(let a = 0; a < comValues.length ; a++){
+				if(comValues[a].includes(words[i])){
+					words[i] = comList[a];
+				}
 			}
+		}
+		words = words.join(" ");
+		if(message.content.toLowerCase().replace(/,|./gi, "") === words.join(" ")){
+			message.reply("Did you mean:\n"+words);
 		}
 	}
 	
