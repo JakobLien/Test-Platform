@@ -95,9 +95,9 @@ var iDecide = false;
 var recording = false;
 
 //communist constants
-const comList = ["vi", "oss", "vår", "våre"];
+const comList = ["vi", "oss", "vår", "våre", "vårt"];
 const comValues = [["eg", "jeg", "du", "han", "ho", "det"], ["me", "meg", "deg", "seg"], 
-		   ["min", "din", "hans", "hennes"], ["mine", "dine"]];
+		   ["min", "din", "hans", "hennes"], ["mine", "dine"], ["mitt", "ditt"]];
 
 //The main thing
 client.on('message', message => {
