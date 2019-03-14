@@ -306,7 +306,7 @@ client.on('message', message => {
 		let words = toText(message.content).split(" ");
 		for(let i = 0; i < words.length; i++){
 			for(let a = 0; a < comValues.length ; a++){
-				if(comValues[a].toLowerCase().includes(words[i])){
+				if(comValues[a].includes(words[i].toLowerCase())){
 					words[i] = comList[a];
 				}
 			}
