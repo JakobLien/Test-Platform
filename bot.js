@@ -82,6 +82,15 @@ function tellMe(message){
 	client.users.get(myId).send(message);
 }
 
+function toText(text){
+	text.split("").forEach(function(element, index){
+		if(!element.match(/[a-z]| /i)){
+			text.splice(index, 1);
+		}
+	});
+	return text;
+}
+
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
 			"spell", "immy", "fish", "AO", //specific stuff
@@ -264,9 +273,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					client.setTimeout(function(){
-						message.reply("timeout set");
-					}, command[1]);
+					message.reply(toText(message.content);
 					break;
 			}
 		}
