@@ -273,7 +273,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					message.reply(toText(message.content);
+					message.reply(toText(message.content));
 					break;
 			}
 		}
