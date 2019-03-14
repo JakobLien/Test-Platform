@@ -85,7 +85,7 @@ function tellMe(message){
 function toText(text){
 	text.split("").forEach(function(element, index){
 		if(!element.match(/[a-z]| /i)){
-			text.splice(index, 1);
+			text.slice(index, 1);
 		}
 	});
 	return text;
