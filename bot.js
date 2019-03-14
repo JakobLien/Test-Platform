@@ -83,14 +83,13 @@ function tellMe(message){
 }
 
 function toText(text){
-	let list = text.split("");
-	list.forEach(function(element, index){
-		if(!element.match(/[a-z]| /i)){
-			list.splice(index, 1);
+	let answer = [];
+	text.split("").forEach(function(element){
+		if(element.match(/[a-z]| /i)){
+			answer.push(element);
 		}
 	});
-	text = list.join("");
-	return text;
+	return answer.join("");
 }
 
 //valid commands
