@@ -85,7 +85,7 @@ function tellMe(message){
 function toText(text){
 	let answer = [];
 	text.split("").forEach(function(element){
-		if(element.match(/[a-z]| /i)){
+		if(element.match(/[a-z]| |æ|ø|å/i)){
 			answer.push(element);
 		}
 	});
