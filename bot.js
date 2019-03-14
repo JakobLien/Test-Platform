@@ -274,7 +274,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					message.reply(toText(message.content));
+					
 					break;
 			}
 		}
@@ -303,16 +303,16 @@ client.on('message', message => {
 		}
 		
 		//phrases from communism. constants: comList comValues
-		let words = message.content.toLowerCase().replace(/\,|\.|\?|\!/gi, "").split(" ");
+		let words = toText(message.content).split(" ");
 		for(let i = 0; i < words.length; i++){
 			for(let a = 0; a < comValues.length ; a++){
-				if(comValues[a].includes(words[i])){
+				if(comValues[a].toLowerCase().includes(words[i])){
 					words[i] = comList[a];
 				}
 			}
 		}
 		words = words.join(" ");
-		if(message.content.toLowerCase().replace(/\,|\.|\?|\!/gi, "") !== words){
+		if(toText(message.content) !== words){
 			message.reply("Did you mean:\n"+words);
 		}
 	}
