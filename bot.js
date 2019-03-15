@@ -122,7 +122,6 @@ const comValues = [["eg", "jeg", "du", "han", "ho"], ["me", "meg", "deg", "seg"]
 
 //The main thing
 client.on('message', message => {
-	lastMessageObject = message;
 	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){
 		let command = message.content.slice(1).split(" ");
 		let keyword = command[0];
@@ -289,8 +288,8 @@ client.on('message', message => {
 					break;
 				case "test":
 					message.channel.fetchMessages({before: message.id, limit: 1})
-						     .then(messages => message.reply((messages.array()[0].content)))
-						     .catch(messages => console.log("shit"));
+						.then(messages => message.reply((messages.array()[0].content)))
+						.catch(messages => console.log("shit"));
 					break;
 			}
 		}
