@@ -16,7 +16,7 @@ client.on('ready', () => {
 //Stuff to deal with d&d spell requests
 function sendhttpRequest(link){
 	return new Promise(function(resolve, reject){
-		http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
+		http.get(link, (resp) => {
 			let data = '';
 			resp.on('data', (chunk) => {
 				data += chunk;
