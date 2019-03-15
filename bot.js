@@ -34,7 +34,7 @@ function sendhttpRequest(link){
 function getSpellThings(spellName){
 	return new Promise(function(resolve, reject){
 		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(returned =>
-			sendhttpRequest(JSON.parse(returned)["results"][0]["url"]).then(returned => 
+			sendhttpRequest(JSON.parse(returned)["results"][0]["url"]).then(returned2 => 
 				resolve(formatSpellData(JSON.parse(returned2)))
 			)
 		);
