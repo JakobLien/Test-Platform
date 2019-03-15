@@ -275,7 +275,9 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					
+					message.channel.fetchMessages({limit: 2})
+						     .then(message.reply(messages.array()))
+						     .catch(console.log("shit"));
 					break;
 			}
 		}
