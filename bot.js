@@ -13,6 +13,23 @@ client.on('ready', () => {
 	console.log('I am ready!');
 });
 
+//stuff to print spell requests
+function formatSpellData(data){
+	console.log(typeof(data), data, data["ritual"]);
+	let info = "";
+	let con, ritual;
+	if(data["concentration"] === "no"){con = "not "}else{con = ""}
+	if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
+	info += (data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
+It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
+Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
+It can be found here: `+data["page"]);
+	for(let i = 0; i<data["desc"].length; i++){
+		info += data["desc"][i]+"\n";
+	}
+	return info;
+}
+
 //Stuff to deal with d&d spell requests
 function sendhttpRequest(link){
 	return new Promise(function(resolve, reject){
@@ -41,23 +58,7 @@ function getSpellThings(spellName){
 	});
 }
 
-//stuff to print spell requests
-function formatSpellData(data){
-	console.log(typeof(data), data, data["ritual"]);
-	let info = "";
-	let con, ritual;
-	if(data["concentration"] === "no"){con = "not "}else{con = ""}
-	if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
-	info += (data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
-It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
-Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
-It can be found here: `+data["page"]);
-	for(let i = 0; i<data["desc"].length; i++){
-		info += data["desc"][i]+"\n";
-	}
-	return info;
-}
-
+//stuff to interact with database using mysql
 function runSQL(query){
 	try{
 		return new Promise(function(resolve, reject){
