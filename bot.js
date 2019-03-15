@@ -33,8 +33,8 @@ function sendhttpRequest(link){
 
 function getSpellThings(spellName){
 	return new Promise(function(resolve, reject){
-		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(returned =>
-			let spellLink = (JSON.parse(returned))["results"][0]["url"];
+		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(returned => 
+			let spellLink = JSON.parse(returned)["results"][0]["url"];
 			sendhttpRequest(spellLink).then(returned2 => 
 				resolve formatSpellData(JSON.parse(data));
 			);
