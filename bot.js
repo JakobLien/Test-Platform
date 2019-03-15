@@ -93,7 +93,15 @@ function toText(text){
 
 //function to split the text into 1900 character long parts so discord can deal with it
 function splitText(text){
-	return text.match(/.{1,1900}/g);
+	let returnValue = []
+	if(returned[i].responses.length > 1900){
+		for(let a = 0; a < returned[i].responses.length/1900; a++){
+			returnValue.push(returned[i].responses.slice(a*1900, (a+1)*1900));
+		}
+	}else{
+		returnValue.push(returned[i].responses);
+	}
+	return returnValue;
 }
 
 //valid commands
@@ -299,7 +307,7 @@ client.on('message', message => {
 			promise1.then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					splitText(returned[i].responses).forEach(function(item){
-						message.reply(item)
+						message.reply(item);
 					});
 					/*if(returned[i].responses.length > 1900){
 						for(let a = 0; a < returned[i].responses.length/1900; a++){
