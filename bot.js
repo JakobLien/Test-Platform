@@ -157,7 +157,7 @@ client.on('message', message => {
 					getSpellThings(command.slice(1).join("+")).then(returned => 
 						returned.splitText().forEach(function(item){
 							message.reply(item);
-						});
+						})
 					);
 					break;
 				case "immy":
@@ -299,7 +299,7 @@ client.on('message', message => {
 			promise1.then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					returned[i].responses.splitText().forEach(function(item){
-						message.reply(item);
+						message.reply(item)
 					});
 					/*if(returned[i].responses.length > 1900){
 						for(let a = 0; a < returned[i].responses.length/1900; a++){
