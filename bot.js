@@ -15,7 +15,6 @@ client.on('ready', () => {
 
 //stuff to print spell requests
 function formatSpellData(data){
-	console.log(typeof(data), data, data["ritual"]);
 	let info = "";
 	let con, ritual;
 	if(data["concentration"] === "no"){con = "not "}else{con = ""}
