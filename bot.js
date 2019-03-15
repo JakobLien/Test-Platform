@@ -14,6 +14,34 @@ client.on('ready', () => {
 });
 
 //Stuff to deal with d&d spell requests
+function sendhttpRequest(link){
+	return new Promise(function(resolve, reject){
+		http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
+			let data = '';
+			resp.on('data', (chunk) => {
+				data += chunk;
+			});
+			resp.on('end', () => {
+				resolve(data);
+				
+			});
+		}).on("error", (err) => {
+			console.log("Error: " + err.message);
+		});
+	});
+}
+
+function getSpellThings(spellName){
+	return new Promise(function(resolve, reject){
+		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(returned =>
+			let spellLink = (JSON.parse(returned))["results"][0]["url"];
+			sendhttpRequest(spellLink).then(returned2 => 
+				resolve formatSpellData(JSON.parse(data));
+			);
+		);
+	});
+}
+
 function getSpellData(spellName){
 	return new Promise(function(resolve, reject){
 		http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
@@ -150,7 +178,7 @@ client.on('message', message => {
 					break;
 				//specific stuff
 				case "spell":
-					getSpellData(command.slice(1).join("+")).then(function(returned){
+					getSpellThings(command.slice(1).join("+")).then(returned => 
 						message.reply(returned);
 					});
 					break;
