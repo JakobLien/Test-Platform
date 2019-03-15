@@ -179,7 +179,7 @@ client.on('message', message => {
 				case "spell":
 					getSpellThings(command.slice(1).join("+")).then(returned => 
 						message.reply(returned)
-					});
+					);
 					break;
 				case "immy":
 					runSQL("SELECT sitat FROM sitat ORDER BY RAND() LIMIT 1;").then(function(returned){
