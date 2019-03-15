@@ -94,12 +94,12 @@ function toText(text){
 //function to split the text into 1900 character long parts so discord can deal with it
 function splitText(text){
 	let returnValue = []
-	if(returned[i].responses.length > 1900){
-		for(let a = 0; a < returned[i].responses.length/1900; a++){
-			returnValue.push(returned[i].responses.slice(a*1900, (a+1)*1900));
+	if(text.length > 1900){
+		for(let a = 0; a < text.length/1900; a++){
+			returnValue.push(text.slice(a*1900, (a+1)*1900));
 		}
 	}else{
-		returnValue.push(returned[i].responses);
+		returnValue.push(text);
 	}
 	return returnValue;
 }
