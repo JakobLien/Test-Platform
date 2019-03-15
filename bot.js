@@ -275,8 +275,8 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					message.channel.fetchMessages({limit: 2})
-						     .then(messages => console.log(messages.array()))
+					message.channel.fetchMessages({before: message.id, limit: 1})
+						     .then(messages => message.reply((messages.array()[0].content)))
 						     .catch(messages => console.log("shit"));
 					break;
 			}
