@@ -91,6 +91,11 @@ function toText(text){
 	return answer.join("");
 }
 
+//function to split the text into 1900 character long parts so discord can deal with it
+function splitText(text){
+	return text.match(/.{1,1900}/g);
+}
+
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
 			"spell", "immy", "fish", "AO", //specific stuff
@@ -150,7 +155,9 @@ client.on('message', message => {
 				//specific stuff
 				case "spell":
 					getSpellThings(command.slice(1).join("+")).then(returned => 
-						message.reply(returned)
+						returned.splitText().forEach(function(item){
+							message.reply(item);
+						});
 					);
 					break;
 				case "immy":
@@ -291,13 +298,16 @@ client.on('message', message => {
 					      message.content.toLowerCase().replace("'", "\\'")+"');");
 			promise1.then(function(returned){
 				for(let i = 0; i < returned.length; i++){
-					if(returned[i].responses.length > 1900){
+					returned[i].responses.splitText().forEach(function(item){
+						message.reply(item);
+					});
+					/*if(returned[i].responses.length > 1900){
 						for(let a = 0; a < returned[i].responses.length/1900; a++){
 							message.reply(returned[i].responses.slice(a*1900, (a+1)*1900));
 						}
 					}else{
 						message.reply(returned[i].responses);
-					}
+					}*/
 				}
 			});
 		}catch(e){
