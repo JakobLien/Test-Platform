@@ -308,13 +308,6 @@ client.on('message', message => {
 					splitText(returned[i].responses).forEach(function(item){
 						message.reply(item);
 					});
-					/*if(returned[i].responses.length > 1900){
-						for(let a = 0; a < returned[i].responses.length/1900; a++){
-							message.reply(returned[i].responses.slice(a*1900, (a+1)*1900));
-						}
-					}else{
-						message.reply(returned[i].responses);
-					}*/
 				}
 			});
 		}catch(e){
