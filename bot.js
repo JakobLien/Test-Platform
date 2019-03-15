@@ -155,7 +155,7 @@ client.on('message', message => {
 				//specific stuff
 				case "spell":
 					getSpellThings(command.slice(1).join("+")).then(returned => 
-						returned.splitText().forEach(function(item){
+						splitText(returned).forEach(function(item){
 							message.reply(item);
 						})
 					);
@@ -298,7 +298,7 @@ client.on('message', message => {
 					      message.content.toLowerCase().replace("'", "\\'")+"');");
 			promise1.then(function(returned){
 				for(let i = 0; i < returned.length; i++){
-					returned[i].responses.splitText().forEach(function(item){
+					splitText(returned[i].responses).forEach(function(item){
 						message.reply(item)
 					});
 					/*if(returned[i].responses.length > 1900){
