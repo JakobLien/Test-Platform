@@ -35,7 +35,7 @@ function getSpellThings(spellName){
 	return new Promise(function(resolve, reject){
 		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(function(returned){
 			sendhttpRequest(JSON.parse(returned)["results"][0]["url"]).then(function(returned2){
-				resolve formatSpellData(JSON.parse(data));
+				resolve formatSpellData(JSON.parse(returned2));
 			});
 		});
 	});
