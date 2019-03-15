@@ -74,7 +74,7 @@ function getSpellData(spellName){
 
 //stuff to print spell requests
 function formatSpellData(data){
-	console.log(typeOf(data), data);
+	console.log(typeof(data), data);
 	let info = ""
 	if(data["concentration"] === "no"){con = "not "}else{let con = ""}
 	if(data["ritual"] === "no"){ritual = "not "}else{let ritual = ""}
