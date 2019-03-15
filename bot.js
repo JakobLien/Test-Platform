@@ -41,43 +41,12 @@ function getSpellThings(spellName){
 	});
 }
 
-function getSpellData(spellName){
-	return new Promise(function(resolve, reject){
-		http.get('http://www.dnd5eapi.co/api/spells/?name='+spellName, (resp) => {
-			let data = '';
-			resp.on('data', (chunk) => {
-				data += chunk;
-			});
-			resp.on('end', () => {
-				try{
-					let spellLink = (JSON.parse(data))["results"][0]["url"];
-					http.get(spellLink, (resp) => {
-						let data = '';
-						resp.on('data', (chunk) => {
-							data += chunk;
-						});
-						resp.on('end', () => {
-							resolve(formatSpellData(JSON.parse(data)));
-						});
-					}).on("error", (err) => {
-						console.log("Error(2): " + err.message);
-					});
-				}catch(err){
-					console.log("That spell was not found. (The error message goes: "+err+")");
-				}
-			});
-		}).on("error", (err) => {
-			console.log("Error(1): " + err.message);
-		});
-	});
-}
-
 //stuff to print spell requests
 function formatSpellData(data){
 	console.log(typeof(data), data, data["ritual"]);
-	let info = ""
-	if(data["concentration"] === "no"){con = "not "}else{let con = ""}
-	if(data["ritual"] === "no"){ritual = "not "}else{let ritual = ""}
+	let info = "";
+	if(data["concentration"] === "no"){let con = "not "}else{let con = ""}
+	if(data["ritual"] === "no"){let ritual = "not "}else{let ritual = ""}
 	info += (data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
 It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
 Its duration is `+data["duration"]+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
