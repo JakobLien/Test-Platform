@@ -338,6 +338,11 @@ client.on('message', message => {
 	if(recording && !message.author.bot && message !== undefined){
 		tellMe(message.author.username+": "+message.content);
 	}
+	
+	//if someone pms the bot
+	if(message.guild === null){
+		tellMe(message.author+" just wrote this to me:\n"+message.content);
+	}
 });
 
 // THIS  MUST  BE  THIS  WAY
