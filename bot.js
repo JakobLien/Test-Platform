@@ -160,7 +160,7 @@ client.on('message', message => {
 						message.author.send("Hello there");
 					}else{
 						client.fetchUser(command[1]).then(user => {
-							user.send("Hi there!\n This message was sent to you by "+message.author.userName)
+							user.send("Hi there!\nThis message was sent to you by "+message.author.username)
 						});
 					}
 					break;
