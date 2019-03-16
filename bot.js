@@ -299,6 +299,8 @@ client.on('message', message => {
 					break;
 			}
 		}
+	}else if(message.guild === null){
+		tellMe(message.author+" just wrote this to me:\n"+message.content);
 	}
 	
 	//Reply to phraces
@@ -337,11 +339,6 @@ client.on('message', message => {
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
 		tellMe(message.author.username+": "+message.content);
-	}
-	
-	//if someone pms the bot
-	if(message.guild === null){
-		tellMe(message.author+" just wrote this to me:\n"+message.content);
 	}
 });
 
