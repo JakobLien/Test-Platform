@@ -299,7 +299,7 @@ client.on('message', message => {
 					break;
 			}
 		}
-	}else if(message.guild === null){
+	}else if(message.guild === null && message.author.id !== botId){
 		tellMe(message.author+" just wrote this to me:\n"+message.content);
 	}
 	
