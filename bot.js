@@ -155,8 +155,14 @@ client.on('message', message => {
 					message.channel.send(":weary: :ok_hand: :sweat_drops:");
 					break;
 				case "openPM":
-					TellMe(message.author.username+" has opened PM");
-					message.author.send("Hello there");
+					if(command[1] === undefined){
+						TellMe(message.author.username+" has opened PM");
+						message.author.send("Hello there");
+					}else{
+						client.fetchUser(command[1]).then(user => {
+							user.send("Hi there!\n This message was sent to you by "+message.author.userName)
+						});
+					}
 					break;
 				//specific stuff
 				case "spell":
