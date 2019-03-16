@@ -157,7 +157,7 @@ client.on('message', message => {
 					break;
 				case "openPM":
 					if(command[1] === undefined){
-						TellMe(message.author.username+" has opened PM");
+						tellMe(message.author.username+" has opened a PM");
 						message.author.send("Hello there");
 					}else{
 						client.fetchUser(command[1]).then(user => {
