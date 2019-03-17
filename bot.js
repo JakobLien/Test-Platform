@@ -106,8 +106,7 @@ function splitText(text){
 
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
-			"spell", "immy", "fish", "AO", //specific stuff
-			"createAccount", "money", "donate"]; //capitalist stuff
+			"spell", "immy", "fish", "AO"]; //specific stuff
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
 //controll variables
@@ -215,41 +214,6 @@ client.on('message', message => {
 					}
 					responce += "Overall you dealt "+sumDmg;
 					message.reply(responce);
-					break;
-				//capitalist stuff
-				case "createAccount":
-					runSQL("SELECT * FROM economy WHERE UserID = '"+message.author.id+"';").then(function(returned){
-						if(!returned.length){
-							runSQL("INSERT INTO economy VALUES ('"+message.author.username+"', '"+
-							message.author.id+"', DEFAULT);").then(function(returned2){
-								message.reply("You have successfully created an account.");
-							});
-						}else{
-							message.reply("You have already created an account");
-						}
-					})
-					break;
-				case "money":
-					runSQL("SELECT Money FROM economy WHERE UserID = '"+message.author.id+"';").then(
-					function(returned){
-						message.reply("You have "+returned[0].Money+" money");
-					});
-					break;
-				case "donate":
-					if(0 < command[2] && message.author.id !== message.mentions.users.first().id){
-						runSQL("UPDATE economy SET Money = Money-"+command[2]+" WHERE UserID = '"+
-						message.author.id+"';").then(function(returned){
-							message.reply("money successfully detracted from your account");
-							runSQL("UPDATE economy SET Money = Money+"+command[2]+" WHERE UserID = '"+
-							       message.mentions.users.first().id+"';").then(function(returned2){
-								message.reply("money successfully added to the other account");
-							});
-						});
-					}else if(0 >= command[2]){
-						message.reply("You can't donate less than 1 money");
-					}else{
-						message.reply("You can't donate money to yourself");
-					}
 					break;
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
