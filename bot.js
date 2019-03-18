@@ -300,7 +300,7 @@ client.on('message', message => {
 		//phrases from communism. constants: comList comValues
 		let words = splitSymbols(message.content);
 		for(let i = 0; i < words.length; i++){
-			for(let a = 0; a < comValues.length ; a++){
+			for(let a = 0; a < comValues.length; a++){
 				if(comValues[a].includes(words[i].toLowerCase())){
 					words[i] = comList[a];
 				}
