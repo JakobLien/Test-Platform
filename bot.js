@@ -296,9 +296,9 @@ client.on('message', message => {
 		}catch(e){
 			console.log(e);
 		}
-		/*
+		
 		//phrases from communism. constants: comList comValues
-		let words = toText(message.content).split(" ");
+		let words = splitSymbols(message.content);
 		for(let i = 0; i < words.length; i++){
 			for(let a = 0; a < comValues.length ; a++){
 				if(comValues[a].includes(words[i].toLowerCase())){
@@ -306,10 +306,10 @@ client.on('message', message => {
 				}
 			}
 		}
-		words = words.join(" ");
-		if(toText(message.content) !== words){
+		words = words.join("");
+		if(message.content !== words){
 			message.reply("Did you mean:\n"+words);
-		}*/
+		}
 	}
 	
 	//recording code
