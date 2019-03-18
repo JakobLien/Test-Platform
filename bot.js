@@ -84,16 +84,20 @@ function tellMe(message){
 //function to split text into words, and symbols, so that I can replace the words perfectly
 function splitSymbols(text){
 	let answer = [];
-	let current = "";
+	let letters = "";
+	let symbols = "";
 	text.split("").forEach(character => {
+		if(character.match(/[a-z]|æ|ø|å/i) && !letters){
+			answer.push(symbols);
+			symbols = "";
+		}else if(!character.match(/[a-z]|æ|ø|å/i) && !symbols){
+			answer.push(letters);
+			letters = "";
+		}
 		if(character.match(/[a-z]|æ|ø|å/i)){
-			current+=character;
+			letters += character;
 		}else{
-			if(0 < current.length){
-				answer.push(current);
-				current = "";
-			}
-			answer.push(character);
+			symbols += character;
 		}
 	});
 	return answer;
