@@ -86,15 +86,17 @@ function splitSymbols(text){
 	let answer = [];
 	let letters = "";
 	let symbols = "";
+	let isLetter;
 	text.split("").forEach(character => {
-		if(character.match(/[a-z]|æ|ø|å/i) && !letters){
+		isLetter = character.match(/[a-z]|æ|ø|å/i);
+		if(isLetter && !letters){
 			answer.push(symbols);
 			symbols = "";
-		}else if(!character.match(/[a-z]|æ|ø|å/i) && !symbols){
+		}else if(!isLetter && !symbols){
 			answer.push(letters);
 			letters = "";
 		}
-		if(character.match(/[a-z]|æ|ø|å/i)){
+		if(isLetter){
 			letters += character;
 		}else{
 			symbols += character;
