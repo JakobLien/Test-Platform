@@ -81,14 +81,22 @@ function tellMe(message){
 	client.users.get(myId).send(message);
 }
 
-function toText(text){
+//function to split text into words, and symbols, so that I can replace the words perfectly
+function splitText(text){
 	let answer = [];
-	text.split("").forEach(function(element){
-		if(element.match(/[a-z]| |æ|ø|å/i)){
-			answer.push(element);
+	let current = "";
+	text.split("").forEach(character => {
+		if(character.match(/[a-z]|æ|ø|å/i)){
+			current+=character;
+		}else{
+			if(0 < current.length){
+				answer.push(current);
+				current = "";
+			}
+			answer.push(character)
 		}
 	});
-	return answer.join("");
+	return answer;
 }
 
 //function to split the text into 1900 character long parts so discord can deal with it
@@ -258,9 +266,12 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					message.channel.fetchMessages({before: message.id, limit: 1})
+					/*message.channel.fetchMessages({before: message.id, limit: 1})
 						.then(messages => message.reply((messages.array()[0].content)))
 						.catch(messages => console.log("shit"));
+					*/
+					
+					message.reply(splitText(message.content));
 					break;
 			}
 		}
@@ -285,7 +296,7 @@ client.on('message', message => {
 		}catch(e){
 			console.log(e);
 		}
-		
+		/*
 		//phrases from communism. constants: comList comValues
 		let words = toText(message.content).split(" ");
 		for(let i = 0; i < words.length; i++){
@@ -298,7 +309,7 @@ client.on('message', message => {
 		words = words.join(" ");
 		if(toText(message.content) !== words){
 			message.reply("Did you mean:\n"+words);
-		}
+		}*/
 	}
 	
 	//recording code
