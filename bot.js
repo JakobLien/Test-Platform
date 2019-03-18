@@ -82,7 +82,7 @@ function tellMe(message){
 }
 
 //function to split text into words, and symbols, so that I can replace the words perfectly
-function splitText(text){
+function splitSymbols(text){
 	let answer = [];
 	let current = "";
 	text.split("").forEach(character => {
@@ -93,7 +93,7 @@ function splitText(text){
 				answer.push(current);
 				current = "";
 			}
-			answer.push(character)
+			answer.push(character);
 		}
 	});
 	return answer;
@@ -271,7 +271,7 @@ client.on('message', message => {
 						.catch(messages => console.log("shit"));
 					*/
 					
-					message.reply(splitText(message.content));
+					console.log(splitSymbols(message.content));
 					break;
 			}
 		}
