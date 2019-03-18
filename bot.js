@@ -307,7 +307,7 @@ client.on('message', message => {
 		for(let i = 0; i < words.length; i++){
 			for(let a = 0; a < comValues.length; a++){
 				if(comValues[a].includes(words[i].toLowerCase())){
-					words[i] = comList[a];
+					words[i] = "**"+comList[a]+"**";
 				}
 			}
 		}
