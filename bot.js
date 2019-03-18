@@ -100,6 +100,7 @@ function splitSymbols(text){
 			symbols += character;
 		}
 	});
+	answer.push(answer+letters);
 	return answer;
 }
 
