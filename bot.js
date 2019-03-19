@@ -122,7 +122,7 @@ function splitText(text){
 
 //functions to start and stop "working"
 function startWorking(message){
-	message.channel.send("Working").then(workmsg =>
+	message.channel.send("Working").then(workmsg => {
 		let interval = client.setInterval(function(){
 			switch (workmsg.content){
 				case "Working":
@@ -140,7 +140,7 @@ function startWorking(message){
 			}
 		}, 1000);
 		client.setTimeout(function(){discord.clearInterval(interval)}, 10000);
-	)
+	});
 }
 
 function stopWorking(){
