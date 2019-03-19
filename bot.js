@@ -121,23 +121,25 @@ function splitText(text){
 
 //functions to start and stop "working"
 function startWorking(message){
-	let workmsg = message.channel.send("Working");
-	client.setInterval(function(){
-		switch (workmsg.content){
-			case "Working":
-				workmsg.edit("Working.");
-				break;
-			case "Working.":
-				workmsg.edit("Working..");
-				break;
-			case "Working..":
-				workmsg.edit("Working...");
-				break;
-			case "Working...":
-				workmsg.edit("Working");
-				break;
-		}
-	}, 1000)
+	message.channel.send("Working").then(workmsg =>
+		let interval = client.setInterval(function(){
+			switch (workmsg.content){
+				case "Working":
+					workmsg.edit("Working.");
+					break;
+				case "Working.":
+					workmsg.edit("Working..");
+					break;
+				case "Working..":
+					workmsg.edit("Working...");
+					break;
+				case "Working...":
+					workmsg.edit("Working");
+					break;
+			}
+		}, 1000);
+		client.setTimeout(function(){discord.clearInterval(interval)}, 10000);
+	)
 }
 
 function stopWorking(){
