@@ -119,6 +119,31 @@ function splitText(text){
 	return returnValue;
 }
 
+//functions to start and stop "working"
+function startWorking(message){
+	let workmsg = message.channel.send("Working");
+	client.setInterval(function(){
+		switch (workmsg.content){
+			case "Working":
+				workmsg.edit("Working.");
+				break;
+			case "Working.":
+				workmsg.edit("Working..");
+				break;
+			case "Working..":
+				workmsg.edit("Working...");
+				break;
+			case "Working...":
+				workmsg.edit("Working");
+				break;
+		}
+	}, 1000)
+}
+
+function stopWorking(){
+	
+}
+
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
 			"spell", "immy", "fish", "AO"]; //specific stuff
@@ -278,7 +303,8 @@ client.on('message', message => {
 						.catch(messages => console.log("shit"));
 					*/
 					
-					console.log(splitSymbols(message.content));
+					/*console.log(splitSymbols(message.content));*/
+					startWorking(message);
 					break;
 			}
 		}
