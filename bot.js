@@ -139,7 +139,7 @@ function startWorking(message){
 					break;
 			}
 		}, 2000);
-		client.setTimeout(function(){discord.clearInterval(interval)}, 200000);
+		client.setTimeout(function(){client.clearInterval(interval)}, 200000);
 	});
 }
 
