@@ -12,6 +12,7 @@ connection.connect();
 
 client.on('ready', () => {
 	console.log('I am ready!');
+	tellMe("I'm back");
 });
 
 //stuff to print spell requests
