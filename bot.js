@@ -124,7 +124,6 @@ function splitText(text){
 function startWorking(message){
 	message.channel.send("Working").then(workmsg => {
 		let interval = client.setInterval(function(){
-			console.log("the thing");
 			if(!workmsg){
 				client.clearInterval(interval);
 			}else{
