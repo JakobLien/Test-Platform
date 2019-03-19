@@ -138,8 +138,8 @@ function startWorking(message){
 					workmsg.edit("Working");
 					break;
 			}
-		}, 1000);
-		client.setTimeout(function(){discord.clearInterval(interval)}, 10000);
+		}, 2000);
+		client.setTimeout(function(){discord.clearInterval(interval)}, 200000);
 	});
 }
 
