@@ -124,22 +124,27 @@ function splitText(text){
 function startWorking(message){
 	message.channel.send("Working").then(workmsg => {
 		let interval = client.setInterval(function(){
-			switch (workmsg.content){
-				case "Working":
-					workmsg.edit("Working.");
-					break;
-				case "Working.":
-					workmsg.edit("Working..");
-					break;
-				case "Working..":
-					workmsg.edit("Working...");
-					break;
-				case "Working...":
-					workmsg.edit("Working");
-					break;
+			console.log("the thing");
+			if(!workmsg){
+				client.clearInterval(interval);
+			}else{
+				switch (workmsg.content){
+					case "Working":
+						workmsg.edit("Working.");
+						break;
+					case "Working.":
+						workmsg.edit("Working..");
+						break;
+					case "Working..":
+						workmsg.edit("Working...");
+						break;
+					case "Working...":
+						workmsg.edit("Working");
+						break;
+				}
 			}
 		}, 2000);
-		client.setTimeout(function(){client.clearInterval(interval)}, 200000);
+		client.setTimeout(function(){client.clearInterval(interval)}, 20000);
 	});
 }
 
