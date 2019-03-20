@@ -153,7 +153,7 @@ function stopWorking(){
 
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
-			"spell", "immy", "fish", "AO"]; //specific stuff
+			"magic8ball", "spell", "immy", "fish", "AO"]; //specific stuff
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
 //controll variables
@@ -212,6 +212,11 @@ client.on('message', message => {
 					}
 					break;
 				//specific stuff
+				case "magic8ball":
+					runSQL("SELECT ball FROM ball ORDER BY RAND() LIMIT 1;").then(returned => {
+						message.reply(retuned[0].ball);
+					});
+					break;
 				case "spell":
 					getSpellThings(command.slice(1).join("+")).then(returned => 
 						splitText(returned).forEach(function(item){
