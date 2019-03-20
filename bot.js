@@ -242,8 +242,13 @@ client.on('message', message => {
 				case "AO":
 					let responce = "";
 					let sumDmg = 0;
-					if(command[2]<5){message.reply("You have to cast it at at least fifth level");break;}
-					for(let i = 0; i < 10+2*(command[2]-5); i++){
+					let lvl = 5
+					if(command[2]<5){
+						message.reply("You have to cast it at at least fifth level");
+					}else if(5<=command[2]){
+						lvl = command[2];
+					}
+					for(let i = 0; i < 10+2*(lvl-5); i++){
 						let d20 = rollDice(20)+8;
 						if(d20 === 28){
 							let dmg = rollDice(4)+rollDice(4)+4;
