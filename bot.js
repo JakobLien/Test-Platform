@@ -214,7 +214,7 @@ client.on('message', message => {
 				//specific stuff
 				case "magic8ball":
 					runSQL("SELECT ball FROM ball ORDER BY RAND() LIMIT 1;").then(returned => {
-						message.reply(retuned[0].ball);
+						message.reply(returned[0].ball);
 					});
 					break;
 				case "spell":
