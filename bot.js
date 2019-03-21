@@ -6,6 +6,7 @@ const client = new Discord.Client();
 
 //api for spells n stuff
 const http = require('http');
+const https = require('https');
 
 //for db stuff
 var mysql = require('mysql');
@@ -34,20 +35,68 @@ It can be found here: `+data["page"]);
 }
 
 //Stuff to deal with d&d spell requests
-function sendhttpRequest(link){
+function sendhttpRequest(link, options = false){
 	return new Promise(function(resolve, reject){
-		http.get(link, (resp) => {
-			let data = '';
-			resp.on('data', (chunk) => {
-				data += chunk;
+		if(!options){
+			http.get(link, (resp) => {
+				let data = '';
+				resp.on('data', (chunk) => {
+					data += chunk;
+				});
+				resp.on('end', () => {
+					resolve(data);
+
+				});
+			}).on("error", (err) => {
+				console.log("Error: " + err.message);
 			});
-			resp.on('end', () => {
-				resolve(data);
-				
+		}else{
+			http.request(options, (resp) => {
+				let data = '';
+				resp.on('data', (chunk) => {
+					data += chunk;
+				});
+				resp.on('end', () => {
+					resolve(data);
+
+				});
+			}).on("error", (err) => {
+				console.log("Error: " + err.message);
 			});
-		}).on("error", (err) => {
-			console.log("Error: " + err.message);
-		});
+		}
+	});
+}
+
+function sendhttpsRequest(link, options = false){
+	return new Promise(function(resolve, reject){
+		if(!options){
+			https.get(link, (resp) => {
+				let data = '';
+				resp.on('data', (chunk) => {
+					data += chunk;
+				});
+				resp.on('end', () => {
+					resolve(data);
+
+				});
+			}).on("error", (err) => {
+				console.log("Error: " + err.message);
+			});
+		}else{
+			console.log("here");
+			https.request(options, (resp) => {
+				let data = '';
+				resp.on('data', (chunk) => {
+					data += chunk;
+				});
+				resp.on('end', () => {
+					resolve(data);
+
+				});
+			}).on("error", (err) => {
+				console.log("Error: " + err.message);
+			});
+		}
 	});
 }
 
@@ -321,9 +370,12 @@ client.on('message', message => {
 						.then(messages => message.reply((messages.array()[0].content)))
 						.catch(messages => console.log("shit"));
 					*/
-					
 					/*console.log(splitSymbols(message.content));*/
-					startWorking(message);
+					//startWorking(message);
+					sendhttpsRequest(
+						{hostname: "https://sumitgohil-random-quotes-v1.p.rapidapi.com/fetch/randomQuote",
+						method: "GET", 
+						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b"}});
 					break;
 			}
 		}
