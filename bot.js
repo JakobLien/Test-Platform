@@ -70,7 +70,6 @@ function sendhttpRequest(link, options = false){
 function sendhttpsRequest(link, options = false){
 	return new Promise(function(resolve, reject){
 		if(!options){
-			console.log("here1")
 			https.get(link, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
@@ -84,7 +83,6 @@ function sendhttpsRequest(link, options = false){
 				console.log("Error: " + err.message);
 			});
 		}else{
-			console.log("here2");
 			https.get(link, options, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
@@ -374,7 +372,11 @@ client.on('message', message => {
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
 					sendhttpsRequest("https://sumitgohil-random-quotes-v1.p.rapidapi.com/fetch/randomQuote",
-						{headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b"}});
+						{headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b"}})
+						.then(returned => {
+							console.log(returned);
+						}
+					);
 					break;
 			}
 		}
