@@ -170,37 +170,6 @@ function splitText(text){
 	return returnValue;
 }
 
-//functions to start and stop "working"
-function startWorking(message){
-	message.channel.send("Working").then(workmsg => {
-		let interval = client.setInterval(function(){
-			if(!workmsg){
-				client.clearInterval(interval);
-			}else{
-				switch (workmsg.content){
-					case "Working":
-						workmsg.edit("Working.");
-						break;
-					case "Working.":
-						workmsg.edit("Working..");
-						break;
-					case "Working..":
-						workmsg.edit("Working...");
-						break;
-					case "Working...":
-						workmsg.edit("Working");
-						break;
-				}
-			}
-		}, 2000);
-		client.setTimeout(function(){client.clearInterval(interval)}, 20000);
-	});
-}
-
-function stopWorking(){
-	
-}
-
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
 			"magic8ball", "spell", "immy", "fish", "AO"]; //specific stuff
@@ -374,7 +343,6 @@ client.on('message', message => {
 					sendhttpsRequest("https://sumitgohil-random-quotes-v1.p.rapidapi.com/fetch/randomQuote",
 						{host: "https://sumitgohil-random-quotes-v1.p.rapidapi.com", 
 						path: "/fetch/randomQuote",
-						port: 80,
 						headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b"}})
 						.then(returned => {
 							console.log(returned);
