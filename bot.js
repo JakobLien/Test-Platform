@@ -84,7 +84,7 @@ function sendhttpsRequest(link, options = false){
 			});
 		}else{
 			console.log("here");
-			https.request(options, (resp) => {
+			https.get(link, options, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
 					data += chunk;
@@ -373,9 +373,7 @@ client.on('message', message => {
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
 					sendhttpsRequest(
-						{hostname: "https://sumitgohil-random-quotes-v1.p.rapidapi.com/fetch/randomQuote",
-						method: "GET", 
-						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b"}});
+						{headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b"}});
 					break;
 			}
 		}
