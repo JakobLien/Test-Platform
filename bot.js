@@ -48,7 +48,7 @@ function sendhttpRequest(link, options = false){
 
 				});
 			}).on("error", (err) => {
-				console.log("Error: " + err.message);
+				console.log("http error 1: " + err.message);
 			});
 		}else{
 			http.request(options, (resp) => {
@@ -61,7 +61,7 @@ function sendhttpRequest(link, options = false){
 
 				});
 			}).on("error", (err) => {
-				console.log("Error: " + err.message);
+				console.log("http error 2: " + err.message);
 			});
 		}
 	});
@@ -80,10 +80,10 @@ function sendhttpsRequest(link, options = false){
 
 				});
 			}).on("error", (err) => {
-				console.log("Error: " + err.message);
+				console.log("https error 3: " + err.message);
 			});
 		}else{
-			https.get(options, (resp) => {
+			https.request(options, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
 					data += chunk;
@@ -93,7 +93,7 @@ function sendhttpsRequest(link, options = false){
 
 				});
 			}).on("error", (err) => {
-				console.log("Error: " + err.message);
+				console.log("https error 4: " + err.message);
 			});
 		}
 	});
