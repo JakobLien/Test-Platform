@@ -83,7 +83,7 @@ function sendhttpsRequest(link, options = false){
 				console.log("Error: " + err.message);
 			});
 		}else{
-			https.get(link, options, (resp) => {
+			https.request(options, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
 					data += chunk;
