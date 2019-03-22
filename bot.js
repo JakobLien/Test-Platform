@@ -372,9 +372,9 @@ client.on('message', message => {
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
 					sendhttpsRequest("https://sumitgohil-random-quotes-v1.p.rapidapi.com/fetch/randomQuote",
-						{hostname: "https://sumitgohil-random-quotes-v1.p.rapidapi.com", 
+						{host: "https://sumitgohil-random-quotes-v1.p.rapidapi.com", 
 						path: "/fetch/randomQuote",
-						port: 8080,
+						port: 80,
 						headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b"}})
 						.then(returned => {
 							console.log(returned);
