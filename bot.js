@@ -229,7 +229,7 @@ client.on('message', message => {
 						message.reply("The "+command[1]+" command has the following description: "+
 							     helpList[publicCommands.indexOf(command[1])]);
 					}else{
-						message.reply("All public commands: "+publicCommands.join(", ")+
+						message.reply("All public commands: "+publicCommands.join(", ")+"\n"+
 							     "Write !help [a command] to see that command's description.");
 					}
 					break;
