@@ -172,7 +172,7 @@ function splitText(text){
 
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
-			"magic8ball", "spell", "sitat", "immy", "fish", "AO"]; //specific stuff
+			"magic8ball", "spell", "sitat", "fish", "AO"]; //specific stuff
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
 //controll variables
@@ -185,6 +185,14 @@ var recording = false;
 const comList = ["vi", "oss", "vår", "våre", "vårt"];
 const comValues = [["eg", "jeg", "du", "han", "ho"], ["me", "meg", "deg", "seg"], 
 		   ["min", "din", "hans", "hennes"], ["mine", "dine"], ["mitt", "ditt"]];
+
+//valid names for the sitat command
+const validNames = [];
+runSQL("SELECT DISTINCT navn FROM sitat").then(returned => {
+	returned.foreach(element => 
+		validNames.push(element.navn);
+	);
+});
 
 //The main thing
 client.on('message', message => {
@@ -244,16 +252,17 @@ client.on('message', message => {
 					);
 					break;
 				case "sitat":
-					runSQL("SELECT sitat, navn FROM sitat ORDER BY RAND() LIMIT 1;")
-					.then(function(returned){
-						message.reply(returned[0].navn+": "+returned[0].sitat);
-					});
-					break;
-				case "immy":
-					runSQL("SELECT sitat, navn FROM sitat WHERE navn='Immy' ORDER BY RAND() LIMIT 1;")
-					.then(function(returned){
-						message.reply(returned[0].navn+": "+returned[0].sitat);
-					});
+					if(validNames.includes(command[1])){
+						runSQL("SELECT sitat, navn FROM sitat WHERE navn='"+command[1]+
+						"' ORDER BY RAND() LIMIT 1;").then(function(returned){
+							message.reply(returned[0].navn+": "+returned[0].sitat);
+						});
+					}else{
+						runSQL("SELECT sitat, navn FROM sitat ORDER BY RAND() LIMIT 1;")
+						.then(function(returned){
+							message.reply(returned[0].navn+": "+returned[0].sitat);
+						});
+					}
 					break;
 				case "fish":
 					let roll = Math.floor(Math.random()*20)+1;
@@ -356,6 +365,8 @@ client.on('message', message => {
 							console.log(returned);
 						}
 					);
+					
+					
 					break;
 			}
 		}
