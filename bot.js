@@ -83,7 +83,7 @@ function sendhttpsRequest(link, options = false){
 				console.log("https error 3: " + err.message);
 			});
 		}else{
-			https.get(link, options, (resp) => {
+			https.get(options, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
 					data += chunk;
@@ -348,7 +348,9 @@ client.on('message', message => {
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
 					sendhttpsRequest("https://NasaAPIdimasV1.p.rapidapi.com/getPictureOfTheDay",
-						{headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
+						{host: "https://NasaAPIdimasV1.p.rapidapi.com",
+						 path: "/getPictureOfTheDay",
+						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 							   "Content-Type": "application/x-www-form-urlencoded"}})
 						.then(returned => {
 							console.log(returned);
