@@ -83,7 +83,7 @@ function sendhttpsRequest(link, options = false){
 				console.log("https error 3: " + err.message);
 			});
 		}else{
-			https.request(options, (resp) => {
+			https.get(link, options, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
 					data += chunk;
@@ -172,7 +172,7 @@ function splitText(text){
 
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
-			"magic8ball", "spell", "immy", "fish", "AO"]; //specific stuff
+			"magic8ball", "spell", "sitat", "immy", "fish", "AO"]; //specific stuff
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 
 //controll variables
@@ -243,9 +243,16 @@ client.on('message', message => {
 						})
 					);
 					break;
+				case "sitat":
+					runSQL("SELECT sitat, navn FROM sitat ORDER BY RAND() LIMIT 1;")
+					.then(function(returned){
+						message.reply(returned[0].navn+": "+returned[0].sitat);
+					});
+					break;
 				case "immy":
-					runSQL("SELECT sitat FROM sitat ORDER BY RAND() LIMIT 1;").then(function(returned){
-						message.reply(returned[0].sitat);
+					runSQL("SELECT sitat, navn FROM sitat WHERE navn='Immy' ORDER BY RAND() LIMIT 1;")
+					.then(function(returned){
+						message.reply(returned[0].navn+": "+returned[0].sitat);
 					});
 					break;
 				case "fish":
@@ -340,12 +347,11 @@ client.on('message', message => {
 					*/
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
-					sendhttpsRequest("https://NasaAPIdimasV1.p.rapidapi.com",
+					sendhttpsRequest("https://NasaAPIdimasV1.p.rapidapi.com/getPictureOfTheDay",
 						{host: "https://NasaAPIdimasV1.p.rapidapi.com",
 						 path: "/getPictureOfTheDay",
 						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
-							   "Content-Type": "application/x-www-form-urlencoded"},
-						 method: "POST"})
+							   "Content-Type": "application/x-www-form-urlencoded"}})
 						.then(returned => {
 							console.log(returned);
 						}
