@@ -189,7 +189,9 @@ const comValues = [["eg", "jeg", "du", "han", "ho"], ["me", "meg", "deg", "seg"]
 //valid names for the sitat command
 const validNames = [];
 runSQL("SELECT DISTINCT navn FROM sitat").then(returned => {
+	console.log(returned);
 	returned.foreach(element => {
+		console.log(element.navn);
 		validNames.push(element.navn);
 	});
 });
