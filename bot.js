@@ -174,6 +174,11 @@ function splitText(text){
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
 			"magic8ball", "spell", "sitat", "fish", "AO"]; //specific stuff
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
+const helpList = ["Displays this list.", "Displays the creator's mood.", "Noko shit daniel ordna.", 
+		  "Opens a private messaging chat with this bot.", "Use the command followed by a question and the ball anweres", 
+		  "Get spell info(capital letters)", "Get a quote from Immy, and sometimes other people(write their name)", 
+		  "Roll a d20, and on a nat 20 you get a phrase which triggers a response from the bot.", 
+		  "Use the animate object spell, arguments: Armor_Class Level_Cast_At"];
 
 //controll variables
 const myId = "265570029792133129";
@@ -220,10 +225,16 @@ client.on('message', message => {
 			switch(keyword){
 				//various stuff
 				case "help":
-					message.reply("All public commands: "+publicCommands.join(", "));
+					if(publicCommands.includes(command[1])){
+						message.reply("The "+command[1]+" command has the following description: "+
+							     helpList[publicCommand.indexOf(command[1]))];
+					}else{
+						message.reply("All public commands: "+publicCommands.join(", ")+
+							     "Write !help [a command] to see that command's description.");
+					}
 					break;
 				case "trist":
-					message.reply('Jakob er trist!');
+					message.reply('Jakob har det bra, takk som spør :smile:');
 					break;
 				case "nut":
 					message.channel.send(":weary: :ok_hand: :sweat_drops:");
@@ -257,6 +268,8 @@ client.on('message', message => {
 						"' ORDER BY RAND() LIMIT 1;").then(function(returned){
 							message.reply(returned[0].navn+": "+returned[0].sitat);
 						});
+					}else if(command[1]){
+						 message.reply("Couldn't find that person (please use capital letters)");
 					}else{
 						runSQL("SELECT sitat, navn FROM sitat ORDER BY RAND() LIMIT 1;")
 						.then(function(returned){
