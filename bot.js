@@ -227,7 +227,7 @@ client.on('message', message => {
 				case "help":
 					if(publicCommands.includes(command[1])){
 						message.reply("The "+command[1]+" command has the following description: "+
-							     helpList[publicCommands.indexOf(command[1])];
+							     helpList[publicCommands.indexOf(command[1])]);
 					}else{
 						message.reply("All public commands: "+publicCommands.join(", ")+
 							     "Write !help [a command] to see that command's description.");
