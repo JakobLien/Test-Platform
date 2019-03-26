@@ -252,7 +252,6 @@ client.on('message', message => {
 					);
 					break;
 				case "sitat":
-					console.log(validNames, command[1], validNames.includes(command[1]));
 					if(validNames.includes(command[1])){
 						runSQL("SELECT sitat, navn FROM sitat WHERE navn='"+command[1]+
 						"' ORDER BY RAND() LIMIT 1;").then(function(returned){
