@@ -299,8 +299,9 @@ client.on('message', message => {
 					 path: "/getPictureOfTheDay", method: "POST",
 					 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 						   "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
-						console.log(returned);
-						message.reply(returned.contextWrites.to.explanation+"\n"+returned.contextWrites.to.url);
+						message.reply(returned.contextWrites.to.title+"\n"+
+							      returned.contextWrites.to.explanation+"\n"+
+							      returned.contextWrites.to.url);
 					});
 					break;
 			}
@@ -350,9 +351,6 @@ client.on('message', message => {
 						.then(messages => message.reply((messages.array()[0].content)))
 						.catch(messages => console.log("shit"));
 					*/
-					/*console.log(splitSymbols(message.content));*/
-					//startWorking(message);
-					
 					break;
 			}
 		}
