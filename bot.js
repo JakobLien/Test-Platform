@@ -73,6 +73,7 @@ function sendhttpRequest(link, options = false){
 }
 
 function sendhttpsRequest(link, options = false){
+	console.log("Got here 1");
 	return new Promise(function(resolve, reject){
 		if(!options){
 			https.get(link, (resp) => {
@@ -94,6 +95,7 @@ function sendhttpsRequest(link, options = false){
 					data += chunk;
 				});
 				resp.on('end', () => {
+					console.log("Got here 2");
 					resolve(data);
 
 				});
@@ -381,6 +383,7 @@ client.on('message', message => {
 						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 							   "Content-Type": "application/x-www-form-urlencoded"}})
 						.then(returned => {
+							console.log("Got here 3");
 							console.log(returned);
 						}
 					);
