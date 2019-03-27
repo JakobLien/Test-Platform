@@ -30,7 +30,7 @@ function sendhttpRequest(link){
 				data += chunk;
 			});
 			resp.on('end', () => {
-				resolve(data);
+				resolve(JSON.parse(data));
 
 			});
 		}).on("error", (err) => {
@@ -47,7 +47,7 @@ function sendhttpsRequest(options){
 				data += chunk;
 			});
 			resp.on('end', () => {
-				resolve(data);
+				resolve(JSON.parse(data));
 			});
 		}).on("error", (err) => {
 			console.log("https error 2: " + err.message);
@@ -75,8 +75,8 @@ It can be found here: `+data["page"]);
 function getSpellThings(spellName){
 	return new Promise(function(resolve, reject){
 		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(returned =>
-			sendhttpRequest(JSON.parse(returned)["results"][0]["url"]).then(returned2 => 
-				resolve(formatSpellData(JSON.parse(returned2)))
+			sendhttpRequest(returned["results"][0]["url"]).then(returned2 => 
+				resolve(formatSpellData(returned2))
 			)
 		);
 	});
