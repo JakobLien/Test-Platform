@@ -101,7 +101,7 @@ function sendhttpsRequest(link, options = false){
 				});
 			}).on("error", (err) => {
 				console.log("https error 4: " + err.message);
-			});
+			}).end();
 		}
 	});
 }
