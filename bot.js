@@ -377,7 +377,7 @@ client.on('message', message => {
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
 					sendhttpsRequest("",
-						{host: "https://NasaAPIdimasV1.p.rapidapi.com",
+						{host: "NasaAPIdimasV1.p.rapidapi.com",
 						 path: "/getPictureOfTheDay",
 						 method: "POST",
 						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
