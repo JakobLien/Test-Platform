@@ -145,7 +145,7 @@ function splitText(text){
 
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
-			"magic8ball", "spell", "sitat", "fish", "AO"]; //specific stuff
+			"magic8ball", "spell", "sitat", "fish", "AO", "picOfTheDay"]; //specific stuff
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 const helpList = ["Displays this list.", "Displays the creator's mood.", "Noko shit daniel ordna.", 
 		  "Opens a private messaging chat with this bot.", "Use the command followed by a question and the ball anweres", 
@@ -293,6 +293,15 @@ client.on('message', message => {
 					responce += "Overall you dealt "+sumDmg;
 					message.reply(responce);
 					break;
+				case "picOfTheDay":
+					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
+					 path: "/getPictureOfTheDay", method: "POST",
+					 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
+						   "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
+						console.log(returned);
+						message.reply(returned.contextWrites.to.explanation+"\n"+returned.contextWrites.to.url);
+					});
+					break;
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
@@ -342,16 +351,7 @@ client.on('message', message => {
 					*/
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
-					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
-						 path: "/getPictureOfTheDay",
-						 method: "POST",
-						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
-							   "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
-							console.log("Got here 3");
-							console.log(returned);
-							message.reply(returned.contextWrites.to.url);
-						}
-					);
+					
 					break;
 			}
 		}
