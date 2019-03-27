@@ -381,14 +381,11 @@ client.on('message', message => {
 						 path: "/getPictureOfTheDay",
 						 method: "POST",
 						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
-							   "Content-Type": "application/x-www-form-urlencoded"}})
-						.then(returned => {
+							   "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
 							console.log("Got here 3");
 							console.log(returned);
 						}
 					);
-					
-					
 					break;
 			}
 		}
