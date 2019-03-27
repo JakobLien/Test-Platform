@@ -22,6 +22,39 @@ client.on('ready', () => {
 	});
 });
 
+function sendhttpRequest(link){
+	return new Promise(function(resolve, reject){
+		http.get(link, (resp) => {
+			let data = '';
+			resp.on('data', (chunk) => {
+				data += chunk;
+			});
+			resp.on('end', () => {
+				resolve(data);
+
+			});
+		}).on("error", (err) => {
+			console.log("http error 1: " + err.message);
+		});
+	});
+}
+
+function sendhttpsRequest(options){
+	return new Promise(function(resolve, reject){
+		https.request(options, (resp) => {
+			let data = '';
+			resp.on('data', (chunk) => {
+				data += chunk;
+			});
+			resp.on('end', () => {
+				resolve(data);
+			});
+		}).on("error", (err) => {
+			console.log("https error 2: " + err.message);
+		}).end();
+	});
+}
+
 //stuff to print spell requests
 function formatSpellData(data){
 	let info = "";
@@ -39,73 +72,6 @@ It can be found here: `+data["page"]);
 }
 
 //Stuff to deal with d&d spell requests
-function sendhttpRequest(link, options = false){
-	return new Promise(function(resolve, reject){
-		if(!options){
-			http.get(link, (resp) => {
-				let data = '';
-				resp.on('data', (chunk) => {
-					data += chunk;
-				});
-				resp.on('end', () => {
-					resolve(data);
-
-				});
-			}).on("error", (err) => {
-				console.log("http error 1: " + err.message);
-			});
-		}else{
-			http.request(options, (resp) => {
-				let data = '';
-				resp.on('data', (chunk) => {
-					data += chunk;
-				});
-				resp.on('end', () => {
-					resolve(data);
-
-				});
-			}).on("error", (err) => {
-				console.log("http error 2: " + err.message);
-			});
-		}
-	});
-}
-
-function sendhttpsRequest(link, options = false){
-	return new Promise(function(resolve, reject){
-		if(!options){
-			https.get(link, (resp) => {
-				let data = '';
-				resp.on('data', (chunk) => {
-					data += chunk;
-				});
-				resp.on('end', () => {
-					resolve(data);
-
-				});
-			}).on("error", (err) => {
-				console.log("https error 3: " + err.message);
-			});
-		}else{
-			console.log("Got here 1");
-			https.request(options, (resp) => {
-				console.log("Got here 1.5");
-				let data = '';
-				resp.on('data', (chunk) => {
-					data += chunk;
-				});
-				resp.on('end', () => {
-					console.log("Got here 2");
-					resolve(data);
-
-				});
-			}).on("error", (err) => {
-				console.log("https error 4: " + err.message);
-			}).end();
-		}
-	});
-}
-
 function getSpellThings(spellName){
 	return new Promise(function(resolve, reject){
 		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(returned =>
@@ -376,14 +342,14 @@ client.on('message', message => {
 					*/
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
-					sendhttpsRequest("",
-						{host: "NasaAPIdimasV1.p.rapidapi.com",
+					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
 						 path: "/getPictureOfTheDay",
 						 method: "POST",
 						 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 							   "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
 							console.log("Got here 3");
 							console.log(returned);
+							message.reply(returned.contextWrites.to.url);
 						}
 					);
 					break;
