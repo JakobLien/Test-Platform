@@ -151,7 +151,8 @@ const helpList = ["Displays this list.", "Displays the creator's mood.", "Noko s
 		  "Opens a private messaging chat with this bot.", "Use the command followed by a question and the ball anweres", 
 		  "Get spell info(capital letters)", "Get a quote from Immy, and sometimes other people(write their name)", 
 		  "Roll a d20, and on a nat 20 you get a phrase which triggers a response from the bot.", 
-		  "Use the animate object spell, arguments: Armor_Class Level_Cast_At"];
+		  "Use the animate object spell, arguments: Armor_Class Level_Cast_At", 
+		  "Get Nasa's daily image, and a decription explaining it"];
 
 //controll variables
 const myId = "265570029792133129";
