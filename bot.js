@@ -75,7 +75,9 @@ function sendhttpRequest(link, options = false){
 function sendhttpsRequest(link, options = false){
 	console.log("Got here 1");
 	return new Promise(function(resolve, reject){
+		console.log("Got here 1.5");
 		if(!options){
+			console.log("Got here -1.5");
 			https.get(link, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
@@ -89,6 +91,7 @@ function sendhttpsRequest(link, options = false){
 				console.log("https error 3: " + err.message);
 			});
 		}else{
+			console.log("Got here 1.75");
 			https.request(options, (resp) => {
 				let data = '';
 				resp.on('data', (chunk) => {
