@@ -16,7 +16,10 @@ connection.connect();
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.fetchUser(myId).then(user => {
-		console.log(user.presence);
+		console.log(user.presence.status);
+		if(user.presence.status === "online"){
+			tellMe("I'm back");
+		}
 	});
 });
 
