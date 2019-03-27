@@ -15,7 +15,9 @@ connection.connect();
 
 client.on('ready', () => {
 	console.log('I am ready!');
-	tellMe("I'm back");
+	client.fetchUser(myId).then(user => {
+		console.log(user.presence);
+	});
 });
 
 //stuff to print spell requests
