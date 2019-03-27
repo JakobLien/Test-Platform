@@ -16,7 +16,6 @@ connection.connect();
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.fetchUser(myId).then(user => {
-		console.log(user.presence.status);
 		if(user.presence.status === "online"){
 			tellMe("I'm back");
 		}
@@ -93,7 +92,6 @@ function sendhttpsRequest(link, options = false){
 				console.log("Got here 1.5");
 				let data = '';
 				resp.on('data', (chunk) => {
-					console.log("Spam");
 					data += chunk;
 				});
 				resp.on('end', () => {
@@ -378,7 +376,7 @@ client.on('message', message => {
 					*/
 					/*console.log(splitSymbols(message.content));*/
 					//startWorking(message);
-					sendhttpsRequest("https://NasaAPIdimasV1.p.rapidapi.com/getPictureOfTheDay",
+					sendhttpsRequest("",
 						{host: "NasaAPIdimasV1.p.rapidapi.com",
 						 path: "/getPictureOfTheDay",
 						 method: "POST",
