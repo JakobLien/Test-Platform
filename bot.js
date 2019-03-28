@@ -296,9 +296,9 @@ client.on('message', message => {
 					break;
 				case "picOfTheDay":
 					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
-					 path: "/getPictureOfTheDay", method: "POST",
-					 headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
-						   "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
+							  path: "/getPictureOfTheDay", method: "POST",
+							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
+							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
 						message.reply(returned.contextWrites.to.title+"\n"+
 							      returned.contextWrites.to.explanation+"\n"+
 							      returned.contextWrites.to.url);
@@ -329,7 +329,7 @@ client.on('message', message => {
 					break;
 				case "stop":
 					tellMe("Stopped recording messages.");
-					recording = false
+					recording = false;
 					break;
 				case "suicide":
 					client.destroy();
@@ -351,6 +351,15 @@ client.on('message', message => {
 						.then(messages => message.reply((messages.array()[0].content)))
 						.catch(messages => console.log("shit"));
 					*/
+					/*
+					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
+							  path: "/getPictureOfTheDay", method: "POST",
+							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
+							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
+						message.reply(returned.contextWrites.to.title+"\n"+
+							      returned.contextWrites.to.explanation+"\n"+
+							      returned.contextWrites.to.url);
+					});*/
 					break;
 			}
 		}
