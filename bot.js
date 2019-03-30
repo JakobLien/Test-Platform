@@ -356,7 +356,7 @@ client.on('message', message => {
 							  path: "/getEarthImagery?coordinate=50.37,26.56", method: "POST",
 							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
-						console.log(returned);
+						console.log(returned, returned.contextWrites.to.status_msg);
 					});
 					break;
 			}
