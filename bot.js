@@ -296,7 +296,7 @@ client.on('message', message => {
 					break;
 				case "picOfTheDay":
 					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
-							  path: "/getPictureOfTheDay", method: "GET",
+							  path: "/getPictureOfTheDay", method: "POST",
 							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
 						message.reply(returned.contextWrites.to.title+"\n"+
@@ -355,7 +355,8 @@ client.on('message', message => {
 					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
 							  path: "/getEarthImagery", method: "POST",
 							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
-							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
+							  "Content-Type": "application/x-www-form-urlencoded"},
+							  send: "coordinate=50.37, 26.56"}).then(returned => {
 						console.log(returned);
 					});
 					break;
