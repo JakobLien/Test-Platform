@@ -145,7 +145,8 @@ function splitText(text){
 
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
-			"magic8ball", "spell", "sitat", "fish", "AO", "picOfTheDay"]; //specific stuff
+			"magic8ball", "fish", "picOfTheDay", //argumentless
+			"spell", "sitat", "AO"]; //argumented
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 const helpList = ["Displays this list.", "Displays the creator's mood.", "Noko shit daniel ordna.", 
 		  "Opens a private messaging chat with this bot.", "Use the command followed by a question and the ball anweres", 
@@ -223,33 +224,11 @@ client.on('message', message => {
 						});
 					}
 					break;
-				//specific stuff
+				//argumentless
 				case "magic8ball":
 					runSQL("SELECT ball FROM ball ORDER BY RAND() LIMIT 1;").then(returned => {
 						message.reply(returned[0].ball);
 					});
-					break;
-				case "spell":
-					getSpellThings(command.slice(1).join("+")).then(returned => 
-						splitText(returned).forEach(function(item){
-							message.reply(item);
-						})
-					);
-					break;
-				case "sitat":
-					if(validNames.includes(command[1])){
-						runSQL("SELECT sitat, navn FROM sitat WHERE navn='"+command[1]+
-						"' ORDER BY RAND() LIMIT 1;").then(function(returned){
-							message.reply(returned[0].navn+": "+returned[0].sitat);
-						});
-					}else if(command[1]){
-						 message.reply("Couldn't find that person (please use capital letters)");
-					}else{
-						runSQL("SELECT sitat, navn FROM sitat ORDER BY RAND() LIMIT 1;")
-						.then(function(returned){
-							message.reply(returned[0].navn+": "+returned[0].sitat);
-						});
-					}
 					break;
 				case "fish":
 					let roll = Math.floor(Math.random()*20)+1;
@@ -264,6 +243,45 @@ client.on('message', message => {
 						});
 					}else{
 						message.reply("You rolled a nat "+roll+", which sadly is not enough for anything.");
+					}
+					break;
+				case "picOfTheDay":
+					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
+							  path: "/getPictureOfTheDay", method: "POST",
+							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
+							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
+						message.reply(returned.contextWrites.to.title+"\n"+
+							      returned.contextWrites.to.explanation+"\n"+
+							      returned.contextWrites.to.url);
+					});
+					break;
+				//argumented
+				case "spell":
+					getSpellThings(command.slice(1).join("+")).then(returned => 
+						splitText(returned).forEach(function(item){
+							message.reply(item);
+						})
+					);
+					break;
+				case "sitat":
+					if(validNames.includes(command[1])){
+						runSQL("SELECT sitat, navn FROM sitat WHERE navn='"+command[1]+
+						"' ORDER BY RAND() LIMIT 1;").then(function(returned){
+							message.reply(returned[0].navn+": "+returned[0].sitat);
+						});
+					}else if(command[1] === "navn"){
+						let names = [];
+						runSQL("SELECT DISTINCT navn FROM sitat;").foreach(function(name){
+							names.push(name.navn);
+						})
+						message.reply("Vi har sitat fra: "+names.split(", "));
+					}else if(command[1]){
+						 message.reply("Couldn't find that person (please use capital letters)");
+					}else{
+						runSQL("SELECT sitat, navn FROM sitat ORDER BY RAND() LIMIT 1;")
+						.then(function(returned){
+							message.reply(returned[0].navn+": "+returned[0].sitat);
+						});
 					}
 					break;
 				case "AO":
@@ -293,16 +311,6 @@ client.on('message', message => {
 					}
 					responce += "Overall you dealt "+sumDmg;
 					message.reply(responce);
-					break;
-				case "picOfTheDay":
-					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
-							  path: "/getPictureOfTheDay", method: "POST",
-							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
-							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
-						message.reply(returned.contextWrites.to.title+"\n"+
-							      returned.contextWrites.to.explanation+"\n"+
-							      returned.contextWrites.to.url);
-					});
 					break;
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
