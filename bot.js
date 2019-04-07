@@ -1,6 +1,6 @@
 //add to guild: https://discordapp.com/oauth2/authorize?&client_id=530439718823788544&scope=bot&permissions=8
 //programming idead: a todo list like Nils has, hangman, tic tac toe(AI?), a text based game like in BIG???, his noen nevne depressed
-//poppe den ut ett inspirational quote 
+//poppe den ut ett inspirational quote
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -270,12 +270,12 @@ client.on('message', message => {
 							message.reply(returned[0].navn+": "+returned[0].sitat);
 						});
 					}else if(command[1] === "navn"){
-						let names = [];
 						runSQL("SELECT DISTINCT navn FROM sitat;").then(function(returned){
+							let names = [];
 							returned.forEach(function(name){
 								names.push(name.navn);
 							})
-							message.reply("Vi har sitat fra: "+names.split(", "));
+							message.reply("Vi har sitat fra: "+names.join(", "));
 						});
 					}else if(command[1]){
 						 message.reply("Couldn't find that person (please use capital letters)");
