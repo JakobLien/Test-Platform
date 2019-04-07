@@ -271,10 +271,12 @@ client.on('message', message => {
 						});
 					}else if(command[1] === "navn"){
 						let names = [];
-						runSQL("SELECT DISTINCT navn FROM sitat;").forEach(function(name){
-							names.push(name.navn);
-						})
-						message.reply("Vi har sitat fra: "+names.split(", "));
+						runSQL("SELECT DISTINCT navn FROM sitat;").then(function(returned){
+							returned.forEach(function(name){
+								names.push(name.navn);
+							})
+							message.reply("Vi har sitat fra: "+names.split(", "));
+						});
 					}else if(command[1]){
 						 message.reply("Couldn't find that person (please use capital letters)");
 					}else{
