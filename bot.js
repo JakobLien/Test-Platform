@@ -271,7 +271,7 @@ client.on('message', message => {
 						});
 					}else if(command[1] === "navn"){
 						let names = [];
-						runSQL("SELECT DISTINCT navn FROM sitat;").foreach(function(name){
+						runSQL("SELECT DISTINCT navn FROM sitat;").forEach(function(name){
 							names.push(name.navn);
 						})
 						message.reply("Vi har sitat fra: "+names.split(", "));
