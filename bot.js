@@ -22,6 +22,8 @@ client.on('ready', () => {
 	});
 });
 
+
+//sendhttpRequest
 function sendhttpRequest(link){
 	return new Promise(function(resolve, reject){
 		http.get(link, (resp) => {
@@ -39,6 +41,8 @@ function sendhttpRequest(link){
 	});
 }
 
+
+//sendhttpsRequest
 function sendhttpsRequest(options){
 	return new Promise(function(resolve, reject){
 		https.request(options, (resp) => {
@@ -411,6 +415,16 @@ client.on('message', message => {
 	//recording code
 	if(recording && !message.author.bot && message !== undefined){
 		tellMe(message.author.username+": "+message.content);
+	}
+});
+
+client.on("voiceStateUpdate", (oldMember, newMember) => {
+	if(oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined && 
+		newMember.voiceChannel.guild.id === "545557823438848001"){
+		tellMe("User "+newMember.nickname+" has joined "+newMember.voiceChannel.name+" on your classroom");
+	}else if(newMember.voiceChannel === undefined && oldMember.voiceChannel !== undefined && 
+		oldMember.voiceChannel.guild.id === "545557823438848001"){
+		tellMe("User "+newMember.nickname+" has left "+oldMember.voiceChannel.name+" on your classroom");
 	}
 });
 
