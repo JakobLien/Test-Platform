@@ -369,8 +369,8 @@ client.on('message', message => {
 					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
 							  path: "/getEarthImagery", method: "POST",
 							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
-							  "Content-Type": "application/x-www-form-urlencoded"},
-							  "send": "coordinate=50.37,26.56"}).then(returned => {
+							  "Content-Type": "application/x-www-form-urlencoded",
+							  "coordinate": "50.37,26.56"}}).then(returned => {
 						console.log(returned, returned.contextWrites.to.status_msg);
 					});
 					break;
