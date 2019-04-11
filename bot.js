@@ -419,17 +419,19 @@ client.on('message', message => {
 });
 
 client.on("voiceStateUpdate", (oldMember, newMember) => {
-	if(newMember.id !== myId && newMember.id !== botId){
+	if(newMember.id !== botId){
 		if(oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined && 
 			newMember.voiceChannel.guild.id === "545557823438848001"){
-			tellMe("User "+newMember.nickname+" has joined "+newMember.voiceChannel.name+" on your classroom");
-			newMember.voiceChannel.join();
-			client.setTimeout(function(){
-				newMember.voiceChannel.leave();
-			}, 5000);
+			//tellMe("User "+newMember.nickname+" has joined "+newMember.voiceChannel.name+" on your classroom");
+			newMember.voiceChannel.join().then(connection => {
+				client.setTimeout(function(){
+					connection.disconnect();
+				}, 5000);
+			});
+			
 		}else if(newMember.voiceChannel === undefined && oldMember.voiceChannel !== undefined && 
 			oldMember.voiceChannel.guild.id === "545557823438848001"){
-			tellMe("User "+newMember.nickname+" has left "+oldMember.voiceChannel.name+" on your classroom");
+			//tellMe("User "+newMember.nickname+" has left "+oldMember.voiceChannel.name+" on your classroom");
 		}
 	}
 });
