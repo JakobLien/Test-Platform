@@ -373,7 +373,7 @@ client.on('message', message => {
 					*/
 					//coordinate=50.37,26.56
 					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
-							  path: "/getEarthImagery?coordinate=50.37,26.56", method: "POST",
+							  path: "/getEarthImagery?lat=50.37&lon=26.56", method: "POST",
 							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
 						console.log(returned, returned.contextWrites.to.status_msg);
@@ -423,7 +423,7 @@ client.on('message', message => {
 		tellMe(message.author.username+": "+message.content);
 	}
 });
-
+/*
 client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id !== botId){
 		if(oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined && 
@@ -442,7 +442,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 			//tellMe("User "+newMember.nickname+" has left "+oldMember.voiceChannel.name+" on your classroom");
 		}
 	}
-});
+});*/
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
