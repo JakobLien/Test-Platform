@@ -371,7 +371,7 @@ client.on('message', message => {
 						.catch(messages => console.log("shit"));
 					*/
 					//coordinate=50.37,26.56
-					sendhttpsRequest({host: "http://earth-imagery-api.herokuapp.com",
+					sendhttpsRequest({host: "earth-imagery-api.herokuapp.com",
 							  path: "/earth/imagery/?lat=40.47&lon=30.56&api_key="+
 							  "1lzeGyXF7kd9cOEg2VyJAWalIaMBg5UJ9KP96Q6R", method: "GET"}).then(returned => {
 						message.reply(returned["url"]);
