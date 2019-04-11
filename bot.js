@@ -57,7 +57,7 @@ function sendhttpsRequest(options){
 			});
 			resp.on('end', () => {
 				console.log(data);
-				resolve(JSON.parse(data));
+				resolve(data);
 			});
 		}).on("error", (err) => {
 			console.log("https error 2: " + err.message);
@@ -375,7 +375,7 @@ client.on('message', message => {
 					sendhttpsRequest({host: "api.nasa.gov",
 							  path: "/planetary/earth/imagery?lat=50.37&lon=26.56&api_key="+
 							  "1lzeGyXF7kd9cOEg2VyJAWalIaMBg5UJ9KP96Q6R", method: "GET"}).then(returned => {
-						console.log(returned, returned.contextWrites.to.status_msg);
+						message.reply(returned);
 					});
 					break;
 			}
