@@ -7,8 +7,9 @@
 		"start": "node bot.js"
 	},
 	"dependencies": {
-		"discord.js": "11.4.2",
-		"request": "2.88.0",
-		"mysql": "2.16.0"
+		"discord.js": "*",
+		"request": "*",
+		"mysql": "*",
+		"FFMPEG": "*"
 	}
 }
