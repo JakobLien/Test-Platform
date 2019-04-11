@@ -372,7 +372,7 @@ client.on('message', message => {
 						.catch(messages => console.log("shit"));
 					*/
 					//coordinate=50.37,26.56
-					sendhttpsRequest({host: "https://api.nasa.gov",
+					sendhttpsRequest({host: "api.nasa.gov",
 							  path: "/planetary/earth/imagery?lat=50.37&lon=26.56&api_key="+
 							  "1lzeGyXF7kd9cOEg2VyJAWalIaMBg5UJ9KP96Q6R", method: "GET"}).then(returned => {
 						console.log(returned, returned.contextWrites.to.status_msg);
