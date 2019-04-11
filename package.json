@@ -10,7 +10,8 @@
 		"FFMPEG": "*"
 	},
 	"engines": {
-		"node": "v10.15.3"
+		"node": "v10.15.3",
+		"npm": "6.4.1"
 	},
 	"scripts": {
 		"start": "node bot.js"
