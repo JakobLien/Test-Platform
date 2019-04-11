@@ -277,6 +277,7 @@ client.on('message', message => {
 					sendhttpsRequest({host: "earth-imagery-api.herokuapp.com", 
 							  path: "/earth/imagery/?lat="+lat+"&lon="+lon, 
 							  method: "GET"}).then(returned => {
+						console.log(returned)
 						message.reply(returned["url"]);
 					}).catch(e => {
 						console.log("Error with getPicOnCords: "+e);
