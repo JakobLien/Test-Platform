@@ -277,8 +277,11 @@ client.on('message', message => {
 					sendhttpsRequest({host: "earth-imagery-api.herokuapp.com", 
 							  path: "/earth/imagery/?lat="+lat+"&lon="+lon, 
 							  method: "GET"}).then(returned => {
-						console.log(returned)
-						message.reply(returned["url"]);
+						if(returned["msg"] !== "Internal Service Error"){
+							message.reply(returned["url"]);
+						}else{
+							message.reply("Epic fail...\nThe cords were "+lat+" and "+lon);
+						}
 					}).catch(e => {
 						console.log("Error with getPicOnCords: "+e);
 					});
