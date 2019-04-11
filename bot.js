@@ -172,7 +172,7 @@ var recording = false;
 
 //communist constants
 const comList = ["vi", "oss", "vår", "våre", "vårt"];
-const comValues = [["eg", "jeg", "du", "han", "ho"], ["me", "meg", "deg", "seg"], 
+const comValues = [["eg", "jeg", "du", "han", "ho", "æ"], ["me", "meg", "deg", "seg"], 
 		   ["min", "din", "hans", "hennes"], ["mine", "dine"], ["mitt", "ditt"]];
 
 //valid names for the sitat command
