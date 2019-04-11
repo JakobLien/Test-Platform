@@ -373,6 +373,7 @@ client.on('message', message => {
 					break;
 				case "suicide":
 					client.destroy();
+					throw new Error("Something went badly wrong!");
 					break;
 				case "runSQL":
 					try{
