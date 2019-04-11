@@ -432,7 +432,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 				client.setTimeout(function(){
 					connection.disconnect();
 				}, 5000);
-			}.catch(e){
+			}).catch(function(e){
 				console.log(e);
 			});
 			
