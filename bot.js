@@ -432,6 +432,8 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 				client.setTimeout(function(){
 					connection.disconnect();
 				}, 5000);
+			}.catch(e){
+				console.log(e);
 			});
 			
 		}else if(newMember.voiceChannel === undefined && oldMember.voiceChannel !== undefined && 
