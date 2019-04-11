@@ -372,10 +372,9 @@ client.on('message', message => {
 						.catch(messages => console.log("shit"));
 					*/
 					//coordinate=50.37,26.56
-					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
-							  path: "/getEarthImagery?lat=50.37&lon=26.56", method: "POST",
-							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
-							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
+					sendhttpsRequest({host: "https://api.nasa.gov",
+							  path: "/planetary/earth/imagery?lat=50.37&lon=26.56&api_key="+
+							  "1lzeGyXF7kd9cOEg2VyJAWalIaMBg5UJ9KP96Q6R", method: "GET"}).then(returned => {
 						console.log(returned, returned.contextWrites.to.status_msg);
 					});
 					break;
