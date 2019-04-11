@@ -25,7 +25,6 @@ client.on('ready', () => {
 			tellMe("I'm back");
 		}
 	});
-	console.log(Boolean(ffmpeg));
 });
 
 
@@ -57,6 +56,7 @@ function sendhttpsRequest(options){
 				data += chunk;
 			});
 			resp.on('end', () => {
+				console.log(data);
 				resolve(JSON.parse(data));
 			});
 		}).on("error", (err) => {
