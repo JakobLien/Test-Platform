@@ -1,17 +1,22 @@
 //add to guild: https://discordapp.com/oauth2/authorize?&client_id=530439718823788544&scope=bot&permissions=8
 //programming idead: a todo list like Nils has, hangman, tic tac toe(AI?), a text based game like in BIG???, his noen nevne depressed
 //poppe den ut ett inspirational quote, ett roast system så den velge ut en bra roast fra databasen og sikte den på den du @-e 
+
+//Important genereral stuff
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-//api for spells n stuff
+//api for general communication and stuff
 const http = require('http');
 const https = require('https');
 
 //for db stuff
-var mysql = require('mysql');
+const mysql = require('mysql');
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 connection.connect();
+
+//for joining calls and stuff
+const FFMPEG = require('ffmpeg');
 
 client.on('ready', () => {
 	console.log('I am ready!');
