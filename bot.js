@@ -25,6 +25,7 @@ client.on('ready', () => {
 			tellMe("I'm back");
 		}
 	});
+	console.log(Boolean(ffmpeg));
 });
 
 
