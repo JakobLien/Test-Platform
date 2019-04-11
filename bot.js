@@ -266,8 +266,16 @@ client.on('message', message => {
 					break;
 				//argumented
 				case "getPicOnCords":
+					let lat, lon;
+					if(command[1] === "random"){
+						lat = Math.floor(Math.random()*90);
+						lon = Math.floor(Math.random()*90);
+					}else{
+						lat = command[1];
+						lon = command[2];
+					}
 					sendhttpsRequest({host: "earth-imagery-api.herokuapp.com", 
-							  path: "/earth/imagery/?lat="+command[1]+"&lon="+command[2], 
+							  path: "/earth/imagery/?lat="+lat+"&lon="+lon, 
 							  method: "GET"}).then(returned => {
 						message.reply(returned["url"]);
 					}).catch(e => {
