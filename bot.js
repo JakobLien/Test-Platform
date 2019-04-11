@@ -155,7 +155,7 @@ function splitText(text){
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
 			"magic8ball", "fish", "picOfTheDay", //argumentless
-			"spell", "sitat", "AO"]; //argumented
+			"getPicOnCords", "spell", "sitat", "AO"]; //argumented
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 const helpList = ["Displays this list.", "Displays the creator's mood.", "Noko shit daniel ordna.", 
 		  "Opens a private messaging chat with this bot.", "Use the command followed by a question and the ball anweres", 
@@ -265,6 +265,15 @@ client.on('message', message => {
 					});
 					break;
 				//argumented
+				case "getPicOnCords":
+					sendhttpsRequest({host: "earth-imagery-api.herokuapp.com", 
+							  path: "/earth/imagery/?lat="+command[1]+"&lon="+command[2], 
+							  method: "GET"}).then(returned => {
+						message.reply(returned["url"]);
+					}).catch(e => {
+						console.log("Error with getPicOnCords: "+e);
+					});
+					break;
 				case "spell":
 					getSpellThings(command.slice(1).join("+")).then(returned => 
 						splitText(returned).forEach(function(item){
@@ -371,13 +380,6 @@ client.on('message', message => {
 						.catch(messages => console.log("shit"));
 					*/
 					//coordinate=50.37,26.56
-					sendhttpsRequest({host: "earth-imagery-api.herokuapp.com",
-							  path: "/earth/imagery/?lat=40.47&lon=30.56", method: "GET"}).then(returned => {
-						console.log(typeof(returned), returned);
-						message.reply(returned["url"]);
-					}).catch(e => {
-						console.log("42"+e);
-					});
 					break;
 			}
 		}
