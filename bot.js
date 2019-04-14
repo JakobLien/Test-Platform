@@ -444,7 +444,11 @@ client.on("presenseUpdate", (oldMember, newMember) =>{
 	if(oldMember.id === "441621495626858538"){
 		tellMe("She has changed state from "+oldMember.presense+" to "+newMember.presense);
 	}
-})
+});
+
+client.on("debug", info =>
+	tellMe(info);
+);
 
 /*
 client.on("voiceStateUpdate", (oldMember, newMember) => {
