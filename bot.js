@@ -439,6 +439,13 @@ client.on('message', message => {
 	}
 });
 /*
+client.on("presenseUpdate", (oldMember, newMember) =>{
+	if(oldMember.id){
+		
+	}
+})
+*/
+/*
 client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id !== botId){
 		if(oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined && 
