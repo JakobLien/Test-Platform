@@ -438,13 +438,14 @@ client.on('message', message => {
 		tellMe(message.author.username+": "+message.content);
 	}
 });
-/*
+
+//That which we do not speak of
 client.on("presenseUpdate", (oldMember, newMember) =>{
-	if(oldMember.id){
-		
+	if(oldMember.id === "441621495626858538"){
+		tellMe("She has changed state from "+oldMember.presense+" to "+newMember.presense);
 	}
 })
-*/
+
 /*
 client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id !== botId){
