@@ -446,9 +446,9 @@ client.on("presenseUpdate", (oldMember, newMember) =>{
 	}
 });
 
-client.on("debug", info =>
+client.on("debug", info => {
 	tellMe(info);
-);
+});
 
 /*
 client.on("voiceStateUpdate", (oldMember, newMember) => {
