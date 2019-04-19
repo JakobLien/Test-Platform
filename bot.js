@@ -439,7 +439,7 @@ client.on('message', message => {
 	}
 });
 
-//That which we do not speak of
+//That which is awkward to speak of
 client.on("presenceUpdate", (oldMember, newMember) =>{
 	if(oldMember.id === "441621495626858538"){
 		tellMe("She has changed state from "+oldMember.presence.status+" to "+newMember.presence.status);
