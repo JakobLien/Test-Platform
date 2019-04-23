@@ -444,8 +444,9 @@ client.on('message', message => {
 client.on("presenceUpdate", (oldMember, newMember) =>{
 	if(oldMember.id === "441621495626858538" && oldMember.guild.id === "563423923815972899"){
 		tellMe("She has changed state from "+oldMember.presence.status+" to "+newMember.presence.status);
-	}else if(oldMember.id == "265570029792133129" && oldMember.guild.id === "545557823438848001"){
-		tellMe("I have changed state from "+oldMember.presence.status+" to "+newMember.presence.status);
+	}else if(oldMember.id == "265570029792133129" && oldMember.guild.id === "545557823438848001" &&
+		oldMember.presence.state !== "online" && newMember.presence.state === "online"){
+		tellMe("Welcome back m'lord.");
 	}
 });
 
