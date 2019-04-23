@@ -442,10 +442,9 @@ client.on('message', message => {
 
 //That which is awkward to speak of
 client.on("presenceUpdate", (oldMember, newMember) =>{
-	if(oldMember.id === "441621495626858538"){
+	if(oldMember.id === "441621495626858538" && oldMember.guild.id === "563423923815972899"){
 		tellMe("She has changed state from "+oldMember.presence.status+" to "+newMember.presence.status);
-	}else if(oldMember.id == "265570029792133129"){
-		console.log("I'm here");
+	}else if(oldMember.id == "265570029792133129" && oldMember.guild.id === "545557823438848001"){
 		tellMe("I have changed state from "+oldMember.presence.status+" to "+newMember.presence.status);
 	}
 });
