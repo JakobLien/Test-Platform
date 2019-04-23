@@ -444,8 +444,8 @@ client.on('message', message => {
 client.on("presenceUpdate", (oldMember, newMember) =>{
 	if(oldMember.id === "441621495626858538"){
 		tellMe("She has changed state from "+oldMember.presence.status+" to "+newMember.presence.status);
-	}else if(oldMember.id == "265570029792133129" && oldMember.presence.status === "offline" && newMember.presence.status === "online"){
-		tellMe("Welcome back m'lord");
+	}else if(oldMember.id == "265570029792133129"){
+		tellMe("I have changed state from "+oldMember.presence.status+" to "+newMember.presence.status);
 	}
 });
 
