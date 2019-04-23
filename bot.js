@@ -294,12 +294,13 @@ client.on('message', message => {
 					);
 					break;
 				case "sitat":
-					if(validNames.includes(command[1])){
-						runSQL("SELECT sitat, navn FROM sitat WHERE navn='"+command[1]+
+					let name = command.slice(1).join(" ")
+					if(validNames.includes(name)){
+						runSQL("SELECT sitat, navn FROM sitat WHERE navn='"+name+
 						"' ORDER BY RAND() LIMIT 1;").then(function(returned){
 							message.reply(returned[0].navn+": "+returned[0].sitat);
 						});
-					}else if(command[1] === "navn"){
+					}else if(name === "navn"){
 						runSQL("SELECT DISTINCT navn FROM sitat;").then(function(returned){
 							let names = [];
 							returned.forEach(function(name){
@@ -307,7 +308,7 @@ client.on('message', message => {
 							})
 							message.reply("Vi har sitat fra: "+names.join(", "));
 						});
-					}else if(command[1]){
+					}else if(name){
 						 message.reply("Couldn't find that person (please use capital letters)");
 					}else{
 						runSQL("SELECT sitat, navn FROM sitat ORDER BY RAND() LIMIT 1;")
