@@ -294,7 +294,6 @@ client.on('message', message => {
 					);
 					break;
 				case "sitat":
-					validNames.forEach(function(e){tellMe(e)});
 					let name = command.slice(1).join(" ");
 					if(validNames.includes(name)){
 						runSQL("SELECT sitat, navn FROM sitat WHERE navn='"+name+
