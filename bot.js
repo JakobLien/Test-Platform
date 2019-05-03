@@ -1,6 +1,7 @@
 //add to guild: https://discordapp.com/oauth2/authorize?&client_id=530439718823788544&scope=bot&permissions=8
 //programming idead: a todo list like Nils has, hangman, tic tac toe(AI?), a text based game like in BIG???, his noen nevne depressed
 //poppe den ut ett inspirational quote, ett roast system så den velge ut en bra roast fra databasen og sikte den på den du @-e
+//GJØR TA HER: LAG REMINDER DER NOEN SKRIV MELDING OG DATO
 
 //Important genereral stuff
 const Discord = require('discord.js');
