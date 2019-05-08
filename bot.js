@@ -357,13 +357,20 @@ client.on('message', message => {
 					message.reply(responce);
 					break;
 				case "remindMe":
-					runSQL('INSERT INTO countdown VALUES ("'+message.author.id+'", "'+command[1]+
-					       '", "'+command.slice(2).join(" ")+'");').then(function(){
+					runSQL("INSERT INTO countdown VALUES ('"+message.author.id+"', '"+command[1]+
+							"', '"+command.slice(2).join(" ")+"');").then(function(){
 						message.reply("I will be shure to message you that in "+
-						new Date(2019-05-08T09:57).getTime()-new Date().getTime()+" seconds.");
+						new Date(command[1]).getTime()-new Date().getTime()+" seconds.");
+						client.setTimeout(function(id, due, message){
+							client.fetchUser(id).then(user => {
+								user.send(message)
+								runSQL("DELETE FROM countdown WHERE id = "+row.id+
+								       " AND due = "+due+";").then(function(){});
+							});
+						}, new Date(row.due).getTime()-new Date().getTime(), 
+								message.author.id, command[1], command.slice(2).join(" "));
 					});
 					break;
-					
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
