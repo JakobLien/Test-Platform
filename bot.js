@@ -28,7 +28,7 @@ client.on('ready', () => {
 	});
 	runSQL("SELECT * FROM countdown;").then(returned => {
 		returned.forEach(row => {
-			client.setTimeOut(function(row){
+			client.setTimeout(function(row){
 				client.fetchUser(row.id).then(user => {
 					user.send(row.message)
 				});
