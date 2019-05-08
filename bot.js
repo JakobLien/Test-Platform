@@ -367,7 +367,7 @@ client.on('message', message => {
 								runSQL("DELETE FROM countdown WHERE id = "+row.id+
 								       " AND due = "+due+";").then(function(){});
 							});
-						}, new Date(due).getTime()-new Date().getTime(), 
+						}, new Date(command[1]).getTime()-new Date().getTime(), 
 								message.author.id, command[1], command.slice(2).join(" "));
 					});
 					break;
