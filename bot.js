@@ -31,7 +31,7 @@ client.on('ready', () => {
 			client.setTimeout(function(row){
 				client.fetchUser(row.id).then(user => {
 					user.send(row.message)
-					runSQL("DELETE FROM countdown WHERE id = "+row.id+" AND due = "+row.due+";").then(function(){});
+					runSQL("DELETE FROM countdown WHERE id = "+row.id+" AND due = "+row.due+";").then();
 				});
 			}, new Date(row.due).getTime()-new Date().getTime(), row);
 		});
