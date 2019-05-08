@@ -395,6 +395,12 @@ client.on('message', message => {
 						.catch(messages => console.log("shit"));
 					*/
 					//coordinate=50.37,26.56
+					
+					//message.reply(Date.parse("May 8 2019 09:00:00 GMT+0200")-new Date().getTime());
+					//new Date(2019-05-08T09:57).getTime()-new Date().getTime()
+					client.setTimeout(function(){
+						message.reply(command.slice(2).join(" "))
+					}, parseInt(command[1])*1000);
 					break;
 			}
 		}
