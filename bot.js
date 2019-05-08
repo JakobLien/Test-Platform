@@ -32,7 +32,7 @@ client.on('ready', () => {
 				client.fetchUser(row.id).then(user => {
 					user.send(row.message)
 				});
-			}, new Date(row.due).getTime()-new Date().getTime());
+			}, new Date(row.due).getTime()-new Date().getTime(), row);
 		});
 	});
 });
