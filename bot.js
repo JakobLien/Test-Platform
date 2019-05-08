@@ -31,6 +31,7 @@ client.on('ready', () => {
 			client.setTimeout(function(row){
 				client.fetchUser(row.id).then(user => {
 					user.send(row.message)
+					runSQL("DELETE FROM countdown WHERE id = "+row.id+" AND due = "+row.due+";").then(function(){});
 				});
 			}, new Date(row.due).getTime()-new Date().getTime(), row);
 		});
@@ -165,7 +166,7 @@ function splitText(text){
 //valid commands
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
 			"magic8ball", "fish", "picOfTheDay", //argumentless
-			"getPicOnCords", "spell", "sitat", "AO"]; //argumented
+			"getPicOnCords", "spell", "sitat", "AO", "remindMe"]; //argumented
 const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
 const helpList = ["Displays this list.", "Displays the creator's mood.", "Noko shit daniel ordna.", 
 		  "Opens a private messaging chat with this bot.", "Use the command followed by a question and the ball anweres", 
@@ -355,6 +356,14 @@ client.on('message', message => {
 					responce += "Overall you dealt "+sumDmg;
 					message.reply(responce);
 					break;
+				case "remindMe":
+					runSQL('INSERT INTO countdown VALUES ("'+message.author.id+'", "'+command[1]+
+					       '", "'+command.slice(2).join(" ")+'");').then(function(){
+						message.reply("I will be shure to message you that in "+
+						new Date(2019-05-08T09:57).getTime()-new Date().getTime()+" seconds.");
+					});
+					break;
+					
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
