@@ -26,6 +26,15 @@ client.on('ready', () => {
 			tellMe("I'm back");
 		}
 	});
+	runSQL("SELECT * FROM countdown;").then(returned => {
+		returned.forEach(row => {
+			client.setTimeOut(function(row){
+				client.fetchUser(row.id).then(user => {
+					user.send(row.message)
+				});
+			}, new Date(row.due).getTime()-new Date().getTime());
+		});
+	});
 });
 
 
