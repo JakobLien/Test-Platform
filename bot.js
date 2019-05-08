@@ -360,11 +360,11 @@ client.on('message', message => {
 					runSQL("INSERT INTO countdown VALUES ('"+message.author.id+"', '"+command[1]+
 							"', '"+command.slice(2).join(" ")+"');").then(function(){
 						message.reply("I will be shure to message you that in "+
-						(new Date(command[1]).getTime()-new Date().getTime())+" seconds.");
+						(new Date(command[1]).getTime()-new Date().getTime())/1000+" seconds.");
 						client.setTimeout(function(id, due, message){
 							client.fetchUser(id).then(user => {
 								user.send(message)
-								runSQL("DELETE FROM countdown WHERE id = "+row.id+
+								runSQL("DELETE FROM countdown WHERE id = "+id+
 								       " AND due = "+due+";").resolve();
 							});
 						}, new Date(command[1]).getTime()-new Date().getTime(), 
