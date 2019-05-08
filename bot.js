@@ -31,7 +31,7 @@ client.on('ready', () => {
 			client.setTimeout(function(row){
 				client.fetchUser(row.id).then(user => {
 					user.send(row.message)
-					runSQL("DELETE FROM countdown WHERE id = "+row.id+" AND due = "+row.due+";").resolve();
+					runSQL("DELETE FROM countdown WHERE id = '"+row.id+"' AND due = '"+row.due+"';").resolve();
 				});
 			}, new Date(row.due).getTime()-new Date().getTime(), row);
 		});
@@ -364,8 +364,8 @@ client.on('message', message => {
 						client.setTimeout(function(id, due, message){
 							client.fetchUser(id).then(user => {
 								user.send(message)
-								runSQL("DELETE FROM countdown WHERE id = "+id+
-								       " AND due = "+due+";").resolve();
+								runSQL("DELETE FROM countdown WHERE id = '"+id+
+								       "' AND due = '"+due+"';").resolve();
 							});
 						}, new Date(command[1]).getTime()-new Date().getTime(), 
 								message.author.id, command[1], command.slice(2).join(" "));
