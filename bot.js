@@ -223,9 +223,14 @@ client.on('message', message => {
 			switch(keyword){
 				//various stuff
 				case "help":
-					if(publicCommands.includes(command[1])){
-						message.reply("The "+command[1]+" command has the following description: "+
-							     helpList[publicCommands.indexOf(command[1])]);
+					if(publicCommands.includes(command[1]) || (privateCommands.includes(command[1]) && 
+					message.author.id===myId)){
+						runSQL("SELECT description FROM commands WHERE keyword='"+command[1]+
+						"';").then(returned => {
+							message.reply(command[1]+" has this description: "+returned[0].description);
+						});
+					}else if(command[1]){
+						message.reply("I did not recognice the command "+command[1]);
 					}else{
 						message.reply("All public commands: "+publicCommands.join(", ")+"\n"+
 							     "Write !help [a command] to see that command's description.");
