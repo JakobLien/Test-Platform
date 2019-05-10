@@ -168,13 +168,13 @@ const publicCommands = [];
 const privateCommands = [];
 runSQL("SELECT keyword FROM commands WHERE admin=FALSE;").then(returned => {
 	returned.forEach(element => {
-		publicCommands.push(element);
+		publicCommands.push(element.keyword);
 	});
 });
 
 runSQL("SELECT keyword FROM commands WHERE admin=TRUE;").then(returned => {
 	returned.forEach(element => {
-		publicCommands.push(element);
+		publicCommands.push(element.keyword);
 	});
 });
 
