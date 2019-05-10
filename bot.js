@@ -167,7 +167,7 @@ function splitText(text){
 const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
 			"magic8ball", "fish", "picOfTheDay", //argumentless
 			"getPicOnCords", "spell", "sitat", "AO", "remindMe"]; //argumented
-const privateCommands = ["me", "us", "start", "stop", "suicide", "runSQL", "test"];
+const privateCommands = ["me", "us", "suicide", "runSQL", "test"];
 const helpList = ["Displays this list.", "Displays the creator's mood.", "Noko shit daniel ordna.", 
 		  "Opens a private messaging chat with this bot.", "Use the command followed by a question and the ball anweres", 
 		  "Get spell info(capital letters)", "Get a quote from Immy, and sometimes other people(write their name)", 
@@ -390,14 +390,6 @@ client.on('message', message => {
 					message.channel.send("Bot retaken by the people!");
 					iDecide = false;
 					break;
-				case "start":
-					tellMe("Started recording messages.");
-					recording = true;
-					break;
-				case "stop":
-					tellMe("Stopped recording messages.");
-					recording = false;
-					break;
 				case "suicide":
 					client.destroy();
 					throw new Error("Something went badly wrong!");
@@ -464,11 +456,6 @@ client.on('message', message => {
 		if(message.content !== words){
 			message.reply("Did you mean:\n"+words);
 		}
-	}
-	
-	//recording code
-	if(recording && !message.author.bot && message !== undefined){
-		tellMe(message.author.username+": "+message.content);
 	}
 });
 
