@@ -164,16 +164,19 @@ function splitText(text){
 }
 
 //valid commands
-const publicCommands = ["help", "trist", "nut", "openPM", //various stuff
-			"magic8ball", "fish", "picOfTheDay", //argumentless
-			"getPicOnCords", "spell", "sitat", "AO", "remindMe"]; //argumented
-const privateCommands = ["me", "us", "suicide", "runSQL", "test"];
-const helpList = ["Displays this list.", "Displays the creator's mood.", "Noko shit daniel ordna.", 
-		  "Opens a private messaging chat with this bot.", "Use the command followed by a question and the ball anweres", 
-		  "Get spell info(capital letters)", "Get a quote from Immy, and sometimes other people(write their name)", 
-		  "Roll a d20, and on a nat 20 you get a phrase which triggers a response from the bot.", 
-		  "Use the animate object spell, arguments: Armor_Class Level_Cast_At", 
-		  "Get Nasa's daily image, and a decription explaining it"];
+const publicCommands = [];
+const privateCommands = [];
+runSQL("SELECT commands FROM commands WHERE admin=FALSE;").then(returned => {
+	returned.forEach(element => {
+		publicCommands.push(element);
+	});
+});
+
+runSQL("SELECT commands FROM commands WHERE admin=FALSE;").then(returned => {
+	returned.forEach(element => {
+		publicCommands.push(element);
+	});
+});
 
 //controll variables
 const myId = "265570029792133129";
