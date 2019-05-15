@@ -275,14 +275,16 @@ client.on('message', message => {
 					break;
 				case "picOfTheDay":
 					sendhttpsRequest({host: "api.nasa.gov/",
-							  path: "planetary/apod", method: "GET",
-							  headers: {"api_key": "hZLeoMoQXjEAaUqCzM2ZGmaylTCkND4oMCnGxuPD",
-							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
+							  path: "planetary/apod?api_key=hZLeoMoQXjEAaUqCzM2ZGmaylTCkND4oMCnGxuPD", method: "GET"}).then(returned => {
 						/*message.reply(returned.contextWrites.to.title+"\n"+
 							      returned.contextWrites.to.explanation+"\n"+
 							      returned.contextWrites.to.url);*/
 						console.log(returned, returned.conextWrites);
 					});
+					
+					/*headers: {"api_key": "hZLeoMoQXjEAaUqCzM2ZGmaylTCkND4oMCnGxuPD",
+							  "Content-Type": "application/x-www-form-urlencoded"}
+					*/
 					break;
 				//argumented
 				case "spell":
