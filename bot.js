@@ -370,10 +370,8 @@ client.on('message', message => {
 								      {files: [returned.pronunciation]});
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach(word => {
-									message.reply(meaning+": "+
-										      word.definition+
-										      "\nExample: "+
-										      word.example);
+									message.channel.send(meaning+": "+word.definition);
+									if(word.example){message.channel.send(":xample: "+word.example)}
 								});
 							}
 						});
