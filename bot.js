@@ -369,17 +369,14 @@ client.on('message', message => {
 							
 							message.reply("Uttale: "+returned.pronunciation+"\nLydfil:", 
 								      {files: [returned.pronunciation]});
-							returned.noun.forEach(noun => {
-								message.reply("Noun: "+noun.definition+"\nExample: "+noun.example);
-							});
-							returned.verb.forEach(verb => {
-								message.reply("Verb: "+verb.definition+"\nExample: "+verb.example);
-							});
-							returned.adjective.forEach(adjective => {
-								message.reply("Adjective: "+adjective.definition+"\nExample: "+
-									adjective.example);
-							});
-							
+							for(meaning in returned.meaning){
+								returned.meaning[meaning].forEach(noun => {
+									message.reply(meaning+": "+
+										      returned.meaning[meaning].definition+
+										      "\nExample: "+
+										      returned.meaning[meaning].example);
+								});
+							}
 						});
 					}else{
 						message.reply("Please follow !def with a word to define");
