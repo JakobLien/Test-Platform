@@ -359,6 +359,16 @@ client.on('message', message => {
 								message.author.id, command[1], command.slice(2).join(" "));
 					});
 					break;
+				case "def":
+					if(command[1]){
+						sendhttpsRequest({host: "googledictionaryapi.eu-gb.mybluemix.net",
+								  path: "/?define="+command[1]+"&lang=en", 
+								  method: "GET"}).then(returned => {
+							console.log(returned);
+						});
+					}else{
+						message.reply("Please follow !def with a word to define");
+					}
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
