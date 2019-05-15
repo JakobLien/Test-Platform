@@ -368,7 +368,7 @@ client.on('message', message => {
 							console.log(JSON.stringify(returned));
 							
 							message.reply("Uttale: "+returned.pronunciation+"\nLydfil:", 
-								      {files: [returned.pronunciation]});'
+								      {files: [returned.pronunciation]});
 							element.noun.forEach(noun => {
 								message.reply("Noun: "+noun.definition+"\nExample: "+noun.example);
 							});
