@@ -369,13 +369,13 @@ client.on('message', message => {
 							
 							message.reply("Uttale: "+returned.pronunciation+"\nLydfil:", 
 								      {files: [returned.pronunciation]});
-							element.noun.forEach(noun => {
+							returned.noun.forEach(noun => {
 								message.reply("Noun: "+noun.definition+"\nExample: "+noun.example);
 							});
-							element.verb.forEach(verb => {
+							returned.verb.forEach(verb => {
 								message.reply("Verb: "+verb.definition+"\nExample: "+verb.example);
 							});
-							element.adjective.forEach(adjective => {
+							returned.adjective.forEach(adjective => {
 								message.reply("Adjective: "+adjective.definition+"\nExample: "+
 									adjective.example);
 							});
