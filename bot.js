@@ -278,8 +278,7 @@ client.on('message', message => {
 							  path: "/planetary/apod?api_key=hZLeoMoQXjEAaUqCzM2ZGmaylTCkND4oMCnGxuPD", 
 							  method: "GET"}).then(returned => {
 						console.log(returned);
-						message.reply(returned.title+"\n"+
-							      returned.explanation);
+						message.reply("**"+returned.title+"**\n"+returned.explanation);
 						message.reply({files:[returned.url]});
 					});
 					
