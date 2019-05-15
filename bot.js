@@ -366,15 +366,14 @@ client.on('message', message => {
 								  method: "GET"}).then(returned => {
 							returned = returned[0]
 							console.log(JSON.stringify(returned));
-							
 							message.reply("Uttale: "+returned.pronunciation+"\nLydfil:", 
 								      {files: [returned.pronunciation]});
 							for(meaning in returned.meaning){
-								returned.meaning[meaning].forEach(noun => {
+								returned.meaning[meaning].forEach(word => {
 									message.reply(meaning+": "+
-										      returned.meaning[meaning].definition+
+										      word.definition+
 										      "\nExample: "+
-										      returned.meaning[meaning].example);
+										      word.example);
 								});
 							}
 						});
