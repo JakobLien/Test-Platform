@@ -366,7 +366,7 @@ client.on('message', message => {
 								  method: "GET"}).then(returned => {
 							returned = returned[0]
 							console.log(JSON.stringify(returned));
-							message.reply("Uttale: "+returned.pronunciation+"\nLydfil:", 
+							message.reply("Uttale: "+returned.phonetic+"\nLydfil:", 
 								      {files: [returned.pronunciation]});
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach(word => {
