@@ -373,7 +373,8 @@ client.on('message', message => {
 									if(word.example){response += "Example: "+word.example+"\n";}
 								});
 							}
-							response += "Uttale: "+returned.phonetic+"\nLydfil:";
+							if(returned.phonetic){response += "Uttale: "+returned.phonetic}
+							if(returned.pronunciation){+"\nLydfil: "};
 							message.reply(response);
 							message.reply({files: [returned.pronunciation]})
 						});
