@@ -274,7 +274,7 @@ client.on('message', message => {
 					}
 					break;
 				case "picOfTheDay":
-					sendhttpsRequest({host: "https://api.nasa.gov/",
+					sendhttpsRequest({host: "api.nasa.gov/",
 							  path: "planetary/apod", method: "GET",
 							  headers: {"api_key": "hZLeoMoQXjEAaUqCzM2ZGmaylTCkND4oMCnGxuPD",
 							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
