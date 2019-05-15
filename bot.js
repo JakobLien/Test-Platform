@@ -317,7 +317,7 @@ client.on('message', message => {
 					}
 					break;
 				case "AO":
-					let responce = "";
+					let response = "";
 					let sumDmg = 0;
 					let lvl = 5
 					if(command[2]<5){
@@ -330,19 +330,19 @@ client.on('message', message => {
 						if(d20 === 28){
 							let dmg = rollDice(4)+rollDice(4)+4;
 							sumDmg += dmg;
-							responce += "A natural fucking twenty hits, dealing "+dmg+" damage \n";
+							response += "A natural fucking twenty hits, dealing "+dmg+" damage \n";
 						}else if(d20 === 9){
-							responce += "A natural fucking one misses \n";
+							response += "A natural fucking one misses \n";
 						}else if(d20 >= command[1]){
 							let dmg = rollDice(4)+4;
 							sumDmg += dmg;
-							responce += "A "+d20+" hits, dealing "+dmg+" damage \n";
+							response += "A "+d20+" hits, dealing "+dmg+" damage \n";
 						}else{
-							responce += "A "+d20+" misses \n";
+							response += "A "+d20+" misses \n";
 						}
 					}
-					responce += "Overall you dealt "+sumDmg;
-					message.reply(responce);
+					response += "Overall you dealt "+sumDmg;
+					message.reply(response);
 					break;
 				case "remindMe":
 					runSQL("INSERT INTO countdown VALUES ('"+message.author.id+"', '"+command[1]+
