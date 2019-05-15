@@ -364,7 +364,7 @@ client.on('message', message => {
 						sendhttpsRequest({host: "googledictionaryapi.eu-gb.mybluemix.net",
 								  path: "/?define="+command[1]+"&lang=en", 
 								  method: "GET"}).then(returned => {
-							console.log(returned);
+							console.log(JSON.stringify(returned));
 						});
 					}else{
 						message.reply("Please follow !def with a word to define");
