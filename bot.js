@@ -274,7 +274,7 @@ client.on('message', message => {
 					}
 					break;
 				case "picOfTheDay":
-					sendhttpsRequest({host: "NasaAPIdimasV1.p.rapidapi.com",
+					sendhttpsRequest({host: "earth-imagery-api.herokuapp.com",
 							  path: "/getPictureOfTheDay", method: "POST",
 							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
