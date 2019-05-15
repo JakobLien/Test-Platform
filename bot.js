@@ -279,9 +279,9 @@ client.on('message', message => {
 							  headers: {"api_key": "hZLeoMoQXjEAaUqCzM2ZGmaylTCkND4oMCnGxuPD"}, 
 							  method: "GET"}).then(returned => {
 						console.log(returned);
-						message.reply(returned.contextWrites.to.title+"\n"+
-							      returned.contextWrites.to.explanation+"\n"+
-							      returned.contextWrites.to.url);
+						message.reply(returned.title+"\n"+
+							      returned.explanation);
+						message.reply({files:[returned.url]});
 					});
 					
 					
