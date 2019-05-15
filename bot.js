@@ -47,11 +47,14 @@ function sendhttpRequest(link){
 				data += chunk;
 			});
 			resp.on('end', () => {
-				resolve(JSON.parse(data));
-
+				if(data.startsWith("<!DOCTYPE html>")){
+					reject(data);
+				}else{
+					resolve(JSON.parse(data));
+				}
 			});
 		}).on("error", (err) => {
-			console.log("http error 1: " + err.message);
+			console.log("http error: " + err.message);
 		});
 	});
 }
@@ -73,7 +76,7 @@ function sendhttpsRequest(options){
 				}
 			});
 		}).on("error", (err) => {
-			console.log("https error 2: " + err.message);
+			console.log("https error: " + err.message);
 		}).end();
 	});
 }
