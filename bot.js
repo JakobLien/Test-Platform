@@ -371,7 +371,7 @@ client.on('message', message => {
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach(word => {
 									message.channel.send(meaning+": "+word.definition);
-									if(word.example){message.channel.send(":xample: "+word.example)}
+									if(word.example){message.channel.send("Example: "+word.example)}
 								});
 							}
 						});
