@@ -369,11 +369,11 @@ client.on('message', message => {
 							let response = "";
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach(word => {
-									response += meaning+": "+word.definition+«\n»;
-									if(word.example){response += "Example: "+word.example «\n»;}
+									response += meaning+": "+word.definition+"\n";
+									if(word.example){response += "Example: "+word.example+"\n";}
 								});
 							}
-							response += "Uttale: "+returned.phonetic+"\nLydfil: ";
+							response += "Uttale: "+returned.phonetic+"\nLydfil:";
 							message.reply(response);
 							message.reply({files: [returned.pronunciation]})
 						});
