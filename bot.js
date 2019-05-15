@@ -278,9 +278,9 @@ client.on('message', message => {
 							  path: "/getPictureOfTheDay", method: "POST",
 							  headers: {"X-RapidAPI-Key": "bb17e77c02mshcfda7d104f3aa6ep13011djsn3ade2fc0025b",
 							  "Content-Type": "application/x-www-form-urlencoded"}}).then(returned => {
-						message.reply(returned.contextWrites.to.title+"\n"+
+						/*message.reply(returned.contextWrites.to.title+"\n"+
 							      returned.contextWrites.to.explanation+"\n"+
-							      returned.contextWrites.to.url);
+							      returned.contextWrites.to.url);*/
 						console.log(returned, returned.conextWrites);
 					});
 					break;
