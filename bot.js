@@ -364,7 +364,22 @@ client.on('message', message => {
 						sendhttpsRequest({host: "googledictionaryapi.eu-gb.mybluemix.net",
 								  path: "/?define="+command[1]+"&lang=en", 
 								  method: "GET"}).then(returned => {
+							returned = returned[0]
 							console.log(JSON.stringify(returned));
+							
+							message.reply("Uttale: "+returned.pronunciation+"\nLydfil:", 
+								      {files: [returned.pronunciation]});'
+							element.noun.forEach(noun => {
+								message.reply("Noun: "+noun.definition+"\nExample: "+noun.example);
+							});
+							element.verb.forEach(verb => {
+								message.reply("Verb: "+verb.definition+"\nExample: "+verb.example);
+							});
+							element.adjective.forEach(adjective => {
+								message.reply("Adjective: "+adjective.definition+"\nExample: "+
+									adjective.example);
+							});
+							
 						});
 					}else{
 						message.reply("Please follow !def with a word to define");
