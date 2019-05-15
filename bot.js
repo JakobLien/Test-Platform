@@ -66,7 +66,11 @@ function sendhttpsRequest(options){
 				data += chunk;
 			});
 			resp.on('end', () => {
-				resolve(JSON.parse(data));
+				if(data.startsWith("<!DOCTYPE html>")){
+					reject(data);
+				}else{
+					resolve(JSON.parse(data));
+				}
 			});
 		}).on("error", (err) => {
 			console.log("https error 2: " + err.message);
@@ -376,6 +380,8 @@ client.on('message', message => {
 							if(returned.pronunciation){+"\nLydfil: "};
 							message.reply(response);
 							message.reply({files: [returned.pronunciation]})
+						}, returned => {
+							message.reply("Couldn't find that word.");
 						});
 					}else{
 						message.reply("Please follow !def with a word to define");
