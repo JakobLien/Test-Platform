@@ -375,7 +375,7 @@ client.on('message', message => {
 							let response = "**"+returned.word+"**\n";
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach((word, index) => {
-									response += index+""+meaning+": "+word.definition+"\n";
+									response += "**"+index+"**. "+meaning+": "+word.definition+"\n";
 									if(word.example){response += "Example: "+word.example+"\n";}
 								});
 							}
