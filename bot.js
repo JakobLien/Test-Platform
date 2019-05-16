@@ -372,10 +372,10 @@ client.on('message', message => {
 								  method: "GET"}).then(returned => {
 							returned = returned[0];
 							console.log(JSON.stringify(returned));
-							let response = "";
+							let response = "**"+returned.word+"**\n";
 							for(meaning in returned.meaning){
-								returned.meaning[meaning].forEach(word => {
-									response += meaning+": "+word.definition+"\n";
+								returned.meaning[meaning].forEach((word, index) => {
+									response += index+""+meaning+": "+word.definition+"\n";
 									if(word.example){response += "Example: "+word.example+"\n";}
 								});
 							}
