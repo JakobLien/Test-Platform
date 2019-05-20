@@ -377,7 +377,7 @@ client.on('message', message => {
 							if(returned[0]){
 								returned = returned[0];
 							}
-							console.log(JSON.stringify(returned));
+							//console.log(JSON.stringify(returned));
 							let response = "**"+returned.word+"**\n";
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach((word, index) => {
