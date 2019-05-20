@@ -387,8 +387,12 @@ client.on('message', message => {
 								});
 							}
 							if(returned.phonetic){response += "Uttale: "+returned.phonetic}
-							if(returned.pronunciation){+"\nLydfil: "};
-							message.reply(response, {files: [returned.pronunciation]})
+							if(returned.pronunciation){
+								response += "\nLydfil: ";
+								message.reply(response, {files: [returned.pronunciation]})
+							}else{
+								message.reply(response);
+							}
 						}, returned => {
 							message.reply("Couldn't find that word.");
 						});
