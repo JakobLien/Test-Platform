@@ -369,8 +369,10 @@ client.on('message', message => {
 					break;
 				case "def":
 					if(command[1]){
+						let lang = "en";
+						if(command[2]){lang="de";}
 						sendhttpsRequest({host: "googledictionaryapi.eu-gb.mybluemix.net",
-								  path: "/?define="+command[1]+"&lang=en", 
+								  path: "/?define="+command[1]+"&lang="+lang, 
 								  method: "GET"}).then(returned => {
 							returned = returned[0];
 							console.log(JSON.stringify(returned));
