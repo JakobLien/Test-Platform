@@ -370,7 +370,7 @@ client.on('message', message => {
 				case "def":
 					if(command[1]){
 						let lang = "en";
-						if(command[2]){lang="de";}
+						if(command[2]){lang=command[2];}
 						sendhttpsRequest({host: "googledictionaryapi.eu-gb.mybluemix.net",
 								  path: "/?define="+command[1]+"&lang="+lang, 
 								  method: "GET"}).then(returned => {
