@@ -438,13 +438,6 @@ client.on('message', message => {
 						.then(messages => message.reply((messages.array()[0].content)))
 						.catch(messages => console.log("shit"));
 					*/
-					//coordinate=50.37,26.56
-					
-					//message.reply(Date.parse("May 8 2019 09:00:00 GMT+0200")-new Date().getTime());
-					//new Date(2019-05-08T09:57).getTime()-new Date().getTime()
-					client.setTimeout(function(){
-						message.reply(command.slice(2).join(" "))
-					}, parseInt(command[1])*1000);
 					break;
 			}
 		}
@@ -483,13 +476,6 @@ client.on('message', message => {
 		if(message.content !== words){
 			message.reply("Did you mean:\n"+words);
 		}
-	}
-});
-
-//That which is awkward to speak of
-client.on("presenceUpdate", (oldMember, newMember) =>{
-	if(oldMember.id === "441621495626858538" && oldMember.guild.id === "563423923815972899"){
-		tellMe("She has changed state from "+oldMember.presence.status+" to "+newMember.presence.status);
 	}
 });
 
