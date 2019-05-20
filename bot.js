@@ -374,8 +374,8 @@ client.on('message', message => {
 						sendhttpsRequest({host: "googledictionaryapi.eu-gb.mybluemix.net",
 								  path: "/?define="+command[1]+"&lang="+lang, 
 								  method: "GET"}).then(returned => {
-							returned = returned[0];
 							console.log(JSON.stringify(returned));
+							returned = returned[0];
 							let response = "**"+returned.word+"**\n";
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach((word, index) => {
