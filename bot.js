@@ -235,7 +235,7 @@ client.on('message', message => {
 					message.author.id===myId)){
 						runSQL("SELECT description FROM commands WHERE keyword='"+command[1]+
 						"';").then(returned => {
-							message.reply(command[1]+" has this description: "+returned[0].description);
+							message.reply(command[1]+" has this description:\n"+returned[0].description);
 						});
 					}else if(command[1]){
 						message.reply("I did not recognice the command "+command[1]);
