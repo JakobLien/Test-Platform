@@ -190,7 +190,6 @@ runSQL("SELECT keyword FROM commands WHERE admin=TRUE;").then(returned => {
 const myId = "265570029792133129";
 const botId = "530439718823788544";
 var iDecide = false;
-var recording = false;
 
 //communist constants
 const comList = ["vi", "oss", "vår", "våre", "vårt"];
