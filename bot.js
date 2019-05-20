@@ -438,9 +438,12 @@ client.on('message', message => {
 						.then(messages => message.reply((messages.array()[0].content)))
 						.catch(messages => console.log("shit"));
 					*/
-					client.channels.get("530443400185643016").join().then(connection => {
+					console.log("got here");
+					console.log(client.channels.get("530443400185643016"));
+					let conection = client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
 					}).catch(console.error);
+					console.log(conection);
 					break;
 			}
 		}
