@@ -2,6 +2,7 @@
 //programming idead: a todo list like Nils has, hangman, tic tac toe(AI?), a text based game like in BIG???, his noen nevne depressed
 //poppe den ut ett inspirational quote, ett roast system så den velge ut en bra roast fra databasen og sikte den på den du @-e
 //Programmer en ting som lar noen sende en command og det botten svare til noen andre. Eks: "!send @ting !nut"
+//Når noen skriv et adjektiv svarer botten: "Du er [adjektiv]";
 
 //Important genereral stuff
 const Discord = require('discord.js');
