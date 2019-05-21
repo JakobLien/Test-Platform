@@ -9,9 +9,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 //api for general communication and stuff
-/*const http = require('http');
+const http = require('http');
 const https = require('https');
-*/
+
 
 //for db stuff
 const mysql = require('mysql');
