@@ -436,10 +436,6 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					/*message.channel.fetchMessages({before: message.id, limit: 1})
-						.then(messages => message.reply((messages.array()[0].content)))
-						.catch(messages => console.log("shit"));
-					*/
 					client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
 						connection.playFile("./National - Anthem.mp3");
@@ -485,26 +481,17 @@ client.on('message', message => {
 	}
 });
 
-/*
+
 client.on("voiceStateUpdate", (oldMember, newMember) => {
-	if(newMember.id !== botId){
-		if(oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined && 
-			newMember.voiceChannel.guild.id === "545557823438848001"){
-			//tellMe("User "+newMember.nickname+" has joined "+newMember.voiceChannel.name+" on your classroom");
-			newMember.voiceChannel.join().then(connection => {
-				client.setTimeout(function(){
-					connection.disconnect();
-				}, 5000);
-			}).catch(function(e){
-				console.log(e);
-			});
-			
-		}else if(newMember.voiceChannel === undefined && oldMember.voiceChannel !== undefined && 
-			oldMember.voiceChannel.guild.id === "545557823438848001"){
-			//tellMe("User "+newMember.nickname+" has left "+oldMember.voiceChannel.name+" on your classroom");
-		}
+	if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
+		newMember.voiceChannel.join().then(connection => {
+			tellMe("YANA");
+		});
+	}else if(newMember.id === "265570029792133129" && oldMember.voiceChannel !== undefined && 
+	newMember.voiceChannel === undefined){
+		oldMember.voiceChannel.join();
 	}
-});*/
+});
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
