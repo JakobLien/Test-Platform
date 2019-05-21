@@ -400,6 +400,7 @@ client.on('message', message => {
 					}else{
 						message.reply("Please follow !def with a word to define");
 					}
+					break;
 			}
 		}else if(privateCommands.includes(keyword) && message.author.id === myId){
 			//private commands
@@ -441,7 +442,7 @@ client.on('message', message => {
 						connection.playFile("./National - Anthem.mp3");
 					}).catch(console.error);
 					*/
-					console.log(client.voiceConnections.first);
+					console.log(client.voiceConnections.first().playFile("./National - Anthem.mp3"));
 					break;
 			}
 		}
