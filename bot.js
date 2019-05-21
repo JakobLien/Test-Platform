@@ -182,7 +182,7 @@ runSQL("SELECT keyword FROM commands WHERE admin=FALSE;").then(returned => {
 
 runSQL("SELECT keyword FROM commands WHERE admin=TRUE;").then(returned => {
 	returned.forEach(element => {
-		publicCommands.push(element.keyword);
+		privateCommands.push(element.keyword);
 	});
 });
 
