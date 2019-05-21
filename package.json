@@ -7,7 +7,7 @@
 		"discord.js": "*",
 		"request": "*",
 		"mysql": "*",
-		"bufferutil": "*";
+		"bufferutil": "*",
 		"erlpack": "*",
 		"node-opus": "*",
 		"opusscript": "*",
