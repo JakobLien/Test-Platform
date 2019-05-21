@@ -441,7 +441,7 @@ client.on('message', message => {
 						connection.playFile("./National - Anthem.mp3");
 					}).catch(console.error);
 					*/
-					client.voiceConnections.first.playFile("./National - Anthem.mp3");
+					console.log(client.voiceConnections.first);
 					break;
 			}
 		}
