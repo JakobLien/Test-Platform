@@ -7,7 +7,8 @@
 		"discord.js": "*",
 		"request": "*",
 		"mysql": "*",
-		"ffmpeg": "*"
+		"ffmpeg": "*",
+		"opus": "*"
 	},
 	"scripts": {
 		"start": "node bot.js"
