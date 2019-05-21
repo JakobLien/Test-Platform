@@ -436,10 +436,12 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					client.channels.get("530443400185643016").join().then(connection => {
+					/*client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
 						connection.playFile("./National - Anthem.mp3");
 					}).catch(console.error);
+					*/
+					client.voiceConnections.first.playFile("./National - Anthem.mp3");
 					break;
 			}
 		}
@@ -484,9 +486,7 @@ client.on('message', message => {
 
 client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
-		newMember.voiceChannel.join().then(connection => {
-			tellMe("YANA");
-		});
+		newMember.voiceChannel.join().then(connection => {});
 	}else if(newMember.id === "265570029792133129" && oldMember.voiceChannel !== undefined && 
 	newMember.voiceChannel === undefined){
 		oldMember.voiceChannel.leave();
