@@ -438,11 +438,10 @@ client.on('message', message => {
 						.then(messages => message.reply((messages.array()[0].content)))
 						.catch(messages => console.log("shit"));
 					*/
-					let connection = client.channels.get("530443400185643016").join().then(connection => {
+					client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
+						connection.playFile("./National - Anthem.mp3");
 					}).catch(console.error);
-					console.log("Got here!");
-					connection.playFile("./National - Anthem.mp3");
 					break;
 			}
 		}
