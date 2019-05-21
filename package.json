@@ -6,7 +6,15 @@
 	"dependencies": {
 		"discord.js": "*",
 		"request": "*",
-		"mysql": "*"
+		"mysql": "*",
+		"bufferutil": "*";
+		"erlpack": "*",
+		"node-opus": "*",
+		"opusscript": "*",
+		"ffmpeg": "*",
+		"sodium": "*",
+		"libsodium-wrappers": "*",
+		"uws": "*"
 	},
 	"scripts": {
 		"start": "node bot.js"
