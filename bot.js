@@ -489,7 +489,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 		});
 	}else if(newMember.id === "265570029792133129" && oldMember.voiceChannel !== undefined && 
 	newMember.voiceChannel === undefined){
-		oldMember.voiceChannel.join();
+		oldMember.voiceChannel.leave();
 	}
 });
 
