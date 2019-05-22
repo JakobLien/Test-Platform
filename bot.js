@@ -443,7 +443,7 @@ client.on('message', message => {
 					}).catch(console.error);
 					*/
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
-					client.voiceConnections.first().playArbitraryInput("Why are we still here? Just to suffer?");
+					client.voiceConnections.first().playArbitraryInput("why are we still here just to suffer");
 					break;
 			}
 		}
