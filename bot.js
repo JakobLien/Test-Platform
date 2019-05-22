@@ -443,8 +443,7 @@ client.on('message', message => {
 					}).catch(console.error);
 					*/
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
-					client.voiceConnections.first().playArbitraryInput(
-						"https://github.com/jlien11/Test-Platform/blob/master/National%20-%20Anthem.mp3");
+					client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
 					break;
 			}
 		}
