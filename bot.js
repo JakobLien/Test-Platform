@@ -444,9 +444,13 @@ client.on('message', message => {
 					*/
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
-					sendhttpRequest("http://open.spotify.com/track/6rqhFgbbKwnb9MLmUQDhG6").then(returned => {
+					/*sendhttpRequest("http://open.spotify.com/track/6rqhFgbbKwnb9MLmUQDhG6").then(returned => {
 						console.log(returned);
 					});
+					https://developer.spotify.com/documentation/web-api/
+					https://developer.spotify.com/documentation/web-api/reference-beta/
+					https://api.spotify.com/v1/tracks/6gf5PPir6CwXMF991iOHI6?Authorization=
+					*/
 					break;
 			}
 		}
