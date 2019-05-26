@@ -466,7 +466,11 @@ client.on('message', message => {
 			message.content.toLowerCase().replace("'", "\\'")+"');").then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					splitText(returned[i].responses).forEach(function(item){
-						message.reply(item);
+						if(item.startsWith("http")){
+							message.reply({files:[item]});
+						}else{
+							message.reply(item);
+						}
 					});
 				}
 			});
