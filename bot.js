@@ -460,12 +460,10 @@ client.on('message', message => {
 	
 	//Reply to phraces
 	if(message.author.id !== botId){
-		//Phraces from database
+		//Phrases from reply database
 		try{
-			//SELECT * FROM Reply WHERE 0 < LOCATE(triggers, "adsfjadsoifjoisadfoij399asdasd");
-			let promise1 = runSQL("SELECT responses FROM Reply WHERE 0 < LOCATE(triggers, '"+
-					      message.content.toLowerCase().replace("'", "\\'")+"');");
-			promise1.then(function(returned){
+			runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+
+			message.content.toLowerCase().replace("'", "\\'")+"');")then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					splitText(returned[i].responses).forEach(function(item){
 						message.reply(item);
@@ -475,7 +473,6 @@ client.on('message', message => {
 		}catch(e){
 			console.log(e);
 		}
-		
 		//phrases from communism. constants: comList comValues
 		let words = splitSymbols(message.content);
 		for(let i = 0; i < words.length; i++){
