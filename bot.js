@@ -463,7 +463,7 @@ client.on('message', message => {
 		//Phrases from reply database
 		try{
 			runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+
-			message.content.toLowerCase().replace("'", "\\'")+"');")then(function(returned){
+			message.content.toLowerCase().replace("'", "\\'")+"');").then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					splitText(returned[i].responses).forEach(function(item){
 						message.reply(item);
