@@ -421,8 +421,10 @@ client.on('message', message => {
 				case "say":
 					command.slice(1).forEach(word => {
 						define(word).then(returned => {
+							console.log("got here 1");
 							//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
 							if(client.voiceConnections.first() !== undefined){
+								console.log("got here 2");
 								client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 							}else{
 								message.reply("Bot is not in a call");
