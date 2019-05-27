@@ -421,7 +421,12 @@ client.on('message', message => {
 				case "say":
 					command.slice(1).forEach(word => {
 						define(word).then(returned => {
-							client.voiceConnections.first().playFile({files: [returned.pronunciation]})
+							//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
+							if(client.voiceConnections.first() !== undefined){
+								client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
+							}else{
+								message.reply("Bot is not in a call");
+							}
 						});
 					});
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
