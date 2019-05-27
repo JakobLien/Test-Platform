@@ -422,9 +422,9 @@ client.on('message', message => {
 						command.slice(1).forEach(word => {
 							define(word).then(returned => {
 								//client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
-								client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
+								client.voiceConnections.first().playFile(returned.pronunciation);
 							}, returned => {
-								console.log("Promise rejected");
+								message.reply("Couldn't find that word.");
 							});
 						});
 					}else{
