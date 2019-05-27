@@ -181,7 +181,7 @@ function define(word, lang="en"){
 			if(returned[0]){
 				returned = returned[0];
 			}
-			resolve(JSON.parse(returned));
+			resolve(returned);
 			//console.log(JSON.stringify(returned));
 		}, returned => {
 			reject(err);
