@@ -423,7 +423,7 @@ client.on('message', message => {
 						define(word).then(returned => {
 							//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
 							if(client.voiceConnections.first() !== undefined){
-								console.log(returned.pronounciation);
+								console.log(returned.pronunciation);
 								client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 							}else{
 								message.reply("Bot is not in a call");
