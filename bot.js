@@ -423,6 +423,8 @@ client.on('message', message => {
 							define(word).then(returned => {
 								//client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 								client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
+							}, returned => {
+								console.log("Promise rejected");
 							});
 						});
 					}else{
