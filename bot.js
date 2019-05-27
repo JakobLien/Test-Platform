@@ -12,7 +12,6 @@ const client = new Discord.Client();
 const http = require('http');
 const https = require('https');
 
-
 //for db stuff
 const mysql = require('mysql');
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
@@ -173,6 +172,23 @@ function splitText(text){
 	return returnValue;
 }
 
+//function to get definition object
+function define(word, lang="en"){
+	return new Promise(function(resolve, reject){
+		sendhttpsRequest({host: "googledictionaryapi.eu-gb.mybluemix.net",
+				  path: "/?define="+word+"&lang="+lang, 
+				  method: "GET"}).then(returned => {
+			if(returned[0]){
+				returned = returned[0];
+			}
+			resolve(JSON.parse(returned));
+			//console.log(JSON.stringify(returned));
+		}, returned => {
+			reject(err);
+		});
+	});
+}
+
 //valid commands
 const publicCommands = [];
 const privateCommands = [];
@@ -290,16 +306,14 @@ client.on('message', message => {
 						message.reply("**"+returned.title+"**\n"+returned.explanation);
 						message.reply({files:[returned.url]});
 					});
-					
-					
 					break;
 				//argumented
 				case "spell":
-					getSpellThings(command.slice(1).join("+")).then(returned => 
+					getSpellThings(command.slice(1).join("+")).then(returned => {
 						splitText(returned).forEach(function(item){
 							message.reply(item);
-						})
-					);
+						});
+					});
 					break;
 				case "sitat":
 					let name = command.slice(1).join(" ");
@@ -370,15 +384,7 @@ client.on('message', message => {
 					break;
 				case "def":
 					if(command[1]){
-						let lang = "en";
-						if(command[2]){lang=command[2];}
-						sendhttpsRequest({host: "googledictionaryapi.eu-gb.mybluemix.net",
-								  path: "/?define="+command[1]+"&lang="+lang, 
-								  method: "GET"}).then(returned => {
-							if(returned[0]){
-								returned = returned[0];
-							}
-							//console.log(JSON.stringify(returned));
+						define(command[1], command[2]).then(returned => {
 							let response = "**"+returned.word+"**\n";
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach((word, index) => {
@@ -412,6 +418,12 @@ client.on('message', message => {
 					    message.author.username);
 			}
 			switch(keyword){
+				case "say":
+					command.slice(1).forEach(word => {
+						
+					});
+					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
+					break;
 				case "me":
 					message.channel.send("Bot controll claimed by Jakob!");
 					iDecide = true;
@@ -422,7 +434,7 @@ client.on('message', message => {
 					break;
 				case "suicide":
 					client.destroy();
-					throw new Error("Something went badly wrong!");
+					throw new Error("Something went terribly wrong!");
 					break;
 				case "runSQL":
 					try{
