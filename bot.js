@@ -421,7 +421,8 @@ client.on('message', message => {
 					if(client.voiceConnections.first() !== undefined){
 						command.slice(1).forEach(word => {
 							define(word).then(returned => {
-								client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
+								//client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
+								client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
 							});
 						});
 					}else{
