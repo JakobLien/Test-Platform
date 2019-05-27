@@ -421,8 +421,7 @@ client.on('message', message => {
 					if(client.voiceConnections.first() !== undefined){
 						command.slice(1).forEach(word => {
 							define(word).then(returned => {
-								//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
-								client.voiceConnections.first().playFile(returned.pronunciation);
+								client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 							});
 						});
 					}else{
