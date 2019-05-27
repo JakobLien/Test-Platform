@@ -423,8 +423,8 @@ client.on('message', message => {
 							define(word).then(returned => {
 								let link = returned.pronunciation;
 								console.log(link, typeof(link));
-								//client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
-								client.voiceConnections.first().playArbitraryInput(link, {volume: 10});
+								client.voiceConnections.first().playArbitraryInput(link);
+								console.log(link, typeof(link));
 						}, returned => {
 								message.reply("Couldn't find that word.");
 							});
