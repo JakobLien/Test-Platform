@@ -424,7 +424,7 @@ client.on('message', message => {
 								let link = returned.pronunciation;
 								console.log(link, typeof(link));
 								//client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
-								client.voiceConnections.first().playFile(link);
+								client.voiceConnections.first().playArbitraryInput(link);
 							}, returned => {
 								message.reply("Couldn't find that word.");
 							});
