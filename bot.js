@@ -420,7 +420,9 @@ client.on('message', message => {
 			switch(keyword){
 				case "say":
 					command.slice(1).forEach(word => {
-						
+						define(word).then(returned => {
+							client.voiceConnections.first().playFile({files: [returned.pronunciation]})
+						});
 					});
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
 					break;
