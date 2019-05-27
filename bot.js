@@ -183,7 +183,7 @@ function define(word, lang="en"){
 			}
 			resolve(returned);
 		}, returned => {
-			reject(err);
+			reject(returned);
 		});
 	});
 }
