@@ -181,7 +181,6 @@ function define(word, lang="en"){
 			if(returned[0]){
 				returned = returned[0];
 			}
-			console.log(JSON.stringify(returned));
 			resolve(returned);
 		}, returned => {
 			reject(err);
@@ -424,7 +423,7 @@ client.on('message', message => {
 							//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
 							if(client.voiceConnections.first() !== undefined){
 								console.log(returned.pronunciation);
-								client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
+								client.voiceConnections.first().playFile(returned.pronunciation);
 							}else{
 								message.reply("Bot is not in a call");
 							}
