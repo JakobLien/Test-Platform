@@ -423,6 +423,7 @@ client.on('message', message => {
 							//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
 							if(client.voiceConnections.first() !== undefined){
 								console.log(returned.pronunciation);
+								console.log(client.voiceConnections.array.length);
 								client.voiceConnections.first().playFile(returned.pronunciation);
 							}else{
 								message.reply("Bot is not in a call");
