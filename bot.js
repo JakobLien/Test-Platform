@@ -421,8 +421,10 @@ client.on('message', message => {
 					if(client.voiceConnections.first() !== undefined){
 						command.slice(1).forEach(word => {
 							define(word).then(returned => {
+								let link = returned.pronunciation;
+								console.log(link, typeof(link));
 								//client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
-								client.voiceConnections.first().playFile(returned.pronunciation);
+								client.voiceConnections.first().playFile(link);
 							}, returned => {
 								message.reply("Couldn't find that word.");
 							});
