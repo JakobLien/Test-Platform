@@ -488,7 +488,7 @@ client.on('message', message => {
 			message.content.toLowerCase().replace("'", "\\'")+"');").then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					splitText(returned[i].responses).forEach(function(item){
-						if(item.startsWith("http")){
+						if(item.startsWith("http") && !item.startsWith("https://youtube.com/watch")){
 							message.reply({files:[item]});
 						}else{
 							message.reply(item);
