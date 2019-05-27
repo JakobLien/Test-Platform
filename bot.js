@@ -418,19 +418,17 @@ client.on('message', message => {
 			}
 			switch(keyword){
 				case "say":
-					command.slice(1).forEach(word => {
-						define(word).then(returned => {
-							//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
-							if(client.voiceConnections.first() !== undefined){
-								console.log(returned.pronunciation);
-								console.log(client.voiceConnections.array.length);
-								console.log(JSON.stringify(client.voiceConnections.first()));
+					if(client.voiceConnections.first() !== undefined){
+						command.slice(1).forEach(word => {
+							define(word).then(returned => {
+								//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
+								console.log(returned.pronunciation, typeof(returned.pronounciation));
 								client.voiceConnections.first().playFile(returned.pronunciation);
-							}else{
-								message.reply("Bot is not in a call");
-							}
+							});
 						});
-					});
+					}else{
+						message.reply("Bot is not in a call");
+					}
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
 					break;
 				case "me":
