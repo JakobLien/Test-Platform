@@ -422,7 +422,7 @@ client.on('message', message => {
 						command.slice(1).forEach(word => {
 							define(word).then(returned => {
 								//client.voiceConnections.first().playFile({files: [returned.pronunciation]});
-								console.log(returned.pronunciation.toString(), typeof(returned.pronounciation.toString()));
+								console.log(returned.pronunciation, typeof(returned.pronounciation));
 								client.voiceConnections.first().playFile(returned.pronunciation.toString());
 							});
 						});
