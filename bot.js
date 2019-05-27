@@ -424,7 +424,7 @@ client.on('message', message => {
 							if(client.voiceConnections.first() !== undefined){
 								console.log(returned.pronunciation);
 								console.log(client.voiceConnections.array.length);
-								console.log(typeof(client.voiceConnections.first()));
+								console.log(JSON.stringify(client.voiceConnections.first()));
 								client.voiceConnections.first().playFile(returned.pronunciation);
 							}else{
 								message.reply("Bot is not in a call");
