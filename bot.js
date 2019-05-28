@@ -19,7 +19,7 @@ connection.connect();
 
 //for joining calls and stuff
 const FFMPEG = require('ffmpeg');
-const opus = require('opus');
+//const opus = require('opus');
 
 client.on('ready', () => {
 	console.log('I am ready!');
