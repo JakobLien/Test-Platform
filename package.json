@@ -10,11 +10,10 @@
 		"bufferutil": "*",
 		"erlpack": "*",
 		"node-opus": "*",
-		"opusscript": "*",
-		"ffmpeg": "*",
 		"sodium": "*",
 		"libsodium-wrappers": "*",
 		"uws": "*"
+		"ffmpeg": "*",
 	},
 	"scripts": {
 		"start": "node bot.js"
