@@ -4,7 +4,6 @@
 	"version": "1.0.0",
 	"main": "bot.js",
 	"dependencies": {
-		"discord.js": "*",
 		"request": "*",
 		"mysql": "*",
 		"bufferutil": "*",
@@ -13,7 +12,8 @@
 		"sodium": "*",
 		"libsodium-wrappers": "*",
 		"uws": "*",
-		"ffmpeg": "*"
+		"ffmpeg": "*",
+		"discord.js": "*"
 	},
 	"scripts": {
 		"start": "node bot.js"
