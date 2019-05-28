@@ -12,8 +12,8 @@
 		"node-opus": "*",
 		"sodium": "*",
 		"libsodium-wrappers": "*",
-		"uws": "*"
-		"ffmpeg": "*",
+		"uws": "*",
+		"ffmpeg": "*"
 	},
 	"scripts": {
 		"start": "node bot.js"
