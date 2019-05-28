@@ -13,7 +13,7 @@
 		"sodium": "*",
 		"libsodium-wrappers": "*",
 		"uws": "*",
-		"ffmpeg": "*"
+		"FFMPEG": "*"
 	},
 	"scripts": {
 		"start": "node bot.js"
