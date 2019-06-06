@@ -506,7 +506,7 @@ client.on('message', message => {
 		}
 		
 		//reply adjectives
-		message.content.split(" ").forEach(word => {
+		splitSymbols(message.content).forEach(word => {
 			define(word).then(definition => {
 				if(definition.meaning.hasOwnProperty("adjective")){
 					message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
