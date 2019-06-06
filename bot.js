@@ -509,15 +509,15 @@ client.on('message', message => {
 		if(message.content !== words){
 			message.reply("Did you mean:\n"+words);
 		}
-		/*
+		
 		//reply adjectives
 		message.content.split(" ").forEach(word => {
 			define(word).then(definition => {
-				if(){
-					
+				if(definition.meaning.hasOwnProperty("adjective")){
+					message.reply("You are "+word+"!");
 				}
 			});
-		});*/
+		});
 	}
 });
 
