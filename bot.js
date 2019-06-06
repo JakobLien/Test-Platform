@@ -2,7 +2,6 @@
 //programming idead: a todo list like Nils has, hangman, tic tac toe(AI?), a text based game like in BIG???, his noen nevne depressed
 //poppe den ut ett inspirational quote, ett roast system så den velge ut en bra roast fra databasen og sikte den på den du @-e
 //Programmer en ting som lar noen sende en command og det botten svare til noen andre. Eks: "!send @ting !nut"
-//Når noen skriv et adjektiv svarer botten: "Du er [adjektiv]";
 
 //Important genereral stuff
 const Discord = require('discord.js');
@@ -478,8 +477,7 @@ client.on('message', message => {
 		}
 	}else if(message.guild === null && message.author.id !== botId && message.author.id !== myId){//tellme if someone pms the bot
 		tellMe(message.author+" just wrote this to me:\n"+message.content);
-	}
-	else if(message.author.id !== botId){//Reply to phraces
+	}else if(message.author.id !== botId){//Reply to phraces
 		//Phrases from reply database
 		try{
 			runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+
