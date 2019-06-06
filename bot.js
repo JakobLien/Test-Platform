@@ -384,6 +384,7 @@ client.on('message', message => {
 				case "def":
 					if(command[1]){
 						define(command[1], command[2]).then(returned => {
+							console.log(JSON.stringify(returned));
 							let response = "**"+returned.word+"**\n";
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach((word, index) => {
@@ -448,7 +449,7 @@ client.on('message', message => {
 					break;
 				case "runSQL":
 					try{
-						runSQL(command.slice(1).join(" ")).then(function(returned){
+						runSQL(command.slice(1).join(" ")).then(returned =>{
 							console.log(returned);
 							returned.forEach(function(item, index){
 								console.log(item);
@@ -508,6 +509,15 @@ client.on('message', message => {
 		if(message.content !== words){
 			message.reply("Did you mean:\n"+words);
 		}
+		/*
+		//reply adjectives
+		message.content.split(" ").forEach(word => {
+			define(word).then(definition => {
+				if(){
+					
+				}
+			});
+		});*/
 	}
 });
 
