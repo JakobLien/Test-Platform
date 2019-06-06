@@ -417,7 +417,7 @@ client.on('message', message => {
 					    message.author.username);
 			}
 			switch(keyword){
-				case "say":
+				/*case "say":
 					if(client.voiceConnections.first() !== undefined){
 						command.slice(1).forEach(word => {
 							define(word).then(returned => {
@@ -433,7 +433,7 @@ client.on('message', message => {
 						message.reply("Bot is not in a call");
 					}
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
-					break;
+					break;*/
 				case "me":
 					message.channel.send("Bot controll claimed by Jakob!");
 					iDecide = true;
@@ -465,7 +465,7 @@ client.on('message', message => {
 					}).catch(console.error);
 					*/
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
-					client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
+					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
 					/*sendhttpRequest("http://open.spotify.com/track/6rqhFgbbKwnb9MLmUQDhG6").then(returned => {
 						console.log(returned);
 					});
@@ -511,7 +511,7 @@ client.on('message', message => {
 	}
 });
 
-
+/*
 client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
 		newMember.voiceChannel.join().then(connection => {});
@@ -519,7 +519,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 	newMember.voiceChannel === undefined){
 		oldMember.voiceChannel.leave();
 	}
-});
+});*/
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
