@@ -384,7 +384,6 @@ client.on('message', message => {
 				case "def":
 					if(command[1]){
 						define(command[1], command[2]).then(returned => {
-							console.log(JSON.stringify(returned));
 							let response = "**"+returned.word+"**\n";
 							for(meaning in returned.meaning){
 								returned.meaning[meaning].forEach((word, index) => {
