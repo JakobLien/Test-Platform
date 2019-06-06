@@ -223,7 +223,7 @@ runSQL("SELECT DISTINCT navn FROM sitat").then(returned => {
 
 //The main thing
 client.on('message', message => {
-	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){
+	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){//general commands
 		let command = message.content.slice(1).split(" ");
 		let keyword = command[0];
 		if(publicCommands.includes(keyword)){
@@ -477,12 +477,10 @@ client.on('message', message => {
 					break;
 			}
 		}
-	}else if(message.guild === null && message.author.id !== botId && message.author.id !== myId){
+	}else if(message.guild === null && message.author.id !== botId && message.author.id !== myId){//tellme if someone pms the bot
 		tellMe(message.author+" just wrote this to me:\n"+message.content);
 	}
-	
-	//Reply to phraces
-	if(message.author.id !== botId){
+	else if(message.author.id !== botId){//Reply to phraces
 		//Phrases from reply database
 		try{
 			runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+
