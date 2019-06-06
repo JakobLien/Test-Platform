@@ -511,7 +511,7 @@ client.on('message', message => {
 		message.content.split(" ").forEach(word => {
 			define(word).then(definition => {
 				if(definition.meaning.hasOwnProperty("adjective")){
-					message.reply("You are "+word+"!");
+					message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
 				}
 			});
 		});
