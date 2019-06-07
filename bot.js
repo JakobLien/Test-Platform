@@ -27,6 +27,7 @@ client.on('ready', () => {
 			tellMe("I'm back");
 		}
 	});
+	//Initiate countdowns
 	runSQL("SELECT * FROM countdown;").then(returned => {
 		returned.forEach(row => {
 			client.setTimeout(function(row){
@@ -37,8 +38,9 @@ client.on('ready', () => {
 			}, new Date(row.due).getTime()-new Date().getTime(), row);
 		});
 	});
+	//set state
+	client.user.setPresence({ status: 'online', game: { name: '!help' } });
 });
-
 
 //sendhttpRequest
 function sendhttpRequest(link){
