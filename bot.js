@@ -141,7 +141,7 @@ function getWords(text){
 	let word = "";
 	let isLetter;
 	text.split("").forEach(character => {
-		isLetter = character.match(/[a-z]|æ|ø|å/i)
+		isLetter = character.match(/[a-z]|æ|ø|å/i);
 		if(isLetter){
 			word+=character;
 		}else if(word !== ""){
@@ -149,7 +149,9 @@ function getWords(text){
 			word = "";
 		}
 	});
-	answer.push(word);
+	if(word !== ""){
+		response.push(word);
+	}
 	return response;
 }
 
