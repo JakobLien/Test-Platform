@@ -136,23 +136,28 @@ function tellMe(message){
 }
 
 //function to split text into words, and symbols, so that I can replace the words perfectly
-function getWords(text){
-	let response = [];
-	let word = "";
+function splitSymbols(text){
+	let answer = [];
+	let letters = "";
+	let symbols = "";
 	let isLetter;
 	text.split("").forEach(character => {
 		isLetter = character.match(/[a-z]|æ|ø|å/i);
+		if(isLetter && !letters){
+			answer.push(symbols);
+			symbols = "";
+		}else if(!isLetter && !symbols){
+			answer.push(letters);
+			letters = "";
+		}
 		if(isLetter){
-			word+=character;
-		}else if(word !== ""){
-			response.push(word);
-			word = "";
+			letters += character;
+		}else{
+			symbols += character;
 		}
 	});
-	if(word !== ""){
-		response.push(word);
-	}
-	return response;
+	answer.push(letters+symbols);
+	return answer;
 }
 
 //function to split the text into 1900 character long parts so discord can deal with it
@@ -461,7 +466,7 @@ client.on('message', message => {
 			}
 		});
 		//phrases from communism
-		let words = getWords(message.content);
+		let words = splitSymbols(message.content);
 		for(let i = 0; i < words.length; i++){
 			for(let a = 0; a < comValues.length; a++){
 				if(comValues[a].includes(words[i].toLowerCase())){
@@ -475,12 +480,14 @@ client.on('message', message => {
 		}
 		
 		//reply adjectives
-		getWords(message.content).forEach(word => {
-			define(word).then(definition => {
-				if(definition.meaning.hasOwnProperty("adjective") && 1 < word.length){
-					message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
-				}
-			}, returned => {});
+		splitSymbols(message.content).forEach(word => {
+			if(word[0].match(/[a-z]|æ|ø|å/i)){
+				define(word).then(definition => {
+					if(definition.meaning.hasOwnProperty("adjective") && 1 < word.length){
+						message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
+					}
+				}, returned => {});
+			}
 		});
 	}
 });
