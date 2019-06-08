@@ -136,28 +136,21 @@ function tellMe(message){
 }
 
 //function to split text into words, and symbols, so that I can replace the words perfectly
-function splitSymbols(text){
-	let answer = [];
-	let letters = "";
-	let symbols = "";
+function getWords(text){
+	let response = [];
+	let word = "";
 	let isLetter;
 	text.split("").forEach(character => {
-		isLetter = character.match(/[a-z]|æ|ø|å/i);
-		if(isLetter && !letters){
-			answer.push(symbols);
-			symbols = "";
-		}else if(!isLetter && !symbols){
-			answer.push(letters);
-			letters = "";
-		}
+		isLetter = character.match(/[a-z]|æ|ø|å/i)
 		if(isLetter){
-			letters += character;
-		}else{
-			symbols += character;
+			word+=character;
+		}else if(word !== ""){
+			response.push(word);
+			word = "";
 		}
 	});
-	answer.push(letters+symbols);
-	return answer;
+	answer.push(word);
+	return response;
 }
 
 //function to split the text into 1900 character long parts so discord can deal with it
@@ -339,34 +332,6 @@ client.on('message', message => {
 						});
 					}
 					break;
-				case "AO":
-					let response = "";
-					let sumDmg = 0;
-					let lvl = 5
-					if(command[2]<5){
-						message.reply("You have to cast it at at least fifth level");
-					}else if(5<=command[2]){
-						lvl = command[2];
-					}
-					for(let i = 0; i < 10+2*(lvl-5); i++){
-						let d20 = rollDice(20)+8;
-						if(d20 === 28){
-							let dmg = rollDice(4)+rollDice(4)+4;
-							sumDmg += dmg;
-							response += "A natural fucking twenty hits, dealing "+dmg+" damage \n";
-						}else if(d20 === 9){
-							response += "A natural fucking one misses \n";
-						}else if(d20 >= command[1]){
-							let dmg = rollDice(4)+4;
-							sumDmg += dmg;
-							response += "A "+d20+" hits, dealing "+dmg+" damage \n";
-						}else{
-							response += "A "+d20+" misses \n";
-						}
-					}
-					response += "Overall you dealt "+sumDmg;
-					message.reply(response);
-					break;
 				case "remindMe":
 					runSQL("INSERT INTO countdown VALUES ('"+message.author.id+"', '"+command[1]+
 							"', '"+command.slice(2).join(" ")+"');").then(function(){
@@ -478,7 +443,7 @@ client.on('message', message => {
 					break;
 			}
 		}
-	}else if(message.guild === null && message.author.id !== botId && message.author.id !== myId){//tellme if someone pms the bot
+	}else if(message.channel.type === "dm" && message.author.id !== botId && message.author.id !== myId){//tellme when bot pmed
 		tellMe(message.author+" just wrote this to me:\n"+message.content);
 	}else if(message.author.id !== botId){//Reply to phraces
 		//Phrases from reply database
@@ -486,19 +451,15 @@ client.on('message', message => {
 		message.mentions.users.forEach(user => {
 			cleanMessage = cleanMessage.replace(user.id, "");
 		});
-		try{
-			runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(function(returned){
-				for(let i = 0; i < returned.length; i++){
-					splitText(returned[i].responses).forEach(function(item){
-						message.reply(item);
-					});
-				}
-			});
-		}catch(e){
-			console.log(e);
-		}
-		//phrases from communism. constants: comList comValues
-		let words = splitSymbols(message.content);
+		runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(function(returned){
+			for(let i = 0; i < returned.length; i++){
+				splitText(returned[i].responses).forEach(function(item){
+					message.reply(item);
+				});
+			}
+		});
+		//phrases from communism
+		let words = getWords(message.content);
 		for(let i = 0; i < words.length; i++){
 			for(let a = 0; a < comValues.length; a++){
 				if(comValues[a].includes(words[i].toLowerCase())){
@@ -512,7 +473,7 @@ client.on('message', message => {
 		}
 		
 		//reply adjectives
-		splitSymbols(message.content).forEach(word => {
+		getWords(message.content).forEach(word => {
 			define(word).then(definition => {
 				if(definition.meaning.hasOwnProperty("adjective") && 1 < word.length){
 					message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
