@@ -484,7 +484,7 @@ client.on('message', message => {
 		//Phrases from reply database
 		let cleanMessage = message.content.toLowerCase().replace("'", "\\'");
 		message.mentions.users.forEach(user => {
-			cleanMessage.replace(user.id, "");
+			cleanMessage = cleanMessage.replace(user.id, "");
 		});
 		try{
 			runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(function(returned){
