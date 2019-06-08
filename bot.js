@@ -474,6 +474,7 @@ client.on('message', message => {
 					https://developer.spotify.com/documentation/web-api/reference-beta/
 					https://api.spotify.com/v1/tracks/6gf5PPir6CwXMF991iOHI6?Authorization=
 					*/
+					console.log(message.content);
 					break;
 			}
 		}
