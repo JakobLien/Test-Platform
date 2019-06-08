@@ -452,7 +452,7 @@ client.on('message', message => {
 		}
 	}else if(message.channel.type === "dm" && message.author.id !== botId && message.author.id !== myId){//tellme when bot pmed
 		tellMe(message.author+" just wrote this to me:\n"+message.content);
-	}else if(message.author.id !== botId){//Reply to phraces
+	}else if(!message.author.bot){//Reply to phraces
 		//Phrases from reply database
 		let cleanMessage = message.content.toLowerCase().replace("'", "\\'");
 		message.mentions.users.forEach(user => {
