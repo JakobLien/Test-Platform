@@ -458,7 +458,7 @@ client.on('message', message => {
 		message.mentions.users.forEach(user => {
 			cleanMessage = cleanMessage.replace(user.id, "");
 		});
-		runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(function(returned){
+		runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(returned => {
 			for(let i = 0; i < returned.length; i++){
 				splitText(returned[i].responses).forEach(function(item){
 					message.reply(item);
@@ -474,14 +474,14 @@ client.on('message', message => {
 				}
 			}
 		}
-		words = words.join("");
+				words = words.join("");
 		if(message.content !== words){
 			message.reply("Did you mean:\n"+words);
 		}
 		
 		//reply adjectives
 		splitSymbols(message.content).forEach(word => {
-			if(word[0].match(/[a-z]|æ|ø|å/i)){
+			if(word.substr(0, 1).match(/[a-z]|æ|ø|å/i)){
 				define(word).then(definition => {
 					if(definition.meaning.hasOwnProperty("adjective") && 1 < word.length){
 						message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
