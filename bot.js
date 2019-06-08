@@ -517,7 +517,7 @@ client.on('message', message => {
 				if(definition.meaning.hasOwnProperty("adjective") && 1 < word.length){
 					message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
 				}
-			});
+			}, returned => {});
 		});
 	}
 });
