@@ -482,9 +482,12 @@ client.on('message', message => {
 		tellMe(message.author+" just wrote this to me:\n"+message.content);
 	}else if(message.author.id !== botId){//Reply to phraces
 		//Phrases from reply database
+		let cleanMessage = message.content.toLowerCase().replace("'", "\\'");
+		message.mentions.users.forEach(user => {
+			cleanMessage.replace(user.id, "");
+		});
 		try{
-			runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+
-			message.content.toLowerCase().replace("'", "\\'")+"');").then(function(returned){
+			runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(function(returned){
 				for(let i = 0; i < returned.length; i++){
 					splitText(returned[i].responses).forEach(function(item){
 						message.reply(item);
