@@ -17,7 +17,7 @@ var connection = mysql.createConnection(process.env.JAWSDB_URL);
 connection.connect();
 
 //for joining calls and stuff
-const FFMPEG = require('ffmpeg');
+const FFMPEG = new require('ffmpeg');
 //const opus = require('opus');
 
 client.on('ready', () => {
