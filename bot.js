@@ -446,7 +446,7 @@ client.on('message', message => {
 					https://developer.spotify.com/documentation/web-api/reference-beta/
 					https://api.spotify.com/v1/tracks/6gf5PPir6CwXMF991iOHI6?Authorization=
 					*/
-					console.log(message.content);
+					client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
 					break;
 			}
 		}
@@ -492,7 +492,7 @@ client.on('message', message => {
 	}
 });
 
-/*
+
 client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
 		newMember.voiceChannel.join().then(connection => {});
@@ -500,7 +500,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 	newMember.voiceChannel === undefined){
 		oldMember.voiceChannel.leave();
 	}
-});*/
+});
 
 // THIS  MUST  BE  THIS  WAY
 client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
