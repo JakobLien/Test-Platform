@@ -3,7 +3,7 @@
 //poppe den ut ett inspirational quote, ett roast system så den velge ut en bra roast fra databasen og sikte den på den du @-e
 //Programmer en ting som lar noen sende en command og det botten svare til noen andre. Eks: "!send @ting !nut"
 
-//for joining calls and stuff
+//for joining calls and stuff 
 const FFMPEG = require('ffmpeg');
 //const opus = require('opus');
 
