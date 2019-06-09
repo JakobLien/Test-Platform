@@ -447,9 +447,11 @@ client.on('message', message => {
 					https://api.spotify.com/v1/tracks/6gf5PPir6CwXMF991iOHI6?Authorization=
 					*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
-					define(command[1]).then(returned => {
+					/*define(command[1]).then(returned => {
 						client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
-					}, returned => {});
+					}, returned => {});*/
+					
+					client.voiceConnections.first().playArbitraryInput("https://s3-ap-northeast-1.amazonaws.com/poodll-audioprocessing-out/CP/30/localhostuser/recordmp3online.com/poodll/poodllfile5cfd8a3d3bd561.mp3");
 					
 					break;
 			}
