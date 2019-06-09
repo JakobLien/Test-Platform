@@ -3,7 +3,7 @@
 //poppe den ut ett inspirational quote, ett roast system så den velge ut en bra roast fra databasen og sikte den på den du @-e
 //Programmer en ting som lar noen sende en command og det botten svare til noen andre. Eks: "!send @ting !nut"
 
-//for joining calls and stuff 
+//for joining calls and stuff
 const FFMPEG = require('ffmpeg');
 //const opus = require('opus');
 
@@ -446,7 +446,11 @@ client.on('message', message => {
 					https://developer.spotify.com/documentation/web-api/reference-beta/
 					https://api.spotify.com/v1/tracks/6gf5PPir6CwXMF991iOHI6?Authorization=
 					*/
-					client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
+					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
+					define(command[1]).then(returned => {
+						client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
+					}, returned => {});
+					
 					break;
 			}
 		}
@@ -495,10 +499,13 @@ client.on('message', message => {
 
 client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
-		newMember.voiceChannel.join().then(connection => {});
+		newMember.voiceChannel.join().then(connection => {
+			console.log("Successfully joined "+connection.channel.name+" on "+connection.channel.guild.name);
+		});
 	}else if(newMember.id === "265570029792133129" && oldMember.voiceChannel !== undefined && 
 	newMember.voiceChannel === undefined){
 		oldMember.voiceChannel.leave();
+			console.log("Successfully left the voicechannel.");
 	}
 });
 
