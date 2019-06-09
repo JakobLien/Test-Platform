@@ -450,8 +450,7 @@ client.on('message', message => {
 					/*define(command[1]).then(returned => {
 						client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 					}, returned => {});*/
-					
-					client.voiceConnections.first().playArbitraryInput("https://s3-ap-northeast-1.amazonaws.com/poodll-audioprocessing-out/CP/30/localhostuser/recordmp3online.com/poodll/poodllfile5cfd8a3d3bd561.mp3");
+					client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					
 					break;
 			}
@@ -507,7 +506,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 	}else if(newMember.id === "265570029792133129" && oldMember.voiceChannel !== undefined && 
 	newMember.voiceChannel === undefined){
 		oldMember.voiceChannel.leave();
-			console.log("Successfully left the voicechannel.");
+		console.log("Successfully left the voicechannel.");
 	}
 });
 
