@@ -4,7 +4,7 @@
 //Programmer en ting som lar noen sende en command og det botten svare til noen andre. Eks: "!send @ting !nut"
 
 //for joining calls and stuff
-const FFMPEG = new require('ffmpeg');
+const FFMPEG = require('ffmpeg');
 //const opus = require('opus');
 
 //Important genereral stuff
