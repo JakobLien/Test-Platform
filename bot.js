@@ -3,6 +3,10 @@
 //poppe den ut ett inspirational quote, ett roast system så den velge ut en bra roast fra databasen og sikte den på den du @-e
 //Programmer en ting som lar noen sende en command og det botten svare til noen andre. Eks: "!send @ting !nut"
 
+//for joining calls and stuff
+const FFMPEG = new require('ffmpeg');
+//const opus = require('opus');
+
 //Important genereral stuff
 const Discord = require('discord.js');
 const client = new Discord.Client();
@@ -15,10 +19,6 @@ const https = require('https');
 const mysql = require('mysql');
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 connection.connect();
-
-//for joining calls and stuff
-const FFMPEG = new require('ffmpeg');
-//const opus = require('opus');
 
 client.on('ready', () => {
 	console.log('I am ready!');
