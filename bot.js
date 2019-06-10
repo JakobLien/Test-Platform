@@ -313,6 +313,8 @@ client.on('message', message => {
 						splitText(returned).forEach(function(item){
 							message.reply(item);
 						});
+					}, returned => {
+						message.reply("Couldn't find that spell.");
 					});
 					break;
 				case "sitat":
