@@ -104,13 +104,13 @@ It can be found here: `+data["page"]);
 //Stuff to deal with d&d spell requests
 function getSpellThings(spellName){
 	return new Promise(function(resolve, reject){
-		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(returned =>
+		sendhttpRequest('http://www.dnd5eapi.co/api/spells/?name='+spellName).then(returned => {
 			sendhttpRequest(returned["results"][0]["url"]).then(returned2 => {
 				resolve(formatSpellData(returned2))
 			}, returned2 => {
 				reject(returned2);
 			});
-		);
+		});
 	});
 }
 
