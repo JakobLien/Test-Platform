@@ -460,9 +460,11 @@ client.on('message', message => {
 					break;
 			}
 		}
-	}else if(message.channel.type === "dm" && message.author.id !== botId && message.author.id !== myId){//tellme when bot pmed
-		tellMe(message.author+" just wrote this to me:\n"+message.content);
-	}else if(!message.author.bot){//Reply to phraces
+	}else if(!message.author.bot){
+		if(message.channel.type === "dm" && message.author.id !== myId){//tellme when bot pmed
+			tellMe(message.author+" just wrote this to me:\n"+message.content);
+		}
+		//Reply to phraces
 		//Phrases from reply database
 		let cleanMessage = message.content.toLowerCase().replace("'", "\\'");
 		message.mentions.users.forEach(user => {
