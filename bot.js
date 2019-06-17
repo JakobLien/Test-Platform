@@ -21,6 +21,9 @@ const mysql = require('mysql');
 var connection = mysql.createConnection(process.env.JAWSDB_URL);
 connection.connect();
 
+//for directory stuff
+const fs = require('fs');
+
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.fetchUser(myId).then(user => {
@@ -455,8 +458,18 @@ client.on('message', message => {
 						client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 					}, returned => {});*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
-					if(command[1]){
+					let files = [];
+					fs.readdir("./data/", function(err, items) {
+						items.forEach(item => {
+							files.push(item);
+						});
+					});
+					if(command[1] === "list"){
+						message.reply("We have the following clips to offer: "+files.join(", "));
+					}else if(files.includes(command[1])){
 						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
+					}else{
+						messsage.reply("Couldn't find that clip");
 					}
 					break;
 			}
