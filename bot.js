@@ -409,6 +409,12 @@ client.on('message', message => {
 				case "play":
 					if(command[1] === "list"){
 						message.reply("We have the following clips to offer: "+clipNames.join(", "));
+					}else if(command[1] === "stop"){
+						if(client.voiceConnections.first().dispatcher){
+							client.voiceConnections.first().dispatcher.end();
+						}else{
+							message.reply("I am not currently playing a clip");
+						}
 					}else if(clipNames.includes(command[1])){
 						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
 					}else{
