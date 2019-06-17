@@ -406,6 +406,15 @@ client.on('message', message => {
 					    message.author.username);
 			}
 			switch(keyword){
+				case "play":
+					if(command[1] === "list"){
+						message.reply("We have the following clips to offer: "+clipNames.join(", "));
+					}else if(clipNames.includes(command[1])){
+						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
+					}else{
+						message.reply("Couldn't find that clip");
+					}
+					break;
 				/*case "say":
 					if(client.voiceConnections.first() !== undefined){
 						command.slice(1).forEach(word => {
@@ -467,13 +476,7 @@ client.on('message', message => {
 					}, returned => {});*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					
-					if(command[1] === "list"){
-						message.reply("We have the following clips to offer: "+clipNames.join(", "));
-					}else if(clipNames.includes(command[1]+".mp3")){
-						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
-					}else{
-						message.reply("Couldn't find that clip");
-					}
+					
 					break;
 			}
 		}
