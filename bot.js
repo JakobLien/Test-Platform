@@ -462,7 +462,7 @@ client.on('message', message => {
 					fs.readdir("./data/", function(err, items) {
 						console.log(items);
 						items.forEach(item => {
-							files.push(item;);
+							files.push(item);
 						})
 					});
 					if(command[1] === "list"){
