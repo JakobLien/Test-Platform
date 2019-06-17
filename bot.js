@@ -228,11 +228,11 @@ runSQL("SELECT DISTINCT navn FROM sitat").then(returned => {
 	});
 });
 
-const clipNames = [];
 //valid files for the play command
+const clipNames = [];
 fs.readdir("./data/", function(err, items){
 	items.forEach(item => {
-		validClips.push(item.slice(0, -4));
+		clipNames.push(item.slice(0, -4));
 	});
 });
 
