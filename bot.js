@@ -464,8 +464,9 @@ client.on('message', message => {
 						files = items;
 					});
 					if(command[1] === "list"){
+						console.log(files);
 						message.reply("We have the following clips to offer: "+files.join(", "));
-					}else if(files.includes(command[1])){
+					}else if(files.includes(command[1]+".mp3")){
 						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
 					}else{
 						message.reply("Couldn't find that clip");
