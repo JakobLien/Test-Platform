@@ -228,6 +228,14 @@ runSQL("SELECT DISTINCT navn FROM sitat").then(returned => {
 	});
 });
 
+const clipNames = [];
+//valid files for the play command
+fs.readdir("./data/", function(err, items){
+	items.forEach(item => {
+		validClips.push(item.slice(0, -4));
+	});
+});
+
 //The main thing
 client.on('message', message => {
 	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){//general commands
@@ -458,17 +466,10 @@ client.on('message', message => {
 						client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 					}, returned => {});*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
-					let files = [];
-					fs.readdir("./data/", function(err, items) {
-						console.log(items);
-						items.forEach(item => {
-							files.push(item);
-						})
-					});
+					
 					if(command[1] === "list"){
-						console.log(files);
-						message.reply("We have the following clips to offer: "+files.join(", "));
-					}else if(files.includes(command[1]+".mp3")){
+						message.reply("We have the following clips to offer: "+clipNames.join(", "));
+					}else if(clipNames.includes(command[1]+".mp3")){
 						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
 					}else{
 						message.reply("Couldn't find that clip");
