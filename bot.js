@@ -460,16 +460,15 @@ client.on('message', message => {
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					let files = [];
 					fs.readdir("./data/", function(err, items) {
-						items.forEach(item => {
-							files.push(item);
-						});
+						console.log(items);
+						files = items;
 					});
 					if(command[1] === "list"){
 						message.reply("We have the following clips to offer: "+files.join(", "));
 					}else if(files.includes(command[1])){
 						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
 					}else{
-						messsage.reply("Couldn't find that clip");
+						message.reply("Couldn't find that clip");
 					}
 					break;
 			}
