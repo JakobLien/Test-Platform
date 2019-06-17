@@ -461,7 +461,9 @@ client.on('message', message => {
 					let files = [];
 					fs.readdir("./data/", function(err, items) {
 						console.log(items);
-						files = items;
+						items.forEach(item => {
+							files.push(item;);
+						})
 					});
 					if(command[1] === "list"){
 						console.log(files);
