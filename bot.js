@@ -442,7 +442,6 @@ client.on('message', message => {
 						connection.playFile("./National - Anthem.mp3");
 					}).catch(console.error);
 					*/
-					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
 					/*sendhttpRequest("http://open.spotify.com/track/6rqhFgbbKwnb9MLmUQDhG6").then(returned => {
 						console.log(returned);
@@ -455,8 +454,10 @@ client.on('message', message => {
 					/*define(command[1]).then(returned => {
 						client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 					}, returned => {});*/
-					client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
-					
+					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
+					if(command[1]){
+						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
+					}
 					break;
 			}
 		}
