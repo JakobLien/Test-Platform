@@ -45,9 +45,12 @@ client.on('ready', () => {
 	//set state
 	client.user.setPresence({ status: 'online', game: { name: '!help' } });
 	//check users
-	client.users.forEach(user => {
-		//do stuff to see if its in the database and update if it isn't
-	});
+	runSQL("SELECT id FROM people").then(returned => {
+		console.log(returned);
+		client.users.forEach(user => {
+			//do stuff to see if its in the database and update if it isn't
+		});
+	}
 });
 
 //sendhttpRequest
