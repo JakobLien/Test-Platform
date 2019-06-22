@@ -50,7 +50,7 @@ client.on('ready', () => {
 		client.users.forEach(user => {
 			//do stuff to see if its in the database and update if it isn't
 		});
-	};
+	});
 });
 
 //sendhttpRequest
