@@ -523,6 +523,15 @@ client.on('message', message => {
 			message.reply("Did you mean:\n"+words);
 		}
 		
+		//compliments on using correct pronouns
+		comList.forEach(word => {
+			if(message.content.incudes(word)){
+				message.reply({file: "https://vignette.wikia.nocookie.net/jojos-bi/images/e/eb/OMEGA_STALIN.png/revision/latest?cb=20170224230144"});
+								
+			}
+		});
+		
+		
 		//reply adjectives
 		splitSymbols(message.content).forEach(word => {
 			if(word.substr(0, 1).match(/[a-z]|æ|ø|å/i)){
