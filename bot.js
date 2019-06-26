@@ -220,11 +220,11 @@ runSQL("SELECT keyword FROM commands WHERE admin=TRUE;").then(returned => {
 });
 
 const adminIDs = [];
-runSQL("SELECT id FROM people WHERE admin=TRUE").then(returned){
+runSQL("SELECT id FROM people WHERE admin=TRUE").then(returned => {
 	returned.forEach(row => {
 		adminIDs.push(row.id);
 	});
-}
+});
 
 //controll variables
 const myId = "265570029792133129";
