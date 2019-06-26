@@ -525,7 +525,7 @@ client.on('message', message => {
 		
 		//compliments on using correct pronouns
 		comList.forEach(word => {
-			if(message.content.incudes(word)){
+			if(message.content.includes(word)){
 				message.reply({file: "https://vignette.wikia.nocookie.net/jojos-bi/images/e/eb/OMEGA_STALIN.png/revision/latest?cb=20170224230144"});
 								
 			}
