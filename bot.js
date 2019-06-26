@@ -44,10 +44,13 @@ client.on('ready', () => {
 	});
 	//set state
 	client.user.setPresence({ status: 'online', game: { name: '!help' } });
-	//check users
+	//do stuff to see if its in the database and update if it isn't
 	runSQL("SELECT id FROM people").then(returned => {
 		client.users.forEach(user => {
-			//do stuff to see if its in the database and update if it isn't
+			if(!returned.every(row => {return row.navn === user.id})){
+				console.log(user.username+" is not in the database");
+				//runSQL("INSERT INTO people VALUES ("+user.id+", "");")
+			}
 		});
 	});
 });
