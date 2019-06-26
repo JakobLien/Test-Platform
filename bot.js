@@ -47,7 +47,7 @@ client.on('ready', () => {
 	//do stuff to see if its in the database and update if it isn't
 	runSQL("SELECT id FROM people").then(returned => {
 		client.users.forEach(user => {
-			if(!returned.every(row => {return row.navn === user.id})){
+			if(!returned.every(row => {return row.navn !== user.id})){
 				console.log(user.username+" is not in the database");
 				//runSQL("INSERT INTO people VALUES ("+user.id+", "");")
 			}
