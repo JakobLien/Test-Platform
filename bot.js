@@ -219,6 +219,13 @@ runSQL("SELECT keyword FROM commands WHERE admin=TRUE;").then(returned => {
 	});
 });
 
+const adminIDs = [];
+runSQL("SELECT id FROM people WHERE admin=TRUE").then(returned){
+	returned.forEach(row => {
+		adminIDs.push(row.id);
+	});
+}
+
 //controll variables
 const myId = "265570029792133129";
 const botId = "530439718823788544";
@@ -247,7 +254,7 @@ fs.readdir("./data/", function(err, items){
 
 //The main thing
 client.on('message', message => {
-	if(message.content[0] === "!" && !(iDecide && message.author.id !== myId)){//general commands
+	if(message.content[0] === "!" && !(iDecide && adminIDs.includes(message.author.id))){//general commands
 		let command = message.content.slice(1).split(" ");
 		let keyword = command[0];
 		if(publicCommands.includes(keyword)){
@@ -405,7 +412,7 @@ client.on('message', message => {
 					}
 					break;
 			}
-		}else if(privateCommands.includes(keyword) && message.author.id === myId){
+		}else if(privateCommands.includes(keyword) && adminIDs.includes(message.author.id)){
 			//private commands
 			if(message.guild !== null){
 				console.log("Attempting to run private command "+message.content+" on the server "+
@@ -491,13 +498,12 @@ client.on('message', message => {
 					}, returned => {});*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					
-					
 					break;
 			}
 		}
 	}else if(!message.author.bot){
-		if(message.channel.type === "dm" && message.author.id !== myId){//tellme when bot pmed
-			tellMe(message.author+" just wrote this to me:\n"+message.content);
+		if(message.channel.type === "dm" && message.author.id !== myId){//tellMe when bot pmed
+			tellMe(message.author.username+" just wrote this to me:\n"+message.content);
 		}
 		//Reply to phraces
 		//Phrases from reply database
