@@ -498,6 +498,11 @@ client.on('message', message => {
 					}, returned => {});*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					
+					runSQL("SELECT id FROM people WHERE navn='"+command[1]+"';").then(idOfReciever=>{
+						runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
+							client.users.get(idOfReciever[0].id).send(nameOfSender+" just sent you the following message:\n"+command.slice(1).join(" "));
+						});
+					});
 					break;
 			}
 		}
