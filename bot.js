@@ -550,7 +550,7 @@ client.on('message', message => {
 		
 		//reply adjectives
 		splitSymbols(message.content).forEach(word => {
-			if(word.substr(0, 1).match(/[a-z]|æ|ø|å/i)){
+			if(word.slice(0, 1).match(/[a-z]|æ|ø|å/i)){
 				define(word).then(definition => {
 					if(definition.meaning.hasOwnProperty("adjective") && 1 < word.length){
 						message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
