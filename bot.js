@@ -500,7 +500,7 @@ client.on('message', message => {
 					
 					runSQL("SELECT id FROM people WHERE navn='"+command[1]+"';").then(idOfReciever=>{
 						runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
-							client.users.get(idOfReciever[0].id).send(nameOfSender+" just sent you the following message:\n"+command.slice(1).join(" "));
+							client.users.get(idOfReciever[0].id).send(nameOfSender[0].navn+" just sent you the following message:\n"+command.slice(2).join(" "));
 						});
 					});
 					break;
