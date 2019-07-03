@@ -223,6 +223,7 @@ const adminIDs = [];
 runSQL("SELECT id FROM people WHERE admin=TRUE").then(returned => {
 	returned.forEach(row => {
 		adminIDs.push(row.id);
+		console.log(row.id, typeof(row.id));
 	});
 });
 
