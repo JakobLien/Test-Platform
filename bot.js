@@ -223,7 +223,6 @@ const adminIDs = [];
 runSQL("SELECT id FROM people WHERE admin=TRUE").then(returned => {
 	returned.forEach(row => {
 		adminIDs.push(row.id);
-		console.log(row.id, typeof(row.id));
 	});
 });
 
@@ -255,7 +254,7 @@ fs.readdir("./data/", function(err, items){
 
 //The main thing
 client.on('message', message => {
-	if(message.content[0] === "!" && !(iDecide && adminIDs.includes(message.author.id))){//general commands
+	if(message.content[0] === "!" && !(iDecide && !adminIDs.includes(message.author.id))){//general commands
 		let command = message.content.slice(1).split(" ");
 		let keyword = command[0];
 		if(publicCommands.includes(keyword)){
