@@ -254,6 +254,9 @@ fs.readdir("./data/", function(err, items){
 
 //The main thing
 client.on('message', message => {
+	if(message.content.startsWith("lol")){
+		break;
+	}
 	if(message.content[0] === "!" && !(iDecide && !adminIDs.includes(message.author.id))){//general commands
 		let command = message.content.slice(1).split(" ");
 		let keyword = command[0];
@@ -559,6 +562,7 @@ client.on('message', message => {
 			}
 		});
 	}
+	console.log("gotHere");
 });
 
 
