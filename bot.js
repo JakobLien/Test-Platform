@@ -474,7 +474,7 @@ client.on('message', message => {
 					break;
 				case "suicide":
 					client.destroy();
-					throw new Error("Something went terribly wrong!");
+					process.exit();
 					break;
 				case "runSQL":
 					try{
