@@ -470,6 +470,7 @@ client.on('message', message => {
 					iDecide = false;
 					break;
 				case "suicide":
+					client.destory();
 					process.exit();
 					break;
 				case "runSQL":
@@ -504,7 +505,6 @@ client.on('message', message => {
 					}, returned => {});*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					
-					process.exit();
 					break;
 			}
 		}
