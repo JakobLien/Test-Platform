@@ -559,7 +559,6 @@ client.on('message', message => {
 			}
 		});
 	}
-	console.log("gotHere");
 });
 
 
