@@ -332,7 +332,6 @@ client.on('message', message => {
 					sendhttpsRequest({host: "api.nasa.gov",
 							  path: "/planetary/apod?api_key=hZLeoMoQXjEAaUqCzM2ZGmaylTCkND4oMCnGxuPD", 
 							  method: "GET"}).then(returned => {
-						console.log(returned);
 						message.reply("**"+returned.title+"**\n"+returned.explanation);
 						message.reply({files:[returned.url]});
 					});
