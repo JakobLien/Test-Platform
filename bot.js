@@ -49,7 +49,7 @@ client.on('ready', () => {
 		client.users.forEach(user => {
 			if(!user.bot && returned.every(row => {return row.id !== user.id})){
 				tellMe("Fix a name for: "+user.username);
-				runSQL("INSERT INTO people VALUES ('"+user.id+"', '"+user.username+"');");
+				runSQL("INSERT INTO people (id, navn) VALUES ('"+user.id+"', '"+user.username+"');");
 			}
 		});
 	});
