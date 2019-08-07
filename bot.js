@@ -522,12 +522,7 @@ client.on('message', message => {
 		runSQL("SELECT responses, file FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(returned => {
 			for(let i = 0; i < returned.length; i++){
 				splitText(returned[i].responses).forEach(function(item){
-					if(returned[i].file){
-						console.log(item);
-						message.channel.send({files: [item]});
-					}else{
-						message.channel.send(item);
-					}
+					message.channel.send(item);
 				});
 			}
 		});
