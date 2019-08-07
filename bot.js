@@ -570,9 +570,12 @@ client.on('message', message => {
 client.on("messageReactionAdd", (messageReaction, user) => {
 	console.log(messageReaction.message.content);
 	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && 
-	   messageReaction.count === 2 && clipNames.includes(messageReaction.message.content)){
+	   messageReaction.count === 2 && client.voiceConnections.first() && clipNames.includes(messageReaction.message.content)){
 		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 		messageReaction.remove();
+	}else if((messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && messageReaction.count === 2 && 
+		  clipNames.includes(messageReaction.message.content)) && !client.voiceConnections.first()){
+		tellMe("Join a voice channel plz");
 	}
 });
 
