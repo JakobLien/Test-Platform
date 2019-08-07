@@ -292,12 +292,6 @@ client.on('message', message => {
 							     "Write !help [a command] to see that command's description.");
 					}
 					break;
-				case "trist":
-					message.reply('Jakob har det bra, takk som spør :smile:');
-					break;
-				case "nut":
-					message.channel.send(":weary: :ok_hand: :sweat_drops:");
-					break;
 				case "openPM":
 					if(command[1] === undefined){
 						tellMe(message.author.username+" has opened a PM");
