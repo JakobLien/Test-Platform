@@ -580,8 +580,8 @@ client.on("messageReactionAdd", (messageReaction, user) => {
 
 client.on("messageReactionRemove", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && 
-	   messageReaction.count === 1 && clipNames.includes(messageReaction.message.content && 
-	   client.voiceConnections.first()) && client.voiceConnections.first().dispatcher){
+	   messageReaction.count === 1 && clipNames.includes(messageReaction.message.content) && 
+	   client.voiceConnections.first() && client.voiceConnections.first().dispatcher){
 		client.voiceConnections.first().dispatcher.end();
 	}
 });
