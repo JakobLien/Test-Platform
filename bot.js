@@ -522,7 +522,11 @@ client.on('message', message => {
 		runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(returned => {
 			for(let i = 0; i < returned.length; i++){
 				splitText(returned[i].responses).forEach(function(item){
-					message.reply(item);
+					if(returned[i].file){
+						message.reply({files: {item}});
+					}else{
+						message.reply(item);
+					}
 				});
 			}
 		});
