@@ -432,11 +432,11 @@ client.on('message', message => {
 				case "play":
 					if(command[1] === "list"){
 						message.channel.send("We have the following clips to offer: ");
-						/*clipNames.forEach(clipName => {
+						clipNames.forEach(clipName => {
 							message.channel.send(clipName).then(message => {
-								message.react(":play_pause:");
+								message.react("%E2%8F%AF");
 							});
-						});*/
+						});
 					}else if(command[1] === "stop"){
 						if(client.voiceConnections.first().dispatcher){
 							client.voiceConnections.first().dispatcher.end();
