@@ -251,6 +251,7 @@ fs.readdir("./data/", function(err, items){
 		clipNames.push(item.slice(0, -4));
 	});
 });
+const clipMessages = [];
 
 //The main thing
 client.on('message', message => {
@@ -430,7 +431,12 @@ client.on('message', message => {
 			switch(keyword){
 				case "play":
 					if(command[1] === "list"){
-						message.reply("We have the following clips to offer: "+clipNames.join(", "));
+						message.channel.send("We have the following clips to offer: ");
+						/*clipNames.forEach(clipName => {
+							message.channel.send(clipName).then(message => {
+								message.react(":play_pause:");
+							});
+						});*/
 					}else if(command[1] === "stop"){
 						if(client.voiceConnections.first().dispatcher){
 							client.voiceConnections.first().dispatcher.end();
@@ -503,7 +509,7 @@ client.on('message', message => {
 						client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
 					}, returned => {});*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
-					
+					message.react(":play_pause:").then(returned => {});
 					break;
 			}
 		}
@@ -557,6 +563,12 @@ client.on('message', message => {
 				}, returned => {});
 			}
 		});
+	}
+});
+
+client.on("messageReactionAdd", (messageReaction, user) => {
+	if(user.id === myId){
+		
 	}
 });
 
