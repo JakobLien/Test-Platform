@@ -147,7 +147,7 @@ function rollDice(dice){
 }
 
 function tellMe(message){
-	client.users.get(myId).send(message);
+	return client.users.get(myId).send(message);
 }
 
 //function to split text into words, and symbols, so that I can replace the words perfectly
