@@ -569,13 +569,12 @@ client.on('message', message => {
 });
 
 client.on("messageReactionAdd", (messageReaction, user) => {
-	console.log(user.id, myId);
-	if(user.id === myId){
+	console.log(messageReaction.message.channel.id);
+	if(messageReaction.emoji.identifier === "%E2%8F%AF" && messageReaction.message.channel.id === myId){
 		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 		messageReaction.remove();
 	}
 });
-
 
 client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
