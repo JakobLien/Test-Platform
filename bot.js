@@ -523,7 +523,7 @@ client.on('message', message => {
 			for(let i = 0; i < returned.length; i++){
 				splitText(returned[i].responses).forEach(function(item){
 					if(returned[i].file){
-						message.reply({file: item});
+						message.reply({files: [item]});
 					}else{
 						message.reply(item);
 					}
