@@ -569,8 +569,7 @@ client.on('message', message => {
 });
 
 client.on("messageReactionAdd", (messageReaction, user) => {
-	console.log(messageReaction.message.channel.id);
-	if(messageReaction.emoji.identifier === "%E2%8F%AF" && messageReaction.message.channel.id === myId){
+	if(messageReaction.emoji.identifier === "%E2%8F%AF" && !messageReaction.me){
 		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 		messageReaction.remove();
 	}
