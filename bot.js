@@ -569,6 +569,7 @@ client.on('message', message => {
 });
 
 client.on("messageReactionAdd", (messageReaction, user) => {
+	console.log(user.id, myId);
 	if(user.id === myId){
 		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 		messageReaction.remove();
