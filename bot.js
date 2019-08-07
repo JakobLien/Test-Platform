@@ -569,7 +569,8 @@ client.on('message', message => {
 
 client.on("messageReactionAdd", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && 
-	   messageReaction.count === 2 && client.voiceConnections.first() && clipNames.includes(messageReaction.message.content)){
+	   messageReaction.count === 2 && clipNames.includes(messageReaction.message.content) 
+	   && client.voiceConnections.first()){
 		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 	}else if((messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && messageReaction.count === 2 && 
 		  clipNames.includes(messageReaction.message.content)) && !client.voiceConnections.first()){
@@ -579,7 +580,8 @@ client.on("messageReactionAdd", (messageReaction, user) => {
 
 client.on("messageReactionRemove", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && 
-	   messageReaction.count === 1 && client.voiceConnections.first() && clipNames.includes(messageReaction.message.content)){
+	   messageReaction.count === 1 && clipNames.includes(messageReaction.message.content && 
+	   client.voiceConnections.first()) && client.voiceConnections.first().dispatcher){
 		client.voiceConnections.first().dispatcher.end();
 	}
 });
