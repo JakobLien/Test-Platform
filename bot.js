@@ -571,10 +571,16 @@ client.on("messageReactionAdd", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && 
 	   messageReaction.count === 2 && client.voiceConnections.first() && clipNames.includes(messageReaction.message.content)){
 		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
-		messageReaction.remove();
 	}else if((messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && messageReaction.count === 2 && 
 		  clipNames.includes(messageReaction.message.content)) && !client.voiceConnections.first()){
 		tellMe("Join a voice channel plz");
+	}
+});
+
+client.on("messageReactionRemove", (messageReaction, user) => {
+	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && 
+	   messageReaction.count === 1 && client.voiceConnections.first() && clipNames.includes(messageReaction.message.content)){
+		client.voiceConnections.first().dispatcher.end();
 	}
 });
 
