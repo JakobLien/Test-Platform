@@ -251,6 +251,7 @@ fs.readdir("./data/", function(err, items){
 		clipNames.push(item.slice(0, -4));
 	});
 });
+var connected = false;
 
 //The main thing
 client.on('message', message => {
@@ -588,11 +589,13 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 	if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
 		newMember.voiceChannel.join().then(connection => {
 			console.log("Successfully joined "+connection.channel.name+" on "+connection.channel.guild.name);
+			connected = true;
 		});
 	}else if(newMember.id === "265570029792133129" && oldMember.voiceChannel !== undefined && 
 	newMember.voiceChannel === undefined){
 		oldMember.voiceChannel.leave();
 		console.log("Successfully left the voicechannel.");
+		connected = false;
 	}
 });
 
