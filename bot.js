@@ -570,7 +570,7 @@ client.on('message', message => {
 
 client.on("messageReactionAdd", (messageReaction, user) => {
 	if(user.id === myId){
-		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content".mp3");
+		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 		messageReaction.remove();
 	}
 });
