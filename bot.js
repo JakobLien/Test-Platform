@@ -519,11 +519,10 @@ client.on('message', message => {
 		message.mentions.users.forEach(user => {
 			cleanMessage = cleanMessage.replace(user.id, "");
 		});
-		runSQL("SELECT responses FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(returned => {
+		runSQL("SELECT responses, file FROM reply WHERE 0 < LOCATE(triggers, '"+cleanMessage+"');").then(returned => {
 			for(let i = 0; i < returned.length; i++){
 				splitText(returned[i].responses).forEach(function(item){
 					if(returned[i].file){
-						console.log("got here");
 						message.reply({file: item});
 					}else{
 						message.reply(item);
