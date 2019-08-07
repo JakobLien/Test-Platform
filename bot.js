@@ -251,7 +251,6 @@ fs.readdir("./data/", function(err, items){
 		clipNames.push(item.slice(0, -4));
 	});
 });
-const clipMessages = [];
 
 //The main thing
 client.on('message', message => {
@@ -431,9 +430,9 @@ client.on('message', message => {
 			switch(keyword){
 				case "play":
 					if(command[1] === "list"){
-						message.channel.send("We have the following clips to offer: ");
+						tellMe("We have the following clips to offer: ");
 						clipNames.forEach(clipName => {
-							message.channel.send(clipName).then(message => {
+							tellMe(clipName).then(message => {
 								message.react("%E2%8F%AF");
 							});
 						});
@@ -569,7 +568,9 @@ client.on('message', message => {
 });
 
 client.on("messageReactionAdd", (messageReaction, user) => {
-	if(messageReaction.emoji.identifier === "%E2%8F%AF" && !messageReaction.me){
+	console.log(messageReaction.message.content);
+	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && 
+	   messageReaction.count === 2 && clipNames.includes(messageReaction.message.content)){
 		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 		messageReaction.remove();
 	}
