@@ -570,7 +570,7 @@ client.on('message', message => {
 
 client.on("messageReactionAdd", (messageReaction, user) => {
 	if(user.id === myId){
-		messageReaction.message.channel.send(messageReaction.identifier);
+		messageReaction.message.channel.send(messageReaction.emoji.identifier);
 	}
 });
 
