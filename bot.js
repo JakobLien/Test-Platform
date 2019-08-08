@@ -572,7 +572,7 @@ client.on("messageReactionAdd", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.count === 2){
 		if(messageReaction.message.content.startsWith("!")){
 			//prepare stuff
-			messageReaction.message.content = messageReaction.message.content.replace("prepare ", "");
+			messageReaction.message.content = messageReaction.message.content.replace("!prepare ", "");
 			console.log(messageReaction.message.content);
 			client.emit("message", messageReaction.message);
 		}else if(connected){
