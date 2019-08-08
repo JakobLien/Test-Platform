@@ -393,6 +393,7 @@ client.on('message', message => {
 								});
 							}
 							if(returned.phonetic){response += "Uttale: "+returned.phonetic}
+							if(returned.origin){response += "*Origin*: "+returned.origin}
 							if(returned.pronunciation){
 								response += "\nLydfil: ";
 								message.reply(response, {files: [returned.pronunciation]})
@@ -501,10 +502,10 @@ client.on('message', message => {
 					https://api.spotify.com/v1/tracks/6gf5PPir6CwXMF991iOHI6?Authorization=
 					*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
-					define(command[1]).then(returned => {
+					/*define(command[1]).then(returned => {
 						console.log(returned);
 						//client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
-					}, returned => {});
+					}, returned => {});*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					//message.react(":play_pause:").then(returned => {});
 					break;
