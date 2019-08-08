@@ -393,7 +393,7 @@ client.on('message', message => {
 								});
 							}
 							if(returned.phonetic){response += "Uttale: "+returned.phonetic}
-							if(returned.origin){response += "*Origin*: "+returned.origin}
+							if(returned.origin){response += "\nOrigin: "+returned.origin}
 							if(returned.pronunciation){
 								response += "\nLydfil: ";
 								message.reply(response, {files: [returned.pronunciation]})
