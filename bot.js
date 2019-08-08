@@ -570,12 +570,10 @@ client.on('message', message => {
 //could be usefull later clipNames.includes(messageReaction.message.content)
 client.on("messageReactionAdd", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.count === 2){
-		console.log(messageReaction.message.content);
 		if(messageReaction.message.content.startsWith("!prepare")){
-			//let messageObject = messageReaction.message;
-			//messageObject.content = messageObject.content.substring(9);
-			messageReaction.message.content = messageReaction.message.content.substring(9);
-			console.log(messageReaction.message.content);
+			let messageObject = messageReaction.message;
+			messageObject.content = messageObject.content.substring(9);
+			console.log(messageObject.content);
 			//client.emit("message", messageReaction.message);
 		}else if(connected){
 			client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
