@@ -409,7 +409,8 @@ client.on('message', message => {
 				case "tell":
 					runSQL("SELECT id FROM people WHERE navn='"+command[1]+"';").then(idOfReciever=>{
 						runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
-							client.users.get(idOfReciever[0].id).send(nameOfSender[0].navn+" just sent you the following message:\n"+command.slice(2).join(" "));
+							client.users.get(idOfReciever[0].id).send(nameOfSender[0].navn+
+							" just sent you the following message:\n"+command.slice(2).join(" "));
 						});
 					});
 					break;
@@ -536,7 +537,7 @@ client.on('message', message => {
 				}
 			}
 		}
-				words = words.join("");
+		words = words.join("");
 		if(message.content !== words){
 			message.reply("Did you mean:\n"+words);
 		}
@@ -570,7 +571,6 @@ client.on("messageReactionAdd", (messageReaction, user) => {
 		if(messageReaction.message.content.startsWith("!")){
 			//prepare stuff
 			messageReaction.message.content = messageReaction.message.content.replace("!prepare ", "");
-			console.log(messageReaction.message.content);
 			client.emit("message", messageReaction.message);
 		}else if(connected){
 			//play list stuff
