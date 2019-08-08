@@ -255,7 +255,6 @@ var connected = false;
 
 //The main thing
 client.on('message', message => {
-	console.log(message.content);
 	if(message.content[0] === "!" && !(iDecide && !adminIDs.includes(message.author.id))){//general commands
 		let command = message.content.slice(1).split(" ");
 		let keyword = command[0];
@@ -265,15 +264,13 @@ client.on('message', message => {
 				console.log("Attempting to run public command "+message.content+" on the server "+
 				message.guild.name+" for "+message.author.username);
 				if(message.author.id !== myId){
-					tellMe(message.author.username+" is running command "+
-						message.content+" on server "+message.guild.name);
+					tellMe(message.author.username+" is running command "+ message.content+" on server "+message.guild.name);
 				}
 			}else{
 				console.log("Attempting to run public command "+message.content+" in a dm for "+message.author.username);
 				if(message.author.id !== myId){
 					if(!(message.author.id === "387019040939573248" && keyword === "AO")){
-						tellMe(message.author.username+" is running command "+
-							message.content+" through a DM");
+						tellMe(message.author.username+" is running command "+ message.content+" through a DM");
 					}
 				}
 			}
