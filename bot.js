@@ -445,14 +445,14 @@ client.on('message', message => {
 						message.reply("Couldn't find that clip");
 					}
 					break;
-				case "say":
+				/*case "say":
 					if(connected){
 						command.slice(1).forEach(word => {
 							define(word).then(returned => {
 								let link = returned.pronunciation;
 								console.log(link, typeof(link));
-								/*client.voiceConnections.first().playArbitraryInput(link);
-								console.log(link, typeof(link));*/
+								client.voiceConnections.first().playArbitraryInput(link);
+								console.log(link, typeof(link));
 							}, returned => {
 								message.reply("Couldn't find the word: "+word);
 							});
@@ -461,7 +461,7 @@ client.on('message', message => {
 						message.reply("Bot is not in a call");
 					}
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
-					break;
+					break;*/
 				case "me":
 					message.channel.send("Bot controll claimed by Jakob!");
 					iDecide = true;
@@ -501,9 +501,10 @@ client.on('message', message => {
 					https://api.spotify.com/v1/tracks/6gf5PPir6CwXMF991iOHI6?Authorization=
 					*/
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/National%20-%20Anthem.mp3");
-					/*define(command[1]).then(returned => {
-						client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
-					}, returned => {});*/
+					define(command[1]).then(returned => {
+						console.log(returned);
+						//client.voiceConnections.first().playArbitraryInput(returned.pronunciation);
+					}, returned => {});
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					//message.react(":play_pause:").then(returned => {});
 					
