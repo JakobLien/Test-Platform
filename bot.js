@@ -445,23 +445,23 @@ client.on('message', message => {
 						message.reply("Couldn't find that clip");
 					}
 					break;
-				/*case "say":
-					if(client.voiceConnections.first() !== undefined){
+				case "say":
+					if(connected){
 						command.slice(1).forEach(word => {
 							define(word).then(returned => {
 								let link = returned.pronunciation;
 								console.log(link, typeof(link));
-								client.voiceConnections.first().playArbitraryInput(link);
-								console.log(link, typeof(link));
-						}, returned => {
-								message.reply("Couldn't find that word.");
+								/*client.voiceConnections.first().playArbitraryInput(link);
+								console.log(link, typeof(link));*/
+							}, returned => {
+								message.reply("Couldn't find the word: "+word);
 							});
 						});
 					}else{
 						message.reply("Bot is not in a call");
 					}
 					//client.voiceConnections.first().playFile("./National - Anthem.mp3");
-					break;*/
+					break;
 				case "me":
 					message.channel.send("Bot controll claimed by Jakob!");
 					iDecide = true;
