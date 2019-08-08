@@ -574,7 +574,7 @@ client.on("messageReactionAdd", (messageReaction, user) => {
 			messageReaction.message.content = messageReaction.message.content.substring(9);
 			console.log(messageReaction.message.content);
 			//client.emit("message", messageReaction.message);
-		else if(connected){
+		}else if(connected){
 			client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 		}else{
 			tellMe("Join a voice channel plz");
