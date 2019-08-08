@@ -255,7 +255,7 @@ var connected = false;
 
 //The main thing
 client.on('message', message => {
-	console.log("I'm here!");
+	console.log(message.content);
 	if(message.content[0] === "!" && !(iDecide && !adminIDs.includes(message.author.id))){//general commands
 		let command = message.content.slice(1).split(" ");
 		let keyword = command[0];
@@ -506,7 +506,7 @@ client.on('message', message => {
 					//client.voiceConnections.first().playArbitraryInput("https://github.com/jlien11/Test-Platform/raw/master/poodllfile5cfd8a3d3bd561%20(1).mp3");
 					//message.react(":play_pause:").then(returned => {});
 					
-					client.dispatchEvent("message");
+					client.emit("message", message);
 					break;
 			}
 		}
