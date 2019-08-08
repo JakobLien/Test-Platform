@@ -570,6 +570,7 @@ client.on('message', message => {
 //could be usefull later clipNames.includes(messageReaction.message.content)
 client.on("messageReactionAdd", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.count === 2){
+		console.log(messageReaction.message.content);
 		if(messageReaction.message.content.startsWith("!prepare")){
 			//let messageObject = messageReaction.message;
 			//messageObject.content = messageObject.content.substring(9);
