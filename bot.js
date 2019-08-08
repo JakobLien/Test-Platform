@@ -28,7 +28,7 @@ client.on('ready', () => {
 	console.log('I am ready!');
 	client.fetchUser(myId).then(user => {
 		if(user.presence.status === "online"){
-			tellMe("I'm back").then(returned => {});
+			tellMe("I'm back");
 		}
 	});
 	//Initiate countdowns
@@ -571,12 +571,15 @@ client.on('message', message => {
 client.on("messageReactionAdd", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.count === 2){
 		if(messageReaction.message.content.startsWith("!")){
+			//prepare stuff
 			messageReaction.message.content = messageReaction.message.content.replace("prepare ", "");
 			console.log(messageReaction.message.content);
-			//client.emit("message", messageReaction.message);
+			client.emit("message", messageReaction.message);
 		}else if(connected){
+			//play list stuff
 			client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
 		}else{
+			//play list when not in a voice channel
 			tellMe("Join a voice channel plz");
 		}
 	}
