@@ -293,6 +293,9 @@ client.on('message', message => {
 							     "Write !help [a command] to see that command's description.");
 					}
 					break;
+				case "prepare":
+					message.react("%E2%8F%AF");
+					break;
 				case "openPM":
 					if(command[1] === undefined){
 						tellMe(message.author.username+" has opened a PM");
@@ -563,13 +566,19 @@ client.on('message', message => {
 	}
 });
 
-//Identifier til :play_pause: er %E2%8F%AF
+//:play_pause: kode er messageReaction.emoji.identifier === "%E2%8F%AF"
+//could be usefull later clipNames.includes(messageReaction.message.content)
 client.on("messageReactionAdd", (messageReaction, user) => {
-	if(messageReaction.me && messageReaction.count === 2 && connected){
-		client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
-	}else if((messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && messageReaction.count === 2 && 
-		  clipNames.includes(messageReaction.message.content)) && !connected){
-		tellMe("Join a voice channel plz");
+	if(messageReaction.me && messageReaction.count === 2){
+		if(messageReaction.message.content.startsWith("!prepare")){
+			messageReaction.message.content = messageReaction.message.content.substring(9);
+			console.log(messageReaction.message.content);
+			//client.emit("message", messageReaction.message);
+		else if(connected){
+			client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
+		}else{
+			tellMe("Join a voice channel plz");
+		}
 	}
 });
 
