@@ -231,11 +231,6 @@ const myId = "265570029792133129";
 const botId = "530439718823788544";
 var iDecide = false;
 
-//communist constants
-const comList = ["vi", "oss", "vår", "våre", "vårt"];
-const comValues = [["eg", "jeg", "du", "han", "ho", "æ"], ["me", "meg", "deg", "seg"], 
-		   ["min", "din", "hans", "hennes"], ["mine", "dine"], ["mitt", "ditt"]];
-
 //valid names for the sitat command
 const validNames = [];
 runSQL("SELECT DISTINCT navn FROM sitat").then(returned => {
@@ -515,7 +510,6 @@ client.on('message', message => {
 		if(message.channel.type === "dm" && message.author.id !== myId){//tellMe when bot pmed
 			tellMe(message.author.username+" just wrote this to me:\n"+message.content);
 		}
-		//Reply to phraces
 		//Phrases from reply database
 		let cleanMessage = message.content.toLowerCase().replace("'", "\\'");
 		message.mentions.users.forEach(user => {
@@ -526,39 +520,6 @@ client.on('message', message => {
 				splitText(returned[i].responses).forEach(function(item){
 					message.channel.send(item);
 				});
-			}
-		});
-		//phrases from communism
-		let words = splitSymbols(message.content);
-		for(let i = 0; i < words.length; i++){
-			for(let a = 0; a < comValues.length; a++){
-				if(comValues[a].includes(words[i].toLowerCase())){
-					words[i] = "**"+comList[a]+"**";
-				}
-			}
-		}
-		words = words.join("");
-		if(message.content !== words){
-			message.reply("Did you mean:\n"+words);
-		}
-		
-		//compliments on using correct pronouns
-		comList.forEach(word => {
-			if(message.content.includes(word)){
-				message.channel.send({file: "https://vignette.wikia.nocookie.net/jojos-bi/images/e/eb/OMEGA_STALIN.png"});
-								
-			}
-		});
-		
-		
-		//reply adjectives
-		splitSymbols(message.content).forEach(word => {
-			if(word.slice(0, 1).match(/[a-z]|æ|ø|å/i)){
-				define(word).then(definition => {
-					if(definition.meaning.hasOwnProperty("adjective") && 1 < word.length){
-						message.reply("You are "+word+"!");//ser me ut som du e "+word+" du
-					}
-				}, returned => {});
 			}
 		});
 	}
