@@ -528,7 +528,7 @@ client.on('message', message => {
 //:play_pause: kode er messageReaction.emoji.identifier === "%E2%8F%AF"
 //could be usefull later clipNames.includes(messageReaction.message.content)
 client.on("messageReactionAdd", (messageReaction, user) => {
-	if(messageReaction.me && messageReaction.count === 2){
+	if(messageReaction.me && messageReaction.count > 1){
 		if(messageReaction.message.content.startsWith("!")){
 			//prepare stuff
 			messageReaction.message.content = messageReaction.message.content.replace("!prepare ", "");
