@@ -285,6 +285,15 @@ client.on('message', message => {
 							     "Write !help [a command] to see that command's description.");
 					}
 					break;
+				case "count":
+					runSQL("UPDATE count SET count=(count+1);").then(returned => {});
+					runSQL("SELECT * FROM count").then(returned => {
+						message.reply("The count is now at "+returned[0].count);
+					}, returned => {
+						message.reply("Counting failed. Contact administrators");
+						tellMe("Count error");
+					});
+					break;
 				case "prepare":
 					message.react("%E2%8F%AF");
 					break;
