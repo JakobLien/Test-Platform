@@ -106,7 +106,8 @@ function formatSpellData(data){
 	if(data["ritual"] === "no"){ritual = "not "}else{ritual = ""}
 	info += (data["name"]+" is a "+data["level"]+". level "+data["school"]["name"]+` spell.
 It has a casting time of `+data["casting_time"]+", its "+ritual+"a ritual and a range of "+data["range"]+`.
-Its duration is `+data["duration"].toLowerCase()+" and it is "+con+"concentration. Its component(s) are "+data["components"].join(" ")+`
+Its duration is `+data["duration"].toLowerCase()+" and it is "+con+
+"concentration. Its component(s) are "+data["components"].join(" ")+`
 It can be found here: `+data["page"]);
 	for(let i = 0; i<data["desc"].length; i++){
 		info += "\n"+data["desc"][i];
@@ -436,7 +437,18 @@ client.on('message', message => {
 						clipNames.forEach(clipName => {
 							tellMe(clipName).then(message => {
 								message.react("%E2%8F%AF");
+								message.play = function(){
+									if(connected){
+										client.voiceConnections.first().playFile("./data/"+this.content+".mp3");
+									}
+								}
+								message.pause = function(){
+									if(client.voiceConnections.first().dispatcher){
+										client.voiceConnections.first().dispatcher.end();
+									}
+								}
 							});
+							
 						});
 					}else if(command[1] === "stop"){
 						if(client.voiceConnections.first().dispatcher){
@@ -537,8 +549,9 @@ client.on('message', message => {
 //:play_pause: kode er messageReaction.emoji.identifier === "%E2%8F%AF"
 //could be usefull later clipNames.includes(messageReaction.message.content)
 client.on("messageReactionAdd", (messageReaction, user) => {
-	if(messageReaction.me && messageReaction.count > 1){
-		if(messageReaction.message.content.startsWith("!")){
+	if(messageReaction.me && messageReaction.count > 1 && messageReaction.emoji.identifier === "%E2%8F%AF"){
+		messageReaction.message.play();
+		/*if(messageReaction.message.content.startsWith("!")){
 			//prepare stuff
 			messageReaction.message.content = messageReaction.message.content.replace("!prepare ", "");
 			client.emit("message", messageReaction.message);
@@ -548,13 +561,14 @@ client.on("messageReactionAdd", (messageReaction, user) => {
 		}else{
 			//play list when not in a voice channel
 			tellMe("Join a voice channel plz");
-		}
+		}*/
+		
 	}
 });
 
 client.on("messageReactionRemove", (messageReaction, user) => {
-	if(messageReaction.me && messageReaction.count === 1 && connected && client.voiceConnections.first().dispatcher){
-		client.voiceConnections.first().dispatcher.end();
+	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF"){
+		messageReaction.message.pause();
 	}
 });
 
