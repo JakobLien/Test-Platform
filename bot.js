@@ -289,7 +289,7 @@ client.on('message', message => {
 				case "prepare":
 					message.react("%E2%8F%AF");
 					message.play = function(){
-						message.content = messageReaction.message.content.replace("!prepare ", "");
+						message.content = message.content.replace("!prepare ", "");
 						client.emit("message", message);
 					}
 					break;
