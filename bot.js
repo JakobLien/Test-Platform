@@ -286,6 +286,13 @@ client.on('message', message => {
 							     "Write !help [a command] to see that command's description.");
 					}
 					break;
+				case "prepare":
+					message.react("%E2%8F%AF");
+					message.play = function(){
+						message.content = messageReaction.message.content.replace("!prepare ", "");
+						client.emit("message", message);
+					}
+					break;
 				case "count":
 					runSQL("UPDATE count SET count=(count+1);").then(returned => {});
 					runSQL("SELECT * FROM count").then(returned => {
@@ -294,9 +301,6 @@ client.on('message', message => {
 						message.reply("Counting failed. Contact administrators");
 						tellMe("Count error");
 					});
-					break;
-				case "prepare":
-					message.react("%E2%8F%AF");
 					break;
 				case "openPM":
 					if(command[1] === undefined){
