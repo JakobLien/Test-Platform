@@ -555,23 +555,11 @@ client.on('message', message => {
 client.on("messageReactionAdd", (messageReaction, user) => {
 	if(messageReaction.me && messageReaction.count > 1 && messageReaction.emoji.identifier === "%E2%8F%AF"){
 		messageReaction.message.play();
-		/*if(messageReaction.message.content.startsWith("!")){
-			//prepare stuff
-			messageReaction.message.content = messageReaction.message.content.replace("!prepare ", "");
-			client.emit("message", messageReaction.message);
-		}else if(connected){
-			//play list stuff
-			client.voiceConnections.first().playFile("./data/"+messageReaction.message.content+".mp3");
-		}else{
-			//play list when not in a voice channel
-			tellMe("Join a voice channel plz");
-		}*/
-		
 	}
 });
 
 client.on("messageReactionRemove", (messageReaction, user) => {
-	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF"){
+	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && messageReaction.message.pause){
 		messageReaction.message.pause();
 	}
 });
