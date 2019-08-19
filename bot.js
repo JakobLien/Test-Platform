@@ -292,7 +292,7 @@ client.on('message', message => {
 							message.content = message.content.replace("!prepare ", "");
 							client.emit("message", message);
 						}
-					}
+					});
 					break;
 				case "count":
 					runSQL("UPDATE count SET count=(count+1);").then(returned => {});
