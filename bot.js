@@ -287,10 +287,11 @@ client.on('message', message => {
 					}
 					break;
 				case "prepare":
-					message.react("%E2%8F%AF");
-					message.play = function(){
-						message.content = message.content.replace("!prepare ", "");
-						client.emit("message", message);
+					message.react("%E2%8F%AF").then(messageReaction => {
+						messageReaction.on = function(){
+							message.content = message.content.replace("!prepare ", "");
+							client.emit("message", message);
+						}
 					}
 					break;
 				case "count":
@@ -440,17 +441,18 @@ client.on('message', message => {
 						tellMe("We have the following clips to offer: ");
 						clipNames.forEach(clipName => {
 							tellMe(clipName).then(message => {
-								message.react("%E2%8F%AF");
-								message.play = function(){
-									if(connected){
-										client.voiceConnections.first().playFile("./data/"+this.content+".mp3");
+								message.react("%E2%8F%AF").then(messageReaction => {
+									messageReaction.on = function(){
+										if(connected){
+											client.voiceConnections.first().playFile("./data/"+clipName+".mp3");
+										}
 									}
-								}
-								message.pause = function(){
-									if(client.voiceConnections.first().dispatcher){
-										client.voiceConnections.first().dispatcher.end();
+									messageReaction.off = function(){
+										if(client.voiceConnections.first().dispatcher){
+											client.voiceConnections.first().dispatcher.end();
+										}
 									}
-								}
+								)};
 							});
 							
 						});
@@ -553,14 +555,14 @@ client.on('message', message => {
 //:play_pause: kode er messageReaction.emoji.identifier === "%E2%8F%AF"
 //could be usefull later clipNames.includes(messageReaction.message.content)
 client.on("messageReactionAdd", (messageReaction, user) => {
-	if(messageReaction.me && messageReaction.count > 1 && messageReaction.emoji.identifier === "%E2%8F%AF"){
-		messageReaction.message.play();
+	if(messageReaction.me && messageReaction.count > 1){
+		messageReaction.on();
 	}
 });
 
 client.on("messageReactionRemove", (messageReaction, user) => {
-	if(messageReaction.me && messageReaction.emoji.identifier === "%E2%8F%AF" && messageReaction.message.pause){
-		messageReaction.message.pause();
+	if(messageReaction.me && messageReaction.off){
+		messageReaction.off();
 	}
 });
 
