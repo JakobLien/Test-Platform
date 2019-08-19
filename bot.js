@@ -452,7 +452,7 @@ client.on('message', message => {
 											client.voiceConnections.first().dispatcher.end();
 										}
 									}
-								)};
+								});
 							});
 							
 						});
