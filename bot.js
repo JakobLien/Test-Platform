@@ -442,7 +442,6 @@ client.on('message', message => {
 						clipNames.forEach(clipName => {
 							tellMe(clipName).then(message => {
 								message.react("%E2%8F%AF").then(messageReaction => {
-									console.log(clipName);
 									messageReaction.on = function(){
 										if(connected){
 											client.voiceConnections.first().playFile("./data/"+clipName+".mp3");
