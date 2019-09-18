@@ -256,7 +256,7 @@ client.on('message', message => {
 		let keyword = command[0];
 		if(publicCommands.includes(keyword)){
 			//public commands
-			let name = runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';")[0].name;
+			let name = runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';")[0].navn;
 			if(message.guild !== null){
 				console.log("Attempting to run public command "+message.content+" on the server "+
 				message.guild.name+" for "+name);
