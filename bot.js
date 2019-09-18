@@ -256,17 +256,18 @@ client.on('message', message => {
 		let keyword = command[0];
 		if(publicCommands.includes(keyword)){
 			//public commands
+			let name = runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';");
 			if(message.guild !== null){
 				console.log("Attempting to run public command "+message.content+" on the server "+
-				message.guild.name+" for "+message.author.username);
+				message.guild.name+" for "+name);
 				if(message.author.id !== myId){
-					tellMe(message.author.username+" is running command "+ message.content+" on server "+message.guild.name);
+					tellMe(name+" is running command "+ message.content+" on server "+message.guild.name);
 				}
 			}else{
-				console.log("Attempting to run public command "+message.content+" in a dm for "+message.author.username);
+				console.log("Attempting to run public command "+message.content+" in a dm for "+name);
 				if(message.author.id !== myId){
 					if(!(message.author.id === "387019040939573248" && keyword === "AO")){
-						tellMe(message.author.username+" is running command "+ message.content+" through a DM");
+						tellMe(name+" is running command "+ message.content+" through a DM");
 					}
 				}
 			}
