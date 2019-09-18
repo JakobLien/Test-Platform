@@ -272,7 +272,7 @@ client.on('message', message => {
 						}
 					}
 				}
-			}
+			});
 			switch(keyword){
 				//various stuff
 				case "help":
