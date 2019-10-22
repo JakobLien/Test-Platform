@@ -42,6 +42,12 @@ client.on('ready', () => {
 			}, new Date(row.due).getTime()-new Date().getTime(), row);
 		});
 	});
+	/*var d = new Date();
+	d.setDate(d.getDate() + (1 + 7 - d.getDay()) % 7);
+	d.setHours(8, 0, 0, 0);
+	client.setTimeout(function(){
+		TellMe("Test for greia");
+	}, d.getTime()-Date.now());*/
 	//set state
 	client.user.setPresence({ status: 'online', game: { name: '!help' } });
 	//do stuff to see if its in the database and update if it isn't
@@ -513,6 +519,8 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
+					message.channel.send("@everyone Bare en test, sry for plaging.");
+					
 					/*client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
 						connection.playFile("./National - Anthem.mp3");
