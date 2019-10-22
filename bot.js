@@ -519,7 +519,9 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					message.channel.send("@everyone Bare en test, sry for plaging.");
+					//message.channel.send("@everyone Bare en test, sry for plaging.");
+					
+					client.channels.get("542685151641993216").send("test 2");
 					
 					/*client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
