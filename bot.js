@@ -42,17 +42,15 @@ client.on('ready', () => {
 			}, new Date(row.due).getTime()-new Date().getTime(), row);
 		});
 	});
+	//the weekly timer
 	let d = new Date();
 	d.setDate(d.getDate() + 8 - d.getDay());
 	d.setHours(8, 0, 0, 0);
-	
 	let onejan = new Date(d.getFullYear(), 0, 1);
 	let week = Math.ceil((((d - onejan)/86400000) + onejan.getDay() + 1) / 7 ).toString();
 	client.setTimeout(function(week){
-		//client.channels.get("636242416453812318").send("@everyone Det e no uke "+week);
+		client.channels.get("636242416453812318").send("@everyone Det e no uke "+week);
 	}, d.getTime()-Date.now(), week);
-	console.log("Milliseconds until next week message:"+(d.getTime()-Date.now()));
-	
 	client.user.setPresence({ status: 'online', game: { name: '!help' } });
 	//do stuff to see if its in the database and update if it isn't
 	runSQL("SELECT id FROM people").then(returned => {
