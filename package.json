@@ -8,7 +8,7 @@
 		"mysql": "*",
 		"bufferutil": "*",
 		"erlpack": "*",
-		"node-opus": "*",
+		"node-opus": "v10.17.0",
 		"sodium": "*",
 		"libsodium-wrappers": "*",
 		"uws": "*",
