@@ -4,12 +4,11 @@
 	"version": "1.0.0",
 	"main": "bot.js",
 	"dependencies": {
-		"node": "v10.00.0",
+		"node": "*",
 		"request": "*",
 		"mysql": "*",
 		"bufferutil": "*",
 		"erlpack": "*",
-		"node-opus": "*",
 		"sodium": "*",
 		"libsodium-wrappers": "*",
 		"uws": "*",
