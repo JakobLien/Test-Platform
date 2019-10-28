@@ -46,7 +46,7 @@ client.on('ready', () => {
 	//d.setDate(d.getDate() + (8 - d.getDay()) % 7);
 	//d.setHours(8, 0, 0, 0);
 	d.setDate(d.getDate());
-	d.setHours(8, 0, 0, 0);
+	d.setHours(9, 0, 0, 0);
 	let onejan = new Date(d.getFullYear(), 0, 1);
 	let week = Math.ceil((((d - onejan)/86400000) + onejan.getDay() + 1) / 7 ).toString();
 	client.setTimeout(function(week){
