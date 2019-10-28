@@ -43,7 +43,9 @@ client.on('ready', () => {
 		});
 	});
 	let d = new Date();
-	d.setDate(d.getDate() + (1 + 7 - d.getDay()) % 7);
+	//d.setDate(d.getDate() + (8 - d.getDay()) % 7);
+	//d.setHours(8, 0, 0, 0);
+	d.setDate(d.getDate());
 	d.setHours(8, 0, 0, 0);
 	let onejan = new Date(d.getFullYear(), 0, 1);
 	let week = Math.ceil((((d - onejan)/86400000) + onejan.getDay() + 1) / 7 ).toString();
