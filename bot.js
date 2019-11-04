@@ -50,8 +50,7 @@ client.on('ready', () => {
 	let week = Math.ceil((((d - onejan)/86400000) + onejan.getDay() + 1) / 7 ).toString();
 	client.setTimeout(function(week){
 		client.channels.get("636242416453812318").send("@everyone Det e no uke "+week);
-	}, 10000, week);
-	//d.getTime()-Date.now()
+	}, d.getTime()-Date.now(), week);
 	client.user.setPresence({ status: 'online', game: { name: '!help' } });
 	//do stuff to see if its in the database and update if it isn't
 	runSQL("SELECT id FROM people").then(returned => {
