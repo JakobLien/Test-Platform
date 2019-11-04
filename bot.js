@@ -521,6 +521,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
+					client.channels.get("636242416453812318").send("@everyone Det e no uke "+week);
 					/*client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
 						connection.playFile("./National - Anthem.mp3");
