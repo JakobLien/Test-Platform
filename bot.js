@@ -6,7 +6,7 @@
 
 //for joining calls and stuff
 const FFMPEG = require('ffmpeg');
-const opus = require('node-opus');
+//const opus = require('node-opus');
 
 //Important genereral stuff
 const Discord = require('discord.js');
