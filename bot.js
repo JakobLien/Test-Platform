@@ -44,8 +44,9 @@ client.on('ready', () => {
 	});
 	//the weekly timer
 	let d = new Date();
-	d.setDate(d.getDate() + 8 - d.getDay());
-	d.setHours(7, 0, 0, 0);
+	//d.setDate(d.getDate() + 8 - d.getDay());
+	//d.setHours(7, 0, 0, 0);
+	d.setMinutes(d.getMinutes()+2);
 	let onejan = new Date(d.getFullYear(), 0, 1);
 	let week = Math.ceil((((d - onejan)/86400000) + onejan.getDay() + 1) / 7 ).toString();
 	client.setTimeout(function(week){
