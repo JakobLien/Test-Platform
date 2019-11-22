@@ -519,14 +519,13 @@ client.on('message', message => {
 							if(returned.length > 0){
 								let returnString = returned[0].keys().join(", ");
 								returned.forEach(function(item, index){
-									returnString += JSON.stringify(item) + "\n"
+									returnString += item.values().join(", ") + "\n"
 									//tellMe(JSON.stringify(item));
 								});
+								returnString = returnString.replace(/\*/g, "\*");
 								splitText(returnString).forEach(chunk => {
 									message.reply(chunk);
 								});
-							}else{
-								
 							}
 						});
 					}catch(e){
