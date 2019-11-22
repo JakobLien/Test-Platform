@@ -517,7 +517,7 @@ client.on('message', message => {
 						runSQL(command.slice(1).join(" ")).then(returned =>{
 							console.log(returned);
 							returned.forEach(function(item, index){
-								tellMe(item);
+								tellMe(JSON.stringify(item));
 							});
 						});
 					}catch(e){
