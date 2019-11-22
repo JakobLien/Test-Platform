@@ -519,7 +519,7 @@ client.on('message', message => {
 							if(returned.length > 0){
 								let returnString = returned[0].keys().join(", ");
 								returned.forEach(function(item, index){
-									returnString += item.values().join(", ") + "\n"
+									returnString += item.values().join(", ") + "\n";
 									//tellMe(JSON.stringify(item));
 								});
 								returnString = returnString.replace(/\*/g, "\*");
