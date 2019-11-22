@@ -516,14 +516,18 @@ client.on('message', message => {
 					try{
 						runSQL(command.slice(1).join(" ")).then(returned =>{
 							console.log(returned);
-							let returnString = "";
-							returned.forEach(function(item, index){
-								returnString += JSON.stringify(item) + "\n"
-								//tellMe(JSON.stringify(item));
-							});
-							splitText(returnString).forEach(chunk => {
-								message.reply(chunk);
-							});
+							if(returned.length > 0){
+								let returnString = returned[0].keys().join(", ");
+								returned.forEach(function(item, index){
+									returnString += JSON.stringify(item) + "\n"
+									//tellMe(JSON.stringify(item));
+								});
+								splitText(returnString).forEach(chunk => {
+									message.reply(chunk);
+								});
+							}else{
+								
+							}
 						});
 					}catch(e){
 						message.reply("Something went wrong. error message: "+e)
