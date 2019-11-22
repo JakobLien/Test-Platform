@@ -515,8 +515,9 @@ client.on('message', message => {
 				case "runSQL":
 					try{
 						runSQL(command.slice(1).join(" ")).then(returned =>{
-							console.log(returned);
+							//console.log(returned);
 							if(returned.length > 0){
+								console.log(returned[0]);
 								let returnString = returned[0].keys().join(", ");
 								returned.forEach(function(item, index){
 									returnString += item.values().join(", ") + "\n";
