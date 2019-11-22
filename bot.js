@@ -516,9 +516,10 @@ client.on('message', message => {
 					try{
 						runSQL(command.slice(1).join(" ")).then(returned =>{
 							console.log(returned);
-							returned.forEach(function(item, index){
+							message.reply(returned);
+							/*returned.forEach(function(item, index){
 								tellMe(JSON.stringify(item));
-							});
+							});*/
 						});
 					}catch(e){
 						message.reply("Something went wrong. error message: "+e)
