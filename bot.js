@@ -518,9 +518,9 @@ client.on('message', message => {
 							//console.log(returned);
 							if(returned.length > 0){
 								console.log(returned[0]);
-								let returnString = Object.keys(returned[0]).join(", ");
+								let returnString = Object.keys(returned[0]).join("\t\t") + "\n";
 								returned.forEach(function(item, index){
-									returnString += Object.values(item).join(", ") + "\n";
+									returnString += Object.values(item).join("\t\t") + "\n";
 									//tellMe(JSON.stringify(item));
 								});
 								returnString = returnString.replace(/\*/g, "\*");
