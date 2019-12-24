@@ -532,6 +532,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
+message.channel.send(«Beep Boop. God jul alle mine jævla!<3»);
 					/*client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
 						connection.playFile("./National - Anthem.mp3");
