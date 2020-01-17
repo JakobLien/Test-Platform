@@ -6,11 +6,11 @@
 
 //for joining calls and stuff
 const FFMPEG = require('ffmpeg');
-const opus = require('node-opus');
+//const opus = require('node-opus');
 
 //Important genereral stuff
 const Discord = require('discord.js');
-//const client = new Discord.Client();
+const client = new Discord.Client();
 
 //api for general communication and stuff
 const http = require('http');
