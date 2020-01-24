@@ -289,9 +289,16 @@ client.on('message', message => {
 				}else{
 					console.log("Attempting to run public command "+message.content+" in a dm for "+name);
 					if(message.author.id !== myId){
-						if(!(message.author.id === "387019040939573248" && keyword === "AO")){
-							tellMe(name+" is running command "+ message.content+" through a DM");
-						}
+						let str = name+" is running command "+ message.content+" through a DM";
+						client.myUser.dmChannel.fetchMessage(client.myUser.dmChannel.lastMessageID).then(lastMessage => {
+							if(lastMessage.content.startsWith(str)){
+								let num = parseInt(lastMessage.content.replace(str, "").slice(1, -1)) || 0;
+								num++;
+								lastMessage.edit(str+"("+num.toString()+")");
+							}else{
+								tellMe(str);
+							}
+						});
 					}
 				}
 			});
