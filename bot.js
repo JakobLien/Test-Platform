@@ -239,6 +239,9 @@ runSQL("SELECT id FROM people WHERE admin=TRUE").then(returned => {
 
 //controll variables
 const myId = "265570029792133129";
+client.fetchUser(myId).then(returned => {
+	const myUser = returned;
+});
 const botId = "530439718823788544";
 var iDecide = false;
 
@@ -272,7 +275,16 @@ client.on('message', message => {
 					console.log("Attempting to run public command "+message.content+" on the server "+
 					message.guild.name+" for "+name);
 					if(message.author.id !== myId){
-						tellMe(name+" is running command "+ message.content+" on server "+message.guild.name);
+						let str = name+" is running command "+ message.content+" on server "+message.guild.name;
+						myUser.dmChannel.fetchMessage(myUser.dmChannel.lastMessageID).then(lastMessage => {
+							if(lastMessage.content.startsWith(str)){
+								let num = parseInt(lastMessage.content.replace(str, "").slice(1, -1)) || 0;
+								num++;
+								lastMessage.edit(str+"("+num.toString()+")")
+							}else{
+								tellMe(str);
+							}
+						});
 					}
 				}else{
 					console.log("Attempting to run public command "+message.content+" in a dm for "+name);
