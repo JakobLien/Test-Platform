@@ -64,7 +64,7 @@ client.on('ready', () => {
 		});
 	});
 	client.fetchUser(myId).then(returned => {
-		const myUser = returned;
+		client.myUser = returned;
 	});
 });
 
@@ -276,11 +276,11 @@ client.on('message', message => {
 					message.guild.name+" for "+name);
 					if(message.author.id !== myId){
 						let str = name+" is running command "+ message.content+" on server "+message.guild.name;
-						myUser.dmChannel.fetchMessage(myUser.dmChannel.lastMessageID).then(lastMessage => {
+						client.myUser.dmChannel.fetchMessage(client.myUser.dmChannel.lastMessageID).then(lastMessage => {
 							if(lastMessage.content.startsWith(str)){
 								let num = parseInt(lastMessage.content.replace(str, "").slice(1, -1)) || 0;
 								num++;
-								lastMessage.edit(str+"("+num.toString()+")")
+								lastMessage.edit(str+"("+num.toString()+")");
 							}else{
 								tellMe(str);
 							}
