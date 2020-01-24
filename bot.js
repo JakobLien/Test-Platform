@@ -63,6 +63,9 @@ client.on('ready', () => {
 			}
 		});
 	});
+	client.fetchUser(myId).then(returned => {
+		const myUser = returned;
+	});
 });
 
 //sendhttpRequest
@@ -239,9 +242,6 @@ runSQL("SELECT id FROM people WHERE admin=TRUE").then(returned => {
 
 //controll variables
 const myId = "265570029792133129";
-client.fetchUser(myId).then(returned => {
-	const myUser = returned;
-});
 const botId = "530439718823788544";
 var iDecide = false;
 
