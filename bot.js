@@ -278,7 +278,7 @@ client.on('message', message => {
 						let str = name+" is running command "+ message.content+" on server "+message.guild.name;
 						client.myUser.dmChannel.fetchMessage(client.myUser.dmChannel.lastMessageID).then(lastMessage => {
 							if(lastMessage.content.startsWith(str)){
-								let num = parseInt(lastMessage.content.replace(str, "").slice(1, -1)) || 0;
+								let num = parseInt(lastMessage.content.replace(str, "").slice(1, -1)) || 1;
 								num++;
 								lastMessage.edit(str+"("+num.toString()+")");
 							}else{
@@ -292,7 +292,7 @@ client.on('message', message => {
 						let str = name+" is running command "+ message.content+" through a DM";
 						client.myUser.dmChannel.fetchMessage(client.myUser.dmChannel.lastMessageID).then(lastMessage => {
 							if(lastMessage.content.startsWith(str)){
-								let num = parseInt(lastMessage.content.replace(str, "").slice(1, -1)) || 0;
+								let num = parseInt(lastMessage.content.replace(str, "").slice(1, -1)) || 1;
 								num++;
 								lastMessage.edit(str+"("+num.toString()+")");
 							}else{
