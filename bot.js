@@ -551,7 +551,12 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-message.channel.send("Beep Boop. God jul alle mine jævlar<3");
+					if(command[1] === "set"){
+						process.env[command[2]] = command[3];
+						tellMe("Set property"+command[2]+" with value "+command[3]);
+					}else if(command[1] === "get"){
+						tellMe(process.env[command[2]]);
+					}
 					/*client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
 						connection.playFile("./National - Anthem.mp3");
