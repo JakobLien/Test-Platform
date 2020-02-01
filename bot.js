@@ -3,7 +3,7 @@
 //poppe den ut ett inspirational quote, ett roast system så den velge ut en bra roast fra databasen og sikte den på den du @-e
 //Programmer en ting som lar noen sende en command og det botten svare til noen andre. Eks: "!send @ting !nut"
 //Programmer en sansynlighet for at boten poppe ut en random melding i reaksjon på hver eneste melding(5%-10% sannsynlighet)
-
+ 
 //for joining calls and stuff
 const FFMPEG = require('ffmpeg');
 //const opus = require('node-opus');
