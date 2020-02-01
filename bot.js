@@ -462,7 +462,7 @@ client.on('message', message => {
 							runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
 								client.cannels.get(command[1]).send(nameOfSender[0].navn+
 									" just sent the following message here:\n"+command.slice(2).join(" "));
-							}
+							});
 						}
 					}
 					break;
