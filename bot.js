@@ -460,7 +460,6 @@ client.on('message', message => {
 					}else{
 						if(client.channels.get(command[1])){
 							runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
-								console.log(parseInt(command[1]), !!client.channels.get(parseInt(command[1])));
 								client.channels.get(command[1]).send(nameOfSender[0].navn+
 									" just sent the following message here:\n"+command.slice(2).join(" "));
 							});
