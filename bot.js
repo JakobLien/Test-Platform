@@ -450,12 +450,21 @@ client.on('message', message => {
 					}
 					break;
 				case "tell":
-					runSQL("SELECT id FROM people WHERE navn='"+command[1]+"';").then(idOfReciever=>{
-						runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
-							client.users.get(idOfReciever[0].id).send(nameOfSender[0].navn+
-							" just sent you the following message:\n"+command.slice(2).join(" "));
+					if(Number.isNaN(command[1])){
+						runSQL("SELECT id FROM people WHERE navn='"+command[1]+"';").then(idOfReciever=>{
+							runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
+								client.users.get(idOfReciever[0].id).send(nameOfSender[0].navn+
+								" just sent you the following message:\n"+command.slice(2).join(" "));
+							});
 						});
-					});
+					}else{
+						if(client.channels.get(command[1])){
+							runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
+								client.cannels.get(command[1]).send(nameOfSender[0].navn+
+									" just sent the following message here:\n"+command.slice(2).join(" "));
+							}
+						}
+					}
 					break;
 			}
 		}else if(privateCommands.includes(keyword) && adminIDs.includes(message.author.id)){
