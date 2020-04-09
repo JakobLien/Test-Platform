@@ -26,7 +26,7 @@ const fs = require('fs');
 
 client.on('ready', () => {
 	console.log('I am ready!');
-	client.fetchUser(myId).then(user => {
+	client.users.get(myId).then(user => {
 		if(user.presence.status === "online"){
 			tellMe("I'm back");
 		}
@@ -35,7 +35,7 @@ client.on('ready', () => {
 	runSQL("SELECT * FROM countdown;").then(returned => {
 		returned.forEach(row => {
 			client.setTimeout(function(row){
-				client.fetchUser(row.id).then(user => {
+				client.users.get(row.id).then(user => {
 					user.send(row.message)
 					runSQL("DELETE FROM countdown WHERE id = '"+row.id+"' AND due = '"+row.due+"';").then(returned =>{});
 				});
@@ -63,7 +63,7 @@ client.on('ready', () => {
 			}
 		});
 	});
-	client.fetchUser(myId).then(returned => {
+	client.users.get(myId).then(returned => {
 		client.myUser = returned;
 	});
 });
@@ -340,7 +340,7 @@ client.on('message', message => {
 						tellMe(message.author.username+" has opened a PM");
 						message.author.send("Hello there");
 					}else{
-						client.fetchUser(command[1]).then(user => {
+						client.users.get(command[1]).then(user => {
 							user.send("Hi there!\nThis message was sent to you by "+message.author.username)
 						});
 					}
@@ -414,7 +414,7 @@ client.on('message', message => {
 						message.reply("I will be shure to message you that in "+
 						(new Date(command[1]).getTime()-new Date().getTime())/1000+" seconds.");
 						client.setTimeout(function(id, due, message){
-							client.fetchUser(id).then(user => {
+							client.users.get(id).then(user => {
 								user.send(message)
 								runSQL("DELETE FROM countdown WHERE id = '"+id+
 								       "' AND due = '"+due+"';").then(returned => {});
