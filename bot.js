@@ -36,7 +36,7 @@ client.on('ready', () => {
 	runSQL("SELECT * FROM countdown;").then(returned => {
 		returned.forEach(row => {
 			client.setTimeout(function(row){
-				client.users.get(row.id).then(user => {
+				client.users.fetch(row.id).then(user => {
 					user.send(row.message)
 					runSQL("DELETE FROM countdown WHERE id = '"+row.id+"' AND due = '"+row.due+"';").then(returned =>{});
 				});
@@ -64,7 +64,7 @@ client.on('ready', () => {
 			}
 		});
 	});
-	client.users.get(myId).then(returned => {
+	client.users.fetch(myId).then(returned => {
 		client.myUser = returned;
 	});
 });
@@ -162,7 +162,7 @@ function rollDice(dice){
 }
 
 function tellMe(message){
-	return client.users.get(myId).send(message);
+	return client.users.fetch(myId).send(message);
 }
 
 //function to split text into words, and symbols, so that I can replace the words perfectly
@@ -341,7 +341,7 @@ client.on('message', message => {
 						tellMe(message.author.username+" has opened a PM");
 						message.author.send("Hello there");
 					}else{
-						client.users.get(command[1]).then(user => {
+						client.users.fetch(command[1]).then(user => {
 							user.send("Hi there!\nThis message was sent to you by "+message.author.username)
 						});
 					}
@@ -415,7 +415,7 @@ client.on('message', message => {
 						message.reply("I will be shure to message you that in "+
 						(new Date(command[1]).getTime()-new Date().getTime())/1000+" seconds.");
 						client.setTimeout(function(id, due, message){
-							client.users.get(id).then(user => {
+							client.users.fetch(id).then(user => {
 								user.send(message)
 								runSQL("DELETE FROM countdown WHERE id = '"+id+
 								       "' AND due = '"+due+"';").then(returned => {});
@@ -454,7 +454,7 @@ client.on('message', message => {
 					if(Number.isNaN(parseInt(command[1]))){
 						runSQL("SELECT id FROM people WHERE navn='"+command[1]+"';").then(idOfReciever=>{
 							runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
-								client.users.get(idOfReciever[0].id).send(nameOfSender[0].navn+
+								client.users.fetch(idOfReciever[0].id).send(nameOfSender[0].navn+
 								" just sent you the following message:\n"+command.slice(2).join(" "));
 							});
 						});
