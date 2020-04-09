@@ -26,7 +26,8 @@ const fs = require('fs');
 
 client.on('ready', () => {
 	console.log('I am ready!');
-	client.users.get(myId).then(user => {
+	console.log(typeof(client));
+	client.users.fetch(myId).then(user => {
 		if(user.presence.status === "online"){
 			tellMe("I'm back");
 		}
