@@ -456,8 +456,11 @@ client.on('message', message => {
 					if(Number.isNaN(parseInt(command[1]))){
 						runSQL("SELECT id FROM people WHERE navn='"+command[1]+"';").then(idOfReciever=>{
 							runSQL("SELECT navn FROM people WHERE id='"+message.author.id+"';").then(nameOfSender=>{
-								client.users.fetch(idOfReciever[0].id).send(nameOfSender[0].navn+
-								" just sent you the following message:\n"+command.slice(2).join(" "));
+								client.users.fetch(myId).then(user
+								client.users.fetch(idOfReciever[0].id).then(user => {
+									user.send(nameOfSender[0].navn+" just sent you the following message:\n"+
+										  command.slice(2).join(" "));
+								});
 							});
 						});
 					}else{
