@@ -57,7 +57,7 @@ client.on('ready', () => {
 	client.user.setPresence({ status: 'online', game: { name: '!help' } });
 	//do stuff to see if people in the database and update if they aren't
 	runSQL("SELECT id FROM people").then(returned => {
-		client.users.forEach(user => {
+		client.users.cache.forEach(user => {
 			if(!user.bot && returned.every(row => {return row.id !== user.id})){
 				tellMe("Fix a name for: "+user.username);
 				runSQL("INSERT INTO people (id, navn) VALUES ('"+user.id+"', '"+user.username+"');");
