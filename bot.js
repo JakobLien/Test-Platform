@@ -50,7 +50,7 @@ client.on('ready', () => {
 		let onejan = new Date(d.getFullYear(), 0, 1);
 		let week = Math.ceil((((d - onejan)/86400000) + onejan.getDay() + 1) / 7 ).toString();
 		client.setTimeout(function(week){
-			client.channels.get("636242416453812318").send("@everyone God morgen! Det er uke "+week+", ha en fin mandag.");
+			client.channels.get("636242416453812318").send("@everyone God morgen! Det er uke "+week+", ha en fin mandag.\n(husk å refresh boligsøknad for de av dere som skal det");
 		}, d.getTime()-Date.now(), week);
 	}
 	client.user.setPresence({ status: 'online', game: { name: '!help' } });
@@ -560,12 +560,14 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					if(command[1] === "set"){
+					tellMe("@everyone God morgen! Det er uke [week], ha en fin mandag.\n(husk å refresh boligsøknad for de av dere som skal det");
+					
+					/*if(command[1] === "set"){
 						process.env[command[2]] = command[3];
 						tellMe("Set property"+command[2]+" with value "+command[3]);
 					}else if(command[1] === "get"){
 						tellMe(process.env[command[2]]);
-					}
+					}*/
 					/*client.channels.get("530443400185643016").join().then(connection => {
 						console.log("connected");
 						connection.playFile("./National - Anthem.mp3");
