@@ -51,7 +51,7 @@ client.on('ready', () => {
 		let onejan = new Date(d.getFullYear(), 0, 1);
 		let week = Math.ceil((((d - onejan)/86400000) + onejan.getDay() + 1) / 7 ).toString();
 		client.setTimeout(function(week){
-			client.channels.get("636242416453812318").send("@everyone God morgen! Det er uke "+week+", ha en fin mandag.\n(husk å refresh boligsøknad for de av dere som skal det");
+			client.channels.get("636242416453812318").send("@everyone God morgen! Det er uke "+week+", ha en fin mandag.\n(husk å refresh boligsøknad for de av dere som skal det)");
 		}, d.getTime()-Date.now(), week);
 	}
 	client.user.setPresence({ status: 'online', game: { name: '!help' } });
@@ -565,7 +565,7 @@ client.on('message', message => {
 					}
 					break;
 				case "test":
-					tellMe("@everyone God morgen! Det er uke [week], ha en fin mandag.\n(husk å refresh boligsøknad for de av dere som skal det");
+					tellMe("@everyone God morgen! Det er uke [week], ha en fin mandag.\n(husk å refresh boligsøknad for de av dere som skal det)");
 					
 					/*if(command[1] === "set"){
 						process.env[command[2]] = command[3];
