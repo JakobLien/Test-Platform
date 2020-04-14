@@ -487,12 +487,12 @@ client.on('message', message => {
 								message.react("%E2%8F%AF").then(messageReaction => {
 									messageReaction.on = function(){
 										if(connected){
-											client.voice.connections.first().playFile("./data/"+clipName+".mp3");
+											client.voice.connections.first().play("./data/"+clipName+".mp3");
 										}
 									}
 									messageReaction.off = function(){
-										if(client.voiceConnections.first().dispatcher){
-											client.voiceConnections.first().dispatcher.end();
+										if(client.voice.connections.first().dispatcher){
+											client.voice.connections.first().dispatcher.end();
 										}
 									}
 								});
@@ -506,7 +506,7 @@ client.on('message', message => {
 							message.reply("I am not currently playing a clip");
 						}
 					}else if(clipNames.includes(command[1])){
-						client.voiceConnections.first().playFile("./data/"+command[1]+".mp3");
+						client.voice.connections.first().play("./data/"+clipName+".mp3");
 					}else{
 						message.reply("Couldn't find that clip");
 					}
