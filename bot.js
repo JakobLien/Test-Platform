@@ -630,12 +630,12 @@ client.on("messageReactionRemove", (messageReaction, user) => {
 
 client.on("voiceStateUpdate", (oldState, newState) => {
 	console.log(oldState.channel, newState.channel);
-	if(oldState.id === myId && oldState.channel === undefined && newState.channel !== undefined){
+	if(oldState.id === myId && oldState.channel === null && newState.channel !== null){
 		newState.channel.join().then(voiceConnection => {
 			console.log("Successfully joined "+voiceConnection.channel.name+" on "+voiceConnection.channel.guild.name);
 			connected = true;
 		});
-	}else if(oldState.id === myId && oldState.channel !== undefined && newState.channel === undefined){
+	}else if(oldState.id === myId && oldState.channel !== null && newState.channel === null){
 		newState.channel.leave();
 		console.log("Successfully left the voicechannel.");
 		connected = false;
