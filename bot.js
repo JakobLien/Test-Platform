@@ -6,7 +6,7 @@
  
 //for joining calls and stuff
 const FFMPEG = require('ffmpeg');
-//const opus = require('node-opus');
+const opus = require('node-opus');
 
 //Important genereral stuff
 const Discord = require('discord.js');
@@ -26,7 +26,6 @@ const fs = require('fs');
 
 client.on('ready', () => {
 	console.log('I am ready!');
-	console.log(typeof(client));
 	client.users.fetch(myId).then(user => {
 		if(user.presence.status === "online"){
 			tellMe("I'm back");
