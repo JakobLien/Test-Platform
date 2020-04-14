@@ -12,7 +12,7 @@ const FFMPEG = require('ffmpeg');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-require('discord.js/opus');
+require('discordjs/opus');
 
 //api for general communication and stuff
 const http = require('http');
