@@ -636,7 +636,7 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 			connected = true;
 		});
 	}else if(oldState.id === myId && oldState.channel !== null && newState.channel === null){
-		newState.channel.leave();
+		oldState.channel.leave();
 		console.log("Successfully left the voicechannel.");
 		connected = false;
 	}
