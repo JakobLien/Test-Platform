@@ -161,8 +161,8 @@ function rollDice(dice){
 }
 
 function tellMe(message){
-	return client.users.fetch(myId).then(me => {
-		me.send(message);
+	client.users.fetch(myId).then(me => {
+		return me.send(message);
 	})
 }
 
