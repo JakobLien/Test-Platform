@@ -487,7 +487,7 @@ client.on('message', message => {
 								message.react("%E2%8F%AF").then(messageReaction => {
 									messageReaction.on = function(){
 										if(connected){
-											client.voiceConnections.first().playFile("./data/"+clipName+".mp3");
+											client.voice.connections.first().playFile("./data/"+clipName+".mp3");
 										}
 									}
 									messageReaction.off = function(){
