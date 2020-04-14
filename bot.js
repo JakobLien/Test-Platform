@@ -628,8 +628,19 @@ client.on("messageReactionRemove", (messageReaction, user) => {
 	}
 });
 
-client.on("voiceStateUpdate", (oldMember, newMember) => {
-	if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
+client.on("voiceStateUpdate", (oldState, newState) => {
+	if(oldState.id === myId && oldState.channel === undefined && newState.channel !== undefined){
+		newState.channel.join().then(voiceConnection => {
+			console.log("Successfully joined "+voiceConnection.channel.name+" on "+voiceConnection.channel.guild.name);
+			connected = true;
+		});
+	}else if(oldState.id === myId && oldState.channel !== undefined && newState.channel === undefined){
+		newState.channel.leave();
+		console.log("Successfully left the voicechannel.");
+		connected = false;
+	}
+	
+	/*if(newMember.id === "265570029792133129" && oldMember.voiceChannel === undefined && newMember.voiceChannel !== undefined){
 		newMember.voiceChannel.join().then(connection => {
 			console.log("Successfully joined "+connection.channel.name+" on "+connection.channel.guild.name);
 			connected = true;
@@ -639,7 +650,7 @@ client.on("voiceStateUpdate", (oldMember, newMember) => {
 		oldMember.voiceChannel.leave();
 		console.log("Successfully left the voicechannel.");
 		connected = false;
-	}
+	}*/
 });
 
 // THIS  MUST  BE  THIS  WAY
