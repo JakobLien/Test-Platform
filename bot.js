@@ -161,9 +161,7 @@ function rollDice(dice){
 }
 
 function tellMe(message){
-	client.users.fetch(myId).then(me => {
-		return me.send(message);
-	})
+	return client.myUser.send(message);
 }
 
 //function to split text into words, and symbols, so that I can replace the words perfectly
