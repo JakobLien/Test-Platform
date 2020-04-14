@@ -25,12 +25,10 @@ connection.connect();
 const fs = require('fs');
 
 client.on('ready', () => {
-	console.log('I am ready!');
-	client.users.fetch(myId).then(user => {
-		if(user.presence.status === "online"){
-			tellMe("I'm back");
-		}
+	client.users.fetch(myId).then(returned => {
+		client.myUser = returned;
 	});
+	client.user.setPresence({ status: 'online', game: { name: '!help' } });
 	//Initiate countdowns
 	runSQL("SELECT * FROM countdown;").then(returned => {
 		returned.forEach(row => {
@@ -53,7 +51,6 @@ client.on('ready', () => {
 			client.channels.get("636242416453812318").send("@everyone God morgen! Det er uke "+week+", ha en fin mandag.\n(husk å refresh boligsøknad for de av dere som skal det)");
 		}, d.getTime()-Date.now(), week);
 	}
-	client.user.setPresence({ status: 'online', game: { name: '!help' } });
 	//do stuff to see if people in the database and update if they aren't
 	runSQL("SELECT id FROM people").then(returned => {
 		client.users.cache.forEach(user => {
@@ -63,8 +60,11 @@ client.on('ready', () => {
 			}
 		});
 	});
-	client.users.fetch(myId).then(returned => {
-		client.myUser = returned;
+	console.log('I am ready!');
+	client.users.fetch(myId).then(user => {
+		if(user.presence.status === "online"){
+			tellMe("I'm back");
+		}
 	});
 });
 
