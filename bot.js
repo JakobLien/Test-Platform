@@ -506,7 +506,7 @@ client.on('message', message => {
 							message.reply("I am not currently playing a clip");
 						}
 					}else if(clipNames.includes(command[1])){
-						client.voice.connections.first().play("./data/"+command[1])+".mp3");
+						client.voice.connections.first().play("./data/"+command[1]+".mp3");
 					}else{
 						message.reply("Couldn't find that clip");
 					}
