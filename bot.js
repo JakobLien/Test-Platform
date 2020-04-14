@@ -12,8 +12,6 @@ const FFMPEG = require('ffmpeg');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-require('discordjs/opus');
-
 //api for general communication and stuff
 const http = require('http');
 const https = require('https');
