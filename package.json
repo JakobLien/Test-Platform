@@ -12,7 +12,7 @@
 		"uws": "*",
 		"ffmpeg": "*",
 		"discord.js": "*",
-		"@discordjs/opus": "*"
+		"discordjs/opus": "*"
 	},
 	"scripts": {
 		"start": "node bot.js"
