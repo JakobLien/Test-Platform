@@ -5,15 +5,14 @@
 	"main": "bot.js",
 	"dependencies": {
 		"node": "*",
-		"request": "*",
 		"mysql": "*",
 		"bufferutil": "*",
-		"node-opus": "*",
 		"sodium": "*",
 		"libsodium-wrappers": "*",
 		"uws": "*",
 		"ffmpeg": "*",
-		"discord.js": "*"
+		"discord.js": "*",
+		"@discordjs/opus": "*"
 	},
 	"scripts": {
 		"start": "node bot.js"
