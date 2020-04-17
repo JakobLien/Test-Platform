@@ -11,7 +11,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-const opus = require('@discordjs/opus');
+const opus = require('discordjs/opus');
 
 //api for general communication and stuff
 const http = require('http');
