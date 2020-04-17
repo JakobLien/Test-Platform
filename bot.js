@@ -5,7 +5,7 @@
 //Programmer en sansynlighet for at boten poppe ut en random melding i reaksjon på hver eneste melding(5%-10% sannsynlighet)
  
 //for joining calls and stuff
-//const FFMPEG = require('ffmpeg');
+const FFMPEG = require('ffmpeg');
 
 //Important genereral stuff
 const Discord = require('discord.js');
