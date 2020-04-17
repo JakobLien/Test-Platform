@@ -9,7 +9,6 @@
 		"bufferutil": "*",
 		"sodium": "*",
 		"libsodium-wrappers": "*",
-		"uws": "*",
 		"ffmpeg": "*",
 		"discord.js": "*",
 		"@discordjs/opus": "*"
